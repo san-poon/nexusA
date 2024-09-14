@@ -5,7 +5,8 @@ import {
     pgTable,
     uuid,
     varchar,
-    primaryKey
+    primaryKey,
+    PgArray
 } from "drizzle-orm/pg-core"
 
 // Next-auth's drizzle adapter schema starts here ---------
@@ -64,17 +65,17 @@ export const verificationTokens = pgTable(
 )
 // and ends here -------------------
 
-
-export const categories = pgTable('categories', {
+export const topics = pgTable('topics', {
     id: uuid('id').primaryKey().notNull(),
     name: varchar('name').notNull(),
 });
 
-export const categoryHierarchy = pgTable('category_hierarchy', {
-    categoryID: uuid('category_id').references(() => categories.id),
-    parentID: uuid('parent_id').references(() => categories.id),
+export const topicRelationships = pgTable('topic_relationships', {
+    childID: uuid('child_id').references(() => topics.id).notNull(),
+    parentID: uuid('parent_id').references(() => topics.id).notNull(),
 }, (table) => {
+    // Add composite primary key to ensure uniqueness of the relationship
     return {
-        pk: primaryKey({ columns: [table.categoryID, table.parentID] })
-    }
+        pk: primaryKey({ columns: [table.parentID, table.childID] }),
+    };
 });
