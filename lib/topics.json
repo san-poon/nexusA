@@ -1,0 +1,112 @@
+{
+    "ROOT": {
+        "id": "ROOT",
+        "title": "Foundational Knowledge",
+        "childIDs": [
+            "1"
+        ],
+        "parentIDs": []
+    },
+    "1": {
+        "id": "1",
+        "title": "Physics",
+        "childIDs": [
+            "2",
+            "3",
+            "4"
+        ],
+        "parentIDs": [
+            "ROOT"
+        ]
+    },
+    "2": {
+        "id": "2",
+        "title": "Newton's laws of motion and universal gravitation",
+        "description": "",
+        "childIDs": [],
+        "parentIDs": [
+            "ROOT"
+        ]
+    },
+    "3": {
+        "id": "3",
+        "title": "Conservation of energy and mass",
+        "description": "",
+        "childIDs": [],
+        "parentIDs": [
+            "1"
+        ]
+    },
+    "4": {
+        "id": "4",
+        "title": "Laws of thermodynamics",
+        "description": "",
+        "childIDs": [],
+        "parentIDs": [
+            "1"
+        ]
+    },
+    "5": {
+        "id": "5",
+        "title": "Biology",
+        "description": "",
+        "childIDs": [],
+        "parentIDs": [
+            "ROOT"
+        ]
+    },
+    "6": {
+        "id": "6",
+        "title": "Theory of evolution by natural selection",
+        "description": "",
+        "childIDs": [],
+        "parentIDs": [
+            "5"
+        ]
+    },
+    "7": {
+        "id": "7",
+        "title": "Germ theory of disease",
+        "description": "",
+        "childIDs": [],
+        "parentIDs": [
+            "5"
+        ]
+    },
+    "8": {
+        "id": "8",
+        "title": "DNA structure and function",
+        "description": "",
+        "childIDs": [],
+        "parentIDs": [
+            "5"
+        ]
+    },
+    "9": {
+        "id": "9",
+        "title": "Mathematics",
+        "description": "",
+        "childIDs": [],
+        "parentIDs": [
+            "ROOT"
+        ]
+    },
+    "10": {
+        "id": "10",
+        "title": "Pythagorean theorem",
+        "description": "",
+        "childIDs": [],
+        "parentIDs": [
+            "9"
+        ]
+    },
+    "11": {
+        "id": "11",
+        "title": "Boolean algebra",
+        "description": "",
+        "childIDs": [],
+        "parentIDs": [
+            "9"
+        ]
+    }
+}
