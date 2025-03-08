@@ -91,6 +91,13 @@ const config: Config = {
         }
       })
     }),
+    plugin(function ({ addBase, theme }) {
+      addBase({
+        ':root': Object.fromEntries(
+          Object.entries(theme('colors.wash') as Record<string, string>).map(([key, value]) => [`--wash-${key}`, value])
+        )
+      })
+    })
   ],
 }
 export default config

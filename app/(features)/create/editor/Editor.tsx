@@ -26,6 +26,7 @@ import { useState } from 'react';
 import FloatingTextFormatToolbarPlugin from './plugins/floating-plugins/FloatingTextFormatToolbarPlugin';
 import FloatingLinkEditorPlugin from './plugins/floating-plugins/FloatingLinkEditorPlugin';
 import AutoLinkPlugin from './plugins/AutoLinkPlugin';
+import MCQPlugin from './plugins/mcq/mcqPlugin';
 
 export default function Editor() {
     const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null);
@@ -64,6 +65,8 @@ export default function Editor() {
                 <ImagesPlugin />
                 <ListPlugin />
                 <LinkPlugin />
+                <MCQPlugin />
+
 
                 {floatingAnchorElem && (
                     <>
@@ -79,6 +82,7 @@ export default function Editor() {
                     </>
                 )}
             </div>
+
 
         </LexicalComposer>
     );

@@ -229,7 +229,7 @@ export const LinkIcon = ({ className }: IconProps) => (
 );
 
 export const ParanthesisIcon = ({ className }: IconProps) => (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" className={cn("size-6", className)}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className={cn("size-6", className)}>
         <path d="M8 21s-4-3-4-9 4-9 4-9" /><path d="M16 3s4 3 4 9-4 9-4 9" />
     </svg>
 );

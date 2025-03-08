@@ -47,6 +47,8 @@ export default function CollapsiblePlugin(): null {
     const [editor] = useLexicalComposerContext();
 
     useEffect(() => {
+
+        // Verifies required nodes are registered
         if (
             !editor.hasNodes([
                 CollapsibleContainerNode,
@@ -59,6 +61,7 @@ export default function CollapsiblePlugin(): null {
             );
         }
 
+        // Handles up/left arrow key navigation
         const $onEscapeUp = () => {
             const selection = $getSelection();
             if (
@@ -71,6 +74,7 @@ export default function CollapsiblePlugin(): null {
                     $isCollapsibleContainerNode,
                 );
 
+                // Adds paragraph before collapsible if it's the first node in the editor
                 if ($isCollapsibleContainerNode(container)) {
                     const parent = container.getParent<ElementNode>();
                     if (
@@ -87,6 +91,7 @@ export default function CollapsiblePlugin(): null {
             return false;
         };
 
+        // Handles down/right arrow navigation
         const $onEscapeDown = () => {
             const selection = $getSelection();
             if ($isRangeSelection(selection) && selection.isCollapsed()) {
@@ -95,6 +100,7 @@ export default function CollapsiblePlugin(): null {
                     $isCollapsibleContainerNode,
                 );
 
+                // Adds paragraph after this collapsible if its the last node in the editor
                 if ($isCollapsibleContainerNode(container)) {
                     const parent = container.getParent<ElementNode>();
                     if (
@@ -123,9 +129,9 @@ export default function CollapsiblePlugin(): null {
         };
 
         return mergeRegister(
-            // Structure enforcing transformers for each node type. In case nesting structure is not
-            // "Container > Title + Content" it'll unwrap nodes and convert it back
-            // to regular content.
+            //  If a CollapsibleContentNode somehow ends up outside a CollapsibleContainerNode, 
+            // this transform unwraps it, preserving its children 
+            // but removing the invalid container structure.
             editor.registerNodeTransform(CollapsibleContentNode, (node) => {
                 const parent = node.getParent<ElementNode>();
                 if (!$isCollapsibleContainerNode(parent)) {
@@ -137,6 +143,9 @@ export default function CollapsiblePlugin(): null {
                 }
             }),
 
+            // If a CollapsibleTitleNode ends up outside a CollapsibleContainerNode, 
+            // this transform converts it back to a regular paragraph, 
+            // preserving its children.
             editor.registerNodeTransform(CollapsibleTitleNode, (node) => {
                 const parent = node.getParent<ElementNode>();
                 if (!$isCollapsibleContainerNode(parent)) {
@@ -147,6 +156,8 @@ export default function CollapsiblePlugin(): null {
                 }
             }),
 
+            // This transformation ensures that a CollapsibleContainerNode always contains exactly one CollapsibleTitleNode and one CollapsibleContentNode.
+            // If the container doesn't meet this structure, it unwraps the nodes and removes the invalid container.
             editor.registerNodeTransform(CollapsibleContainerNode, (node) => {
                 const children = node.getChildren<LexicalNode>();
                 if (

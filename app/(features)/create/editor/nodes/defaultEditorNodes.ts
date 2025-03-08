@@ -12,12 +12,19 @@ import { EquationNode } from './EquationNode';
 import { CollapsibleContentNode } from '../plugins/collapsible/CollapsibleContentNode';
 import { CollapsibleContainerNode } from '../plugins/collapsible/CollapsibleContainerNode';
 import { CollapsibleTitleNode } from '../plugins/collapsible/CollapsibleTitleNode';
+import { MCQContainerNode } from '../plugins/mcq/mcqContainerNode';
+import { MCQQuestionNode } from '../plugins/mcq/mcqQuestionNode';
+import { MCQOptionNode } from '../plugins/mcq/mcqOptionNode';
+import { MCQOptionsContainerNode } from '../plugins/mcq/mcqOptionsContainerNode';
+import { ExplanationNode } from '../plugins/mcq/explanationNode';
+
 
 const defaultEditorNodes: Array<Klass<LexicalNode>> = [
   CollapsibleContentNode,
   CollapsibleContainerNode,
   CollapsibleTitleNode,
   EquationNode,
+  ExplanationNode,
   HeadingNode,
   QuoteNode,
   ListNode,
@@ -29,6 +36,10 @@ const defaultEditorNodes: Array<Klass<LexicalNode>> = [
   HorizontalRuleNode,
   ImageNode,
   MarkNode,
+  MCQContainerNode,
+  MCQQuestionNode,
+  MCQOptionNode,
+  MCQOptionsContainerNode,
   TableNode,
   TableCellNode,
   TableRowNode,

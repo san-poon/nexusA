@@ -31,16 +31,6 @@ type SerializedCollapsibleContainerNode = Spread<
     SerializedElementNode
 >;
 
-export function $convertDetailsElement(
-    domNode: HTMLDetailsElement,
-): DOMConversionOutput | null {
-    const isOpen = domNode.open !== undefined ? domNode.open : true;
-    const node = $createCollapsibleContainerNode(isOpen);
-    return {
-        node,
-    };
-}
-
 export class CollapsibleContainerNode extends ElementNode {
     __open: boolean;
 
@@ -165,4 +155,14 @@ export function $isCollapsibleContainerNode(
     node: LexicalNode | null | undefined,
 ): node is CollapsibleContainerNode {
     return node instanceof CollapsibleContainerNode;
+}
+
+export function $convertDetailsElement(
+    domNode: HTMLDetailsElement,
+): DOMConversionOutput | null {
+    const isOpen = domNode.open !== undefined ? domNode.open : true;
+    const node = $createCollapsibleContainerNode(isOpen);
+    return {
+        node,
+    };
 }

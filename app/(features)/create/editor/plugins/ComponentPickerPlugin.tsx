@@ -13,11 +13,12 @@ import { INSERT_HORIZONTAL_RULE_COMMAND } from '@lexical/react/LexicalHorizontal
 import { cn } from '@/lib/utils';
 import useModal from '@/components/hooks/useModal';
 import { INSERT_TABLE_COMMAND } from '@lexical/table';
-import { ImageBlockIcon, SigmaPiIcon } from '@/components/icons';
+import { ImageBlockIcon, QuizBlockIcon, SigmaPiIcon } from '@/components/icons';
 import { InsertImageDialog } from './ImagesPlugin';
 import { InsertEquationDialog } from './EquationsPlugin';
 import { INSERT_COLLAPSIBLE_COMMAND } from './collapsible/CollapsiblePlugin';
 import { ChevronRightIcon, SplitSquareVerticalIcon } from 'lucide-react';
+import { INSERT_MCQ_COMMAND } from './mcq/mcqPlugin';
 
 
 
@@ -143,6 +144,12 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
             keywords: ['collapse', 'collapsible', 'toggle'],
             onSelect: () =>
                 editor.dispatchCommand(INSERT_COLLAPSIBLE_COMMAND, undefined),
+        }),
+        new ComponentPickerOption('Quiz', {
+            icon: <QuizBlockIcon className='w-6 h-6' />,
+            keywords: ['quiz', 'mcq'],
+            onSelect: () =>
+                editor.dispatchCommand(INSERT_MCQ_COMMAND, undefined),
         }),
 
     ];
