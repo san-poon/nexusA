@@ -32,11 +32,38 @@ export class MCQOptionsContainerNode extends ElementNode {
     createDOM(config: EditorConfig, editor: LexicalEditor): HTMLElement {
         const dom = document.createElement('div');
         dom.classList.add('mcq-options-container');
+
+        // Add a container for the "Add option" button
+        const addOptionButtonContainer = document.createElement('div');
+        addOptionButtonContainer.classList.add('mcq-add-option-button-container');
+        addOptionButtonContainer.style.display = this.canAddOption() ? 'flex' : 'none';
+
+        // Create the "+" button
+        const addOptionButton = document.createElement('button');
+        addOptionButton.classList.add('mcq-add-option-button');
+        addOptionButton.innerHTML = '+';
+        addOptionButton.title = 'add option (ctrl + enter)';
+
+        // Add event listener for "+" button to add new option
+        addOptionButton.addEventListener('click', () => {
+            editor.update(() => {
+                if (this.canAddOption()) {
+                    const newOption = this.addOption();
+                    newOption.selectEnd();
+                }
+            });
+        });
+
+        addOptionButtonContainer.appendChild(addOptionButton);
+        dom.appendChild(addOptionButtonContainer);
+
         return dom;
     }
 
     updateDOM(): boolean {
-        return false;
+        // Return true to recreate the DOM using createDOM()
+        // This makes possible for the "+"" button to be visible/invisible based on canAddOption()
+        return true;
     }
 
     exportJSON(): SerializedMCQOptionsContainerNode {
@@ -62,6 +89,7 @@ export class MCQOptionsContainerNode extends ElementNode {
     removeOption(optionNode: LexicalNode): boolean {
         if ($isMCQOptionNode(optionNode) && this.isParentOf(optionNode)) {
             optionNode.remove();
+            return true;
         }
         return false
     }

@@ -42,6 +42,8 @@ export class MCQQuestionNode extends ElementNode {
         return $createMCQQuestionNode();
     }
 
+    // without this, using delete key will delete the question node and the whole MCQContainerNode will act crazy 
+    // and it will not allow to add anything after MCQContainerNode.
     isShadowRoot(): boolean {
         return true;
     }

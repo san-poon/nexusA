@@ -75,6 +75,12 @@ export class MCQOptionNode extends ElementNode {
         };
     }
 
+    // Here I understood that without this, using delete key 
+    // will delete the option node though there are only two options.
+    isShadowRoot(): boolean {
+        return true;
+    }
+
     static importJSON(serializedNode: SerializedMCQOptionNode): MCQOptionNode {
         return $createMCQOptionNode(serializedNode.checked);
     }
