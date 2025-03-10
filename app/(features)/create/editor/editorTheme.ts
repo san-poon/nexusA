@@ -87,7 +87,7 @@ const theme: EditorThemeClasses = {
     underline: 'underline underline-offset-4',
     strikethrough: 'line-through',
     underlineStrikethrough: 'underline line-through',
-    code: 'codeText bg-wash-80 dark:bg-wash-720 px-1 rounded text-sm',
+    code: 'codeText bg-wash-80 dark:bg-wash-720 px-1 rounded-sm text-sm',
     subscript: 'text-[0.8em] align-sub !important',
     superscript: 'text-[0.8em] align-super',
   },

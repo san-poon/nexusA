@@ -13,11 +13,11 @@ export function useActivePathDispatch() {
 export function ActivePathProvider({ children }: { children: React.ReactNode }) {
     const [activePathID, dispatch] = useReducer(activePathReducer, 'ROOT')
     return (
-        <ActivePathContext.Provider value={activePathID}>
-            <ActivePathDispatchContext.Provider value={dispatch}>
+        (<ActivePathContext value={activePathID}>
+            <ActivePathDispatchContext value={dispatch}>
                 {children}
-            </ActivePathDispatchContext.Provider>
-        </ActivePathContext.Provider>
+            </ActivePathDispatchContext>
+        </ActivePathContext>)
     );
 }
 

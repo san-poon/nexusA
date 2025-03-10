@@ -65,7 +65,7 @@ export function TableContext({ children }: { children: JSX.Element }) {
         cellEditorPlugins: null,
     });
     return (
-        <CellContext.Provider
+        (<CellContext
             value={useMemo(
                 () => ({
                     cellEditorConfig: contextValue.cellEditorConfig,
@@ -77,7 +77,7 @@ export function TableContext({ children }: { children: JSX.Element }) {
                 [contextValue.cellEditorConfig, contextValue.cellEditorPlugins],
             )}>
             {children}
-        </CellContext.Provider>
+        </CellContext>)
     );
 }
 

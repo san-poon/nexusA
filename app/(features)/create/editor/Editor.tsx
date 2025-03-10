@@ -41,12 +41,12 @@ export default function Editor() {
     return (
         <LexicalComposer initialConfig={initialConfig}>
 
-            <div className='min-h-[92vh] w-full max-w-screen-lg dark:lg:border border-wash-600 rounded-3xl lg:shadow-2xl dark:shadow-none my-4 lg:my-8 p-6 lg:p-12'>
+            <div className='min-h-[92vh] w-full max-w-(--breakpoint-lg) dark:lg:border border-wash-600 rounded-3xl lg:shadow-2xl dark:shadow-none my-4 lg:my-8 p-6 lg:p-12'>
                 <AutoLinkPlugin />
                 <RichTextPlugin
                     contentEditable={
                         <div className='relative z-0 overflow-auto resize-x'>
-                            <div ref={onRef} className=' -z-[1] flex-auto relative resize-x'>
+                            <div ref={onRef} className=' -z-1 flex-auto relative resize-x'>
                                 <ContentEditable className='min-h-[92vh] w-full resize-none pb-[92vh] outline-0' />
                             </div>
                         </div>

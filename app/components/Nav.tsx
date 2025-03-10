@@ -79,17 +79,25 @@ export default function Nav() {
     )
 }
 
-const ListItem = React.forwardRef<
-    React.ElementRef<"a">,
-    React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, href, ...props }, ref) => {
+const ListItem = (
+    {
+        ref,
+        className,
+        title,
+        children,
+        href,
+        ...props
+    }: React.ComponentPropsWithoutRef<"a"> & {
+        ref: React.RefObject<React.ElementRef<"a">>;
+    }
+) => {
     return (
         <li>
             <Link
                 ref={ref}
                 href={href}
                 className={cn(
-                    "block select-none space-y-1 rounded-2xl p-3 leading-none no-underline outline-none transition-colors hover:bg-wash-100 dark:hover:bg-wash-850 focus:bg-wash-100 dark:focus:bg-wash-850",
+                    "block select-none space-y-1 rounded-2xl p-3 leading-none no-underline outline-hidden transition-colors hover:bg-wash-100 dark:hover:bg-wash-850 focus:bg-wash-100 dark:focus:bg-wash-850",
                     className
                 )}
                 {...props}
@@ -101,7 +109,7 @@ const ListItem = React.forwardRef<
             </Link>
         </li>
     );
-});
+};
 ListItem.displayName = "ListItem"
 
 

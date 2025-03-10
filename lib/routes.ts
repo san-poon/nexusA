@@ -39,7 +39,7 @@ export const DEFAULT_SIGNIN_REDIRECT = '/dashboard';
  * These routes must be available to everyone, logged-in and anonymous alike.
  * 
  * The 'Save' action in these routes checks if users are logged in,
- * if they are not, they are routed to '/auth/login'.
+ * if they are not, they must routed to '/auth/login'.
  */
 export const publicCreationRoutes = [
     '/create/learning-path',

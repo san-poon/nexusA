@@ -20,7 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${defaultFont.className}  flex flex-col min-h-screen dark:bg-wash-800 dark:text-neutral-100 text-base`}>
-        <ThemeProvider attribute='class'
+        <ThemeProvider
+          attribute='class'
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange

@@ -2,7 +2,7 @@
 .mcq-container {
     margin-top: 0.75rem;
     padding: 0.75rem;
-    background-color: var(--wash-60);
+    background-color: var(--color-wash-60);
     border-radius: 1.5rem;
     width: 100%;
     display: flex;
@@ -12,7 +12,7 @@
 }
 
 html.dark .mcq-container {
-    background-color: var(--wash-700);
+    background-color: var(--color-wash-700);
 }
 
 /* Question styling */
@@ -20,13 +20,13 @@ html.dark .mcq-container {
     padding: 0.5rem 0.75rem;
     border-radius: 0.75rem;
     text-align: left;
-    color: var(--wash-800);
-    background-color: var(--wash-150);
+    color: var(--color-wash-800);
+    background-color: var(--color-wash-150);
 }
 
 html.dark .mcq-question {
-    background-color: var(--wash-750);
-    color: var(--wash-50);
+    background-color: var(--color-wash-750);
+    color: var(--color-wash-50);
 }
 
 @media (min-width: 768px) {
@@ -62,7 +62,7 @@ html.dark .mcq-question {
     padding: 0.375rem 0.75rem;
     margin: 0;
     /* Removed margin since we're using gap */
-    background-color: var(--wash-150);
+    background-color: var(--color-wash-150);
     border-radius: 0.75rem;
     transition: all 200ms ease-in-out;
     width: 100%;
@@ -74,7 +74,7 @@ html.dark .mcq-question {
 }
 
 html.dark .mcq-option {
-    background-color: var(--wash-750);
+    background-color: var(--color-wash-750);
 }
 
 @media (min-width: 768px) {
@@ -125,42 +125,42 @@ html.dark .mcq-option {
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
-    background-color: var(--wash-200);
+    background-color: var(--color-wash-200);
     border: none;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
 html.dark .mcq-add-option-button {
-    background-color: var(--wash-700);
+    background-color: var(--color-wash-700);
 }
 
 .mcq-add-option-button:hover {
-    background-color: var(--wash-300);
+    background-color: var(--color-wash-300);
 }
 
 html.dark .mcq-add-option-button:hover {
-    background-color: var(--wash-600);
+    background-color: var(--color-wash-600);
 }
 
 .mcq-add-option-button svg {
-    color: var(--wash-700);
+    color: var(--color-wash-700);
 }
 
 html.dark .mcq-add-option-button svg {
-    color: var(--wash-200);
+    color: var(--color-wash-200);
 }
 
 .explanation-container {
     padding: 0.75rem;
     border-radius: 0.75rem;
-    background-color: var(--wash-150);
+    background-color: var(--color-wash-150);
     position: relative;
 }
 
 html.dark .explanation-container {
-    border-top-color: var(--wash-600);
-    background-color: var(--wash-750);
+    border-top-color: var(--color-wash-600);
+    background-color: var(--color-wash-750);
 }
 
 @media (min-width: 768px) {
@@ -185,9 +185,9 @@ html.dark .explanation-container {
 .mcq-icon {
     width: 1.25rem;
     height: 1.25rem;
-    color: var(--wash-700);
+    color: var(--color-wash-700);
 }
 
 html.dark .mcq-icon {
-    color: var(--wash-150);
+    color: var(--color-wash-150);
 }

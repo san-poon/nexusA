@@ -15,9 +15,9 @@ export const SharedHistoryContext = ({ children }: { children: ReactNode }) => {
         [],
     );
     return (
-        <Context.Provider value={historyContext}>
+        (<Context value={historyContext}>
             {children}
-        </Context.Provider>
+        </Context>)
     );
 }
 

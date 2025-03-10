@@ -22,7 +22,7 @@ export default async function Header() {
     return (
 
         <header className="z-50 sticky top-0">
-            <nav className="duration-300 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-white dark:bg-wash-800 dark:bg-opacity-95 px-1.5 lg:pe-2.5 lg:ps-4 z-50 dark:shadow-wash-780 shadow">
+            <nav className="duration-300 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-white dark:bg-wash-800 dark:bg-opacity-95 px-1.5 lg:pe-2.5 lg:ps-4 z-50 dark:shadow-wash-780 shadow-sm">
                 <div className="flex items-center justify-between w-full h-16 gap-0 sm:gap-3">
                     <Link href="/" title="nexusA">
                         <div className="flex items-center justify-center duration-300 p-2 transition-transform hover:scale-105">

@@ -40,11 +40,11 @@ export function PathsProvider({ children }: { children: React.ReactNode }) {
     const [paths, dispatch] = useImmerReducer(pathsReducer, samplePaths as Paths);
 
     return (
-        <PathsContext.Provider value={paths}>
-            <PathsDispatchContext.Provider value={dispatch}>
+        (<PathsContext value={paths}>
+            <PathsDispatchContext value={dispatch}>
                 {children}
-            </PathsDispatchContext.Provider>
-        </PathsContext.Provider>
+            </PathsDispatchContext>
+        </PathsContext>)
     );
 }
 
