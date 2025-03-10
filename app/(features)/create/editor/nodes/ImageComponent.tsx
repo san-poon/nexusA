@@ -37,7 +37,7 @@ import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
-import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
+import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
 import ImageResizer from "@/components/ui/ImageResizer";
 import { HorizontalRulePlugin } from "@lexical/react/LexicalHorizontalRulePlugin";
 import { HorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
