@@ -26,7 +26,7 @@ export function DynamicTextarea({ className, ...props }: TextareaProps) {
     }, []);
 
     return (
-        <Textarea ref={textareaRef}
+        <Textarea ref={textareaRef as React.RefObject<HTMLTextAreaElement>}
             className={cn(
                 "resize-none overflow-hidden px-4 py-3 w-full",
                 className

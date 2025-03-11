@@ -1,4 +1,3 @@
-
 import { CircleCheck } from '@/components/icons';
 
 interface FormSuccessProps {

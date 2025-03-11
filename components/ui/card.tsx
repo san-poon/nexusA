@@ -2,96 +2,86 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-const Card = (
-  {
-    ref,
-    className,
-    ...props
-  }: React.HTMLAttributes<HTMLDivElement> & {
-    ref: React.RefObject<HTMLDivElement>;
-  }
-) => (<div
-  ref={ref}
-  className={cn(
-    "rounded-2xl bg-wash-50 dark:bg-wash-780",
-    className
-  )}
-  {...props}
-/>)
-Card.displayName = "Card"
+export function Card({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      data-slot="card"
+      className={cn(
+        "rounded-2xl bg-wash-50 dark:bg-wash-780",
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
-const CardHeader = (
-  {
-    ref,
-    className,
-    ...props
-  }: React.HTMLAttributes<HTMLDivElement> & {
-    ref: React.RefObject<HTMLDivElement>;
-  }
-) => (<div
-  ref={ref}
-  className={cn("flex flex-col space-y-1.5 p-6", className)}
-  {...props}
-/>)
-CardHeader.displayName = "CardHeader"
+export function CardHeader({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      data-slot="card-header"
+      className={cn("flex flex-col space-y-1.5 p-6", className)}
+      {...props}
+    />
+  )
+}
 
-const CardTitle = (
-  {
-    ref,
-    className,
-    ...props
-  }: React.HTMLAttributes<HTMLHeadingElement> & {
-    ref: React.RefObject<HTMLParagraphElement>;
-  }
-) => (<h3
-  ref={ref}
-  className={cn(
-    "text-2xl font-semibold leading-none tracking-tight",
-    className
-  )}
-  {...props}
-/>)
-CardTitle.displayName = "CardTitle"
+export function CardTitle({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLHeadingElement>) {
+  return (
+    <h3
+      data-slot="card-title"
+      className={cn(
+        "text-2xl font-semibold leading-none tracking-tight",
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
-const CardDescription = (
-  {
-    ref,
-    className,
-    ...props
-  }: React.HTMLAttributes<HTMLParagraphElement> & {
-    ref: React.RefObject<HTMLParagraphElement>;
-  }
-) => (<p
-  ref={ref}
-  className={cn("text-sm text-neutral-500 dark:text-neutral-400", className)}
-  {...props}
-/>)
-CardDescription.displayName = "CardDescription"
+export function CardDescription({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLParagraphElement>) {
+  return (
+    <p
+      data-slot="card-description"
+      className={cn("text-sm text-neutral-500 dark:text-neutral-400", className)}
+      {...props}
+    />
+  )
+}
 
-const CardContent = (
-  {
-    ref,
-    className,
-    ...props
-  }: React.HTMLAttributes<HTMLDivElement> & {
-    ref: React.RefObject<HTMLDivElement>;
-  }
-) => (<div ref={ref} className={cn("p-6 pt-0", className)} {...props} />)
-CardContent.displayName = "CardContent"
+export function CardContent({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      data-slot="card-content"
+      className={cn("p-6 pt-0", className)}
+      {...props}
+    />
+  )
+}
 
-const CardFooter = (
-  {
-    ref,
-    className,
-    ...props
-  }: React.HTMLAttributes<HTMLDivElement> & {
-    ref: React.RefObject<HTMLDivElement>;
-  }
-) => (<div
-  ref={ref}
-  className={cn("flex items-center p-6 pt-0", className)}
-  {...props}
-/>)
-CardFooter.displayName = "CardFooter"
-
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+export function CardFooter({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      data-slot="card-footer"
+      className={cn("flex items-center p-6 pt-0", className)}
+      {...props}
+    />
+  )
+}
