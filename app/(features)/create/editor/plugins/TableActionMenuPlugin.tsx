@@ -147,7 +147,7 @@ type TableCellActionMenuProps = Readonly<{
   setIsMenuOpen: (isOpen: boolean) => void;
   showColorPickerModal: (
     title: string,
-    showModal: (onClose: () => void) => JSX.Element,
+    showModal: (onClose: () => void) => React.JSX.Element,
   ) => void;
   tableCellNode: TableCellNode;
   cellMerge: boolean;

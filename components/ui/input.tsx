@@ -3,7 +3,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 
 export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> { }
+  extends React.ComponentPropsWithRef<"input"> { }
 
 export function Input({
   className,

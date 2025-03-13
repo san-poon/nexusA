@@ -82,7 +82,7 @@ export class MCQOptionsContainerNode extends ElementNode {
     // Helper methods for managing options
     addOption(): MCQOptionNode {
         const newOption = $createMCQOptionNode();
-        this.append(newOption.append($createParagraphNode().append($createTextNode('option...'))));
+        this.append(newOption.append($createParagraphNode()));
         return newOption;
     }
 

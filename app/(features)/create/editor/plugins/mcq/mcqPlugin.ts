@@ -34,6 +34,10 @@ export default function MCQPlugin(): null {
     const [editor] = useLexicalComposerContext();
 
     useEffect(() => {
+        // Track the last backspace timestamp for double-backspace detection
+        let lastBackspaceTime = 0;
+        const DOUBLE_BACKSPACE_THRESHOLD = 500; // ms
+
         if (
             !editor.hasNodes([
                 MCQContainerNode,
@@ -167,7 +171,7 @@ export default function MCQPlugin(): null {
                         const questionNode = $createMCQQuestionNode();
                         const optionsContainerNode = $createMCQOptionsContainerNode();
                         const optionNode = $createMCQOptionNode().append($createParagraphNode().append($createTextNode('option...')));
-                        const optionNode2 = $createMCQOptionNode().append($createParagraphNode().append($createTextNode('option...')));
+                        const optionNode2 = $createMCQOptionNode().append($createParagraphNode());
                         const explantionNode = $createExplanationNode().append($createParagraphNode().append($createTextNode('explanation...')))
                         const paragraph = $createParagraphNode().append($createTextNode('?...'));
                         $insertNodeToNearestRoot(
@@ -276,10 +280,21 @@ export default function MCQPlugin(): null {
                     const questionNode = $findMatchingParent(node, $isMCQQuestionNode);
                     if (!questionNode) return false;
 
-                    // Only collapse if we're at the very start of the question
+                    // Only p if we're at the very start of the question
                     if (questionNode.getFirstDescendant() !== node) return false;
 
-                    // Remove mcq container node. There is no logic in keeping it's inner nodes if user doesn't want MCQ.
+                    const currentTime = Date.now();
+
+                    // If this is the first backspace or too much time has passed since the last one
+                    if (currentTime - lastBackspaceTime > DOUBLE_BACKSPACE_THRESHOLD) {
+                        lastBackspaceTime = currentTime;
+                        return false; // Let the backspace happen normally but don't delete the MCQ
+                    }
+
+                    // This is a double backspace within the threshold time
+                    lastBackspaceTime = 0; // Reset the timer
+
+                    // Remove mcq container node
                     const mcqContainer = questionNode.getParent();
                     if (!$isMCQContainerNode(mcqContainer)) return false;
                     const paragraph = $createParagraphNode();

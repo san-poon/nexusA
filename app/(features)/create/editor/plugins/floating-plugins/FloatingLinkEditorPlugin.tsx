@@ -27,7 +27,7 @@ import { createPortal } from 'react-dom';
 
 import { getSelectedNode } from '../../../lib/utils';
 import { setFloatingElemPositionForLinkEditor } from '../../../lib/utils';
-import { sanitizeUrl } from '@/lib/utils';
+import { sanitizeUrl } from '../../../lib/utils/url';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { CheckIcon, PencilIcon, TrashIcon, XIcon } from 'lucide-react';
@@ -46,7 +46,7 @@ function FloatingLinkEditor({
     anchorElem: HTMLElement;
     isLinkEditMode: boolean;
     setIsLinkEditMode: Dispatch<boolean>;
-}): JSX.Element {
+}): React.JSX.Element {
     const editorRef = useRef<HTMLDivElement | null>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     const [linkUrl, setLinkUrl] = useState('');
@@ -295,7 +295,7 @@ function useFloatingLinkEditorToolbar(
     anchorElem: HTMLElement,
     isLinkEditMode: boolean,
     setIsLinkEditMode: Dispatch<boolean>,
-): JSX.Element | null {
+): React.JSX.Element | null {
     const [activeEditor, setActiveEditor] = useState(editor);
     const [isLink, setIsLink] = useState(false);
 
@@ -391,7 +391,7 @@ export default function FloatingLinkEditorPlugin({
     anchorElem?: HTMLElement;
     isLinkEditMode: boolean;
     setIsLinkEditMode: Dispatch<boolean>;
-}): JSX.Element | null {
+}): React.JSX.Element | null {
     const [editor] = useLexicalComposerContext();
     return useFloatingLinkEditorToolbar(
         editor,
