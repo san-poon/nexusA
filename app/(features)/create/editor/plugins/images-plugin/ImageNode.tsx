@@ -18,6 +18,8 @@ import { Suspense } from "react";
 
 const ImageComponent = React.lazy(() => import('./ImageComponent'));
 
+const DEFAULT_MAX_WIDTH = 800; // Maximum width for large screens
+
 
 export interface ImagePayload {
     altText: string;
@@ -230,7 +232,7 @@ function isGoogleDocCheckboxImg(img: HTMLImageElement): boolean {
 export function $createImageNode({
     altText,
     height,
-    maxWidth = 500,
+    maxWidth = DEFAULT_MAX_WIDTH,
     captionsEnabled,
     src,
     width,

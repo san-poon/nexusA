@@ -19,7 +19,7 @@ import theme from './editorTheme';
 import CodeHighlightPlugin from './plugins/CodeHighlightPlugin';
 import { $createHeadingNode } from '@lexical/rich-text';
 import { $createListItemNode, $createListNode } from '@lexical/list';
-import ImagesPlugin from './plugins/ImagesPlugin';
+import ImagesPlugin from './plugins/images-plugin/ImagesPlugin';
 import EquationsPlugin from './plugins/EquationsPlugin';
 import CollapsiblePlugin from './plugins/collapsible/CollapsiblePlugin';
 import { useEffect, useState } from 'react';

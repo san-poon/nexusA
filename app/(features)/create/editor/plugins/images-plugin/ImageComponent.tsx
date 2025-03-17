@@ -22,7 +22,7 @@ import {
     SELECTION_CHANGE_COMMAND,
     TextNode
 } from "lexical";
-import { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { JSX, Suspense, useCallback, useEffect, useRef, useState } from "react";
 import { useLexicalNodeSelection } from '@lexical/react/useLexicalNodeSelection';
 import { useCollaborationContext } from '@lexical/react/LexicalCollaborationContext';
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
@@ -30,8 +30,8 @@ import { LexicalNestedComposer } from '@lexical/react/LexicalNestedComposer';
 import { $isImageNode } from "./ImageNode";
 import { mergeRegister } from "@lexical/utils";
 
-import brokenImage from '../../lib/images/image-broken.svg';
-import { useSharedHistoryContext } from "../context/SharedHistoryContext";
+import brokenImage from '../../../lib/images/image-broken.svg';
+import { useSharedHistoryContext } from "../../context/SharedHistoryContext";
 import { LinkNode } from "@lexical/link";
 import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";

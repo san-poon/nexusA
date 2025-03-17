@@ -27,7 +27,7 @@ import {
     $isImageNode,
     ImageNode,
     ImagePayload
-} from '../nodes/ImageNode';
+} from './ImageNode';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";

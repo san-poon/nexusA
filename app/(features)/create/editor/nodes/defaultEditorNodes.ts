@@ -7,7 +7,7 @@ import { ListNode, ListItemNode } from '@lexical/list';
 import { LinkNode, AutoLinkNode } from '@lexical/link';
 import { MarkNode } from '@lexical/mark';
 import { TableNode, TableCellNode, TableRowNode } from '@lexical/table';
-import { ImageNode } from './ImageNode';
+import { ImageNode } from '../plugins/images-plugin/ImageNode';
 import { EquationNode } from './EquationNode';
 import { CollapsibleContentNode } from '../plugins/collapsible/CollapsibleContentNode';
 import { CollapsibleContainerNode } from '../plugins/collapsible/CollapsibleContainerNode';
