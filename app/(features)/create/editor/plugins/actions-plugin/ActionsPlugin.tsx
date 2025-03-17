@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { useCallback, useState } from "react";
+import { useCallback, JSX, useState } from "react";
 import { Pencil, Eye, ActivityIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 

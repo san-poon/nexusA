@@ -17,7 +17,7 @@ import {
     LexicalEditor,
     LexicalNode,
 } from 'lexical';
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { createContext, JSX, useContext, useEffect, useMemo, useState } from 'react';
 import * as React from 'react';
 import invariant from '../shared/invariant';
 

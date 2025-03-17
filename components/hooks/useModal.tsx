@@ -1,5 +1,5 @@
 import Modal from "@/components/ui/Modal";
-import { useCallback, useMemo, useState } from "react";
+import { JSX, useCallback, useMemo, useState } from "react";
 
 
 export default function useModal(): [

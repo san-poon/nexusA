@@ -32,7 +32,7 @@ import { useMobile } from '@/components/hooks/use-mobile';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import EditorStateOnChangePlugin from './plugins/EditorStateOnChangePlugin';
 import { SerializedEditorState, SerializedLexicalNode } from 'lexical';
-import Reader from '../../learn/Reader';
+import Reader from '../../learn/components/Reader';
 
 export default function Editor() {
 

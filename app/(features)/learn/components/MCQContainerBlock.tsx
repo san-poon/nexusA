@@ -7,7 +7,7 @@ import { SerializedExplanationNode } from "../../create/editor/plugins/mcq/expla
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { QuizBlockIcon } from "@/components/icons";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { ContentBlock } from "../Reader";
+import { ContentBlock } from "./Reader";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 

@@ -3,5 +3,5 @@ export default function LearnPage() {
         <div>
             <h1>Learn Page</h1>
         </div>
-    )
+    );
 }

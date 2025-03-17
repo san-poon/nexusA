@@ -22,6 +22,7 @@ import { calculateZoomLevel } from '@lexical/utils';
 import { $getNearestNodeFromDOMNode } from 'lexical';
 import * as React from 'react';
 import {
+    JSX,
     MouseEventHandler,
     ReactPortal,
     useCallback,
