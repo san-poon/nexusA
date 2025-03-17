@@ -42,10 +42,12 @@ const theme: EditorThemeClasses = {
   },
 
   heading: {
-    h1: 'text-4xl mb-4 font-medium tracking-tight',
-    h2: 'text-2xl mt-6 mb-3 font-medium',
-    h3: 'text-xl mt-4 mb-2 font-medium',
-    h4: 'text-lg mt-2 mb-1 font-medium'
+    h1: 'text-4xl font-medium mt-6 mb-4 tracking-tight',
+    h2: 'text-3xl font-medium mt-5 mb-3',
+    h3: 'text-2xl font-medium mt-4 mb-2',
+    h4: 'text-xl font-medium mt-3 mb-2',
+    h5: 'text-lg font-medium mt-2 mb-1',
+    h6: 'text-base font-medium mt-1 mb-0.5'
   },
   hr: 'hr',
   image: 'editor-image',
@@ -60,9 +62,9 @@ const theme: EditorThemeClasses = {
       listitem: '',
     },
     ol: 'list-decimal leading-8 list-inside marker:text-neutral-700 dark:marker:text-neutral-300',
-    ul: 'list-disc leading-8 list-inside marker:text-neutral-500',
+    ul: 'list-disc leading-8 list-inside marker:text-neutral-700 dark:marker:text-neutral-300',
   },
-  paragraph: 'leading-8 m-0 realtive',
+  paragraph: 'leading-8 my-4 realtive whitespace-pre-wrap',
 
   table: 'table',
   tableCell: "tableCell",

@@ -24,7 +24,7 @@ import invariant from '../../shared/invariant';
 
 import { setDomHiddenUntilFound } from './CollapsibleUtils';
 
-type SerializedCollapsibleContainerNode = Spread<
+export type SerializedCollapsibleContainerNode = Spread<
     {
         open: boolean;
     },

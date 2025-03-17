@@ -13,7 +13,7 @@ import {
     SerializedLexicalNode,
     Spread,
 } from "lexical";
-import React from "react";
+import React, { JSX } from "react";
 import { Suspense } from "react";
 
 const ImageComponent = React.lazy(() => import('./ImageComponent'));
@@ -109,7 +109,7 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
             src: this.getSrc(),
             altText: this.getAltText(),
             height: this.__height === 'inherit' ? 0 : this.__height,
-            width: this.__width === 'inherit' ? 0 : this.__width,
+            width: this.__width === 'inherit' ? this.__maxWidth : this.__width,
         }
     }
 

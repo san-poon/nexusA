@@ -2,7 +2,7 @@
 .mcq-container {
     margin-top: 0.5rem;
     padding: 0.75rem;
-    background-color: var(--color-wash-60);
+    background-color: var(--color-wash-80);
     border-radius: 1.5rem;
     width: 100%;
     display: flex;
@@ -21,7 +21,6 @@ html.dark .mcq-container {
     padding: 0.5rem 0.75rem;
     border-radius: 0.75rem;
     text-align: left;
-    color: var(--color-wash-800);
     background-color: var(--color-wash-150);
 }
 
@@ -75,6 +74,12 @@ html.dark .mcq-question {
     /*This is to make space for the checkbox*/
     position: relative;
     padding-left: 2.5rem;
+}
+
+.mcq-option p,
+.mcq-option div {
+    padding: 0;
+    margin: 0;
 }
 
 html.dark .mcq-option {

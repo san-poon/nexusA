@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { JSX, useCallback, useMemo, useState } from 'react';
 import ReactDOM from 'react-dom';
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';

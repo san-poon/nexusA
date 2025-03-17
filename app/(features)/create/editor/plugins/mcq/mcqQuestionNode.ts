@@ -10,7 +10,7 @@ import {
     SerializedElementNode,
 } from 'lexical';
 
-type SerializedMCQQuestionNode = SerializedElementNode;
+export type SerializedMCQQuestionNode = SerializedElementNode;
 
 export class MCQQuestionNode extends ElementNode {
     constructor(key?: NodeKey) {

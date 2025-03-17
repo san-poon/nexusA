@@ -14,7 +14,7 @@ import invariant from '../../shared/invariant';
 import { $isCollapsibleContainerNode } from './CollapsibleContainerNode';
 import { domOnBeforeMatch, setDomHiddenUntilFound } from './CollapsibleUtils';
 
-type SerializedCollapsibleContentNode = SerializedElementNode;
+export type SerializedCollapsibleContentNode = SerializedElementNode;
 
 export function $convertCollapsibleContentElement(
     domNode: HTMLElement,

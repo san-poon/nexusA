@@ -8,7 +8,7 @@ import {
     Spread
 } from "lexical";
 
-type SerializedMCQOptionNode = Spread<
+export type SerializedMCQOptionNode = Spread<
     {
         checked: boolean;
     },

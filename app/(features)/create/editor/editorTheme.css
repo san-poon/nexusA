@@ -20,18 +20,23 @@
     min-width: 25px;
 }
 
-.hr {
-    padding: 2px 2px;
-    border: none;
-    margin: 1em 0;
-    cursor: pointer;
+hr {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border-width: 1px;
+    border-color: var(--color-wash-300);
+}
+
+@media (prefers-color-scheme: dark) {
+    hr {
+        border-color: var(--color-wash-600);
+    }
 }
 
 .hr:after {
     content: '';
     display: block;
     height: 2px;
-    background-color: #ccc;
     line-height: 2px;
 }
 

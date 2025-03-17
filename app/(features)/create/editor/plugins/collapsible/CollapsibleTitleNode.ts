@@ -16,7 +16,7 @@ import invariant from '../../shared/invariant';
 import { $isCollapsibleContainerNode } from './CollapsibleContainerNode';
 import { $isCollapsibleContentNode } from './CollapsibleContentNode';
 
-type SerializedCollapsibleTitleNode = SerializedElementNode;
+export type SerializedCollapsibleTitleNode = SerializedElementNode;
 
 // Helper function to convert HTML summary elements to CollapsibleTitleNodes
 // Used during copy-paste or HTML conversion operations
