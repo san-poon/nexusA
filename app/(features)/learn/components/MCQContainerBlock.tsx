@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { SerializedMCQContainerNode } from "../../create/editor/plugins/mcq/mcqContainerNode";
-import { SerializedMCQOptionNode } from "../../create/editor/plugins/mcq/mcqOptionNode";
-import { SerializedMCQQuestionNode } from "../../create/editor/plugins/mcq/mcqQuestionNode";
-import { SerializedMCQOptionsContainerNode } from "../../create/editor/plugins/mcq/mcqOptionsContainerNode";
-import { SerializedExplanationNode } from "../../create/editor/plugins/mcq/explanationNode";
+import { SerializedMCQContainerNode } from "@/app/(features)/create/editor/plugins/mcq/mcqContainerNode";
+import { SerializedMCQOptionNode } from "@/app/(features)/create/editor/plugins/mcq/mcqOptionNode";
+import { SerializedMCQQuestionNode } from "@/app/(features)/create/editor/plugins/mcq/mcqQuestionNode";
+import { SerializedMCQOptionsContainerNode } from "@/app/(features)/create/editor/plugins/mcq/mcqOptionsContainerNode";
+import { SerializedExplanationNode } from "@/app/(features)/create/editor/plugins/mcq/explanationNode";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { QuizBlockIcon } from "@/components/icons";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";

@@ -2,21 +2,21 @@ import { cn } from "@/lib/utils";
 import { SerializedListItemNode, SerializedListNode } from "@lexical/list";
 import { SerializedHeadingNode } from "@lexical/rich-text";
 import { SerializedEditorState, SerializedLexicalNode, SerializedParagraphNode, SerializedRootNode, SerializedTextNode } from "lexical";
-import { SerializedImageNode } from "../../create/editor/plugins/images-plugin/ImageNode";
+import { SerializedImageNode } from "@/app/(features)/create/editor/plugins/images-plugin/ImageNode";
 import { SerializedHorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
-import { SerializedCollapsibleContainerNode } from "../../create/editor/plugins/collapsible/CollapsibleContainerNode";
-import { SerializedCollapsibleTitleNode } from "../../create/editor/plugins/collapsible/CollapsibleTitleNode";
-import { SerializedCollapsibleContentNode } from "../../create/editor/plugins/collapsible/CollapsibleContentNode";
+import { SerializedCollapsibleContainerNode } from "@/app/(features)/create/editor/plugins/collapsible/CollapsibleContainerNode";
+import { SerializedCollapsibleTitleNode } from "@/app/(features)/create/editor/plugins/collapsible/CollapsibleTitleNode";
+import { SerializedCollapsibleContentNode } from "@/app/(features)/create/editor/plugins/collapsible/CollapsibleContentNode";
 import Image from "next/image";
 
-import "../create/editor/plugins/collapsible/Collapsible.css";
+import "@/app/(features)/create/editor/plugins/collapsible/Collapsible.css";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import MCQContainerBlock from "./MCQContainerBlock";
-import { SerializedMCQContainerNode } from "../../create/editor/plugins/mcq/mcqContainerNode";
-import { SerializedMCQQuestionNode } from "../../create/editor/plugins/mcq/mcqQuestionNode";
-import { SerializedMCQOptionsContainerNode } from "../../create/editor/plugins/mcq/mcqOptionsContainerNode";
-import { SerializedMCQOptionNode } from "../../create/editor/plugins/mcq/mcqOptionNode";
-import { SerializedExplanationNode } from "../../create/editor/plugins/mcq/explanationNode";
+import { SerializedMCQContainerNode } from "@/app/(features)/create/editor/plugins/mcq/mcqContainerNode";
+import { SerializedMCQQuestionNode } from "@/app/(features)/create/editor/plugins/mcq/mcqQuestionNode";
+import { SerializedMCQOptionsContainerNode } from "@/app/(features)/create/editor/plugins/mcq/mcqOptionsContainerNode";
+import { SerializedMCQOptionNode } from "@/app/(features)/create/editor/plugins/mcq/mcqOptionNode";
+import { SerializedExplanationNode } from "@/app/(features)/create/editor/plugins/mcq/explanationNode";
 
 
 interface ReaderProps {
