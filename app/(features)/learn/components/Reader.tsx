@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { SerializedListItemNode, SerializedListNode } from "@lexical/list";
 import { SerializedHeadingNode } from "@lexical/rich-text";
 import { SerializedEditorState, SerializedLexicalNode, SerializedParagraphNode, SerializedRootNode, SerializedTextNode } from "lexical";
-import { SerializedImageNode } from "@/app/(features)/create/editor/plugins/images-plugin/ImageNode";
+import { SerializedImageNode } from "@/app/(features)/create/editor/plugins/image/ImageNode";
 import { SerializedHorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
 import { SerializedCollapsibleContainerNode } from "@/app/(features)/create/editor/plugins/collapsible/CollapsibleContainerNode";
 import { SerializedCollapsibleTitleNode } from "@/app/(features)/create/editor/plugins/collapsible/CollapsibleTitleNode";

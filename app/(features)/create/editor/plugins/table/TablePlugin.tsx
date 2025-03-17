@@ -19,7 +19,7 @@ import {
 } from 'lexical';
 import { createContext, JSX, useContext, useEffect, useMemo, useState } from 'react';
 import * as React from 'react';
-import invariant from '../shared/invariant';
+import invariant from '../../shared/invariant';
 
 
 export type InsertTableCommandPayload = Readonly<{
