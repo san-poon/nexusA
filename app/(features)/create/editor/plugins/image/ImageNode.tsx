@@ -18,7 +18,7 @@ import { Suspense } from "react";
 
 const ImageComponent = React.lazy(() => import('./ImageComponent'));
 
-const DEFAULT_INITIAL_WIDTH = 640 * 0.7; // 70% of the small screen for easeier resizing.
+const DEFAULT_INITIAL_WIDTH = 640 * 0.7; // 70% of the small screen for easier resizing.
 const DEFAULT_MAX_WIDTH = 1024 * 0.7; // large screen.
 
 

@@ -41,6 +41,9 @@ import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
 import ImageResizer from "@/components/ui/ImageResizer";
 import { HorizontalRulePlugin } from "@lexical/react/LexicalHorizontalRulePlugin";
 import { HorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
+import { cn } from "@/lib/utils";
+import { MarkdownShortcutPlugin } from "@lexical/react/LexicalMarkdownShortcutPlugin";
+import { HeadingNode } from "@lexical/rich-text";
 
 
 export const RIGHT_CLICK_IMAGE_COMMAND: LexicalCommand<MouseEvent> =
@@ -337,8 +340,7 @@ export default function ImageComponent({ src, altText, nodeKey, width, height, m
                             <RichTextPlugin
                                 contentEditable={
                                     <ContentEditable
-                                        className="ImageNode__contentEditable min-h-[20px] border-0 resize-none cursor-text block relative outline-0 p-2.5 select-text text-[12px] w-[calc(100%-20px)] whitespace-pre-wrap break-words"
-                                    />
+                                        className={cn("ImageNode__contentEditable min-h-[20px] tracking-tight border-0 resize-none cursor-text block relative outline-0 p-1 select-text text-xs w-[calc(100%-20px)] whitespace-pre-wrap")} />
                                 }
                                 ErrorBoundary={LexicalErrorBoundary}
                             />

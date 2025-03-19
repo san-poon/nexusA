@@ -1,5 +1,7 @@
 'use client';
 
+import './img.css';
+
 import {
     $createParagraphNode,
     $createRangeSelection,

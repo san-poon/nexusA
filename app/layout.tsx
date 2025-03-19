@@ -27,7 +27,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="min-h-screen mx-1 md:mx-2 lg:mx-4 tracking-wide">
+          <main className="min-h-screen mx-1 md:mx-2 lg:mx-4">
             {children}
           </main>
           <Footer />
