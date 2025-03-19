@@ -301,17 +301,26 @@
                                 }
                             }
                         },
-                        "maxWidth": 500,
+                        "maxWidth": 716.8,
                         "showCaption": false,
                         "type": "image",
                         "version": 1,
-                        "src": "https://unsplash.com/photos/red-rose-flower-eWrJQFRhP88",
-                        "altText": "rose flower",
-                        "height": 0,
-                        "width": 0
+                        "src": "https://playground.lexical.dev/assets/yellow-flower-vav9Hsve.jpg",
+                        "altText": "Yellow flower in tilt shift lens",
+                        "height": 172.5,
+                        "width": 138
+                    },
+                    {
+                        "detail": 0,
+                        "format": 0,
+                        "mode": "normal",
+                        "style": "",
+                        "text": "  A beautiful flower.",
+                        "type": "text",
+                        "version": 1
                     }
                 ],
-                "direction": null,
+                "direction": "ltr",
                 "format": "",
                 "indent": 0,
                 "type": "paragraph",
@@ -386,7 +395,7 @@
                                 "textStyle": ""
                             }
                         ],
-                        "direction": "ltr",
+                        "direction": null,
                         "format": "",
                         "indent": 0,
                         "type": "collapsible-title",
@@ -415,14 +424,14 @@
                                 "textStyle": ""
                             }
                         ],
-                        "direction": "ltr",
+                        "direction": null,
                         "format": "",
                         "indent": 0,
                         "type": "collapsible-content",
                         "version": 1
                     }
                 ],
-                "direction": "ltr",
+                "direction": null,
                 "format": "",
                 "indent": 0,
                 "type": "collapsible-container",
@@ -473,7 +482,7 @@
                                 "textStyle": ""
                             }
                         ],
-                        "direction": "ltr",
+                        "direction": null,
                         "format": "",
                         "indent": 0,
                         "type": "mcq-question",
@@ -601,7 +610,7 @@
                                 "textStyle": ""
                             }
                         ],
-                        "direction": "ltr",
+                        "direction": null,
                         "format": "",
                         "indent": 0,
                         "type": "explanation",
