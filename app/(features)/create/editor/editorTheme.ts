@@ -43,8 +43,8 @@ const theme: EditorThemeClasses = {
 
   heading: {
     h1: 'text-4xl font-medium mt-6 mb-4 tracking-tight',
-    h2: 'text-3xl font-medium mt-5 mb-3',
-    h3: 'text-2xl font-medium mt-4 mb-2',
+    h2: 'text-3xl font-medium mt-5 mb-3 tracking-tight',
+    h3: 'text-2xl font-medium mt-4 mb-2 tracking-tight',
     h4: 'text-xl font-medium mt-3 mb-2',
     h5: 'text-lg font-medium mt-2 mb-1',
     h6: 'text-base font-medium mt-1 mb-0.5'

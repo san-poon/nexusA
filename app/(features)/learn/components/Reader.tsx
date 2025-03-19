@@ -106,13 +106,15 @@ export function Children({ children }: { children: SerializedLexicalNode[] }) {
 
 export function ImageBlock({ node }: { node: SerializedImageNode }) {
     return (
-        <Image
-            src={node.src}
-            alt={node.altText}
-            height={node.height}
-            width={node.width}
-            className="max-w-full min-w-1"
-        />
+        <span>
+            <img
+                src={node.src}
+                alt={node.altText}
+                height={node.height}
+                width={node.width}
+                className="max-w-full min-w-1 inline my-1 md:my-2 lg:my-4"
+            />
+        </span>
     );
 }
 
@@ -213,9 +215,11 @@ export function ListItem({ node }: { node: SerializedListItemNode }) {
 }
 
 
+//whitespace-pre-wrap preserves whitespace
+// min-h-8 preserves empty paragraph from collapsing.
 export function Paragraph({ node }: { node: SerializedParagraphNode }) {
     return (
-        <p className="leading-8 my-4 realtive whitespace-pre-wrap">
+        <p className="leading-8 my-4 whitespace-pre-wrap min-h-8">
             <Children children={node.children} />
         </p>
     );
@@ -225,9 +229,9 @@ export function Heading({ node }: { node: SerializedHeadingNode }) {
     const Tag = node.tag || 'h4'; // Default to h4
     let className = "";
     switch (Tag) {
-        case 'h1': className = "text-4xl font-medium mt-6 mb-4"; break;
-        case 'h2': className = "text-3xl font-medium mt-5 mb-3"; break;
-        case 'h3': className = "text-2xl font-medium mt-4 mb-2"; break;
+        case 'h1': className = "text-4xl font-medium mt-6 mb-4 tracking-tight"; break;
+        case 'h2': className = "text-3xl font-medium mt-5 mb-3 tracking-tight"; break;
+        case 'h3': className = "text-2xl font-medium mt-4 mb-2 tracking-tight"; break;
         case 'h4': className = "text-xl font-medium mt-3 mb-2"; break;
         case 'h5': className = "text-lg font-medium mt-2 mb-1"; break;
         case 'h6': className = "text-base font-medium mt-1 mb-0.5"; break;

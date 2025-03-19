@@ -298,7 +298,7 @@ export default function ImageComponent({ src, altText, nodeKey, width, height, m
     return (
         <Suspense fallback={null}>
             <>
-                <div draggable={draggable}>
+                <div draggable={draggable} className="overflow-hidden">
                     {isLoadError ? (
                         <BrokenImage />
                     ) : (
