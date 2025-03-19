@@ -340,7 +340,7 @@ export default function ImageComponent({ src, altText, nodeKey, width, height, m
                             <RichTextPlugin
                                 contentEditable={
                                     <ContentEditable
-                                        className={cn("ImageNode__contentEditable min-h-[20px] tracking-tight border-0 resize-none cursor-text block relative outline-0 p-1 select-text text-xs w-[calc(100%-20px)] whitespace-pre-wrap")} />
+                                        className={cn("ImageNode__contentEditable min-h-[20px] tracking-tight border-0 resize-none cursor-text block relative outline-0 p-1 select-text text-xs w-[calc(100%-20px)] whitespace-pre-wrap text-inherit")} />
                                 }
                                 ErrorBoundary={LexicalErrorBoundary}
                             />

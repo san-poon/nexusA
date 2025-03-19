@@ -1,6 +1,40 @@
 import { EditorThemeClasses } from "lexical";
 import './editorTheme.css';
 
+export const CODE_HIGHLIGHT_THEME_CLASSES = {
+  atrule: 'text-violet-500 dark:text-violet-400', // Violet for @rules
+  attr: 'text-sky-500 dark:text-sky-400', // Sky for attributes
+  boolean: 'text-cyan-500 dark:text-cyan-400', // Cyan for booleans
+  builtin: 'text-blue-500 dark:text-blue-400', // Blue for built-ins
+  cdata: 'text-gray-500 dark:text-gray-400', // Gray for CDATA
+  char: 'text-pink-500 dark:text-pink-400', // Pink for character data
+  class: 'text-amber-500 dark:text-amber-400', // Amber for classes
+  'class-name': 'text-indigo-500 dark:text-indigo-400', // Indigo for class names
+  comment: 'text-gray-400 dark:text-gray-500 italic', // Gray for comments, italicized
+  constant: 'text-teal-500 dark:text-teal-400', // Teal for constants
+  deleted: 'text-red-500 dark:text-red-300 line-through', // Red for deleted text, line-through
+  doctype: 'text-gray-500 dark:text-gray-400', // Gray for doctype
+  entity: 'text-violet-500 dark:text-violet-400', // Violet for entities
+  function: 'text-emerald-500 dark:text-emerald-400', // Green for functions
+  important: 'text-red-500 dark:text-red-400 font-medium', // Red for important, bold
+  inserted: 'text-green-500 dark:text-green-400', // Green for inserted text
+  keyword: 'text-teal-500 dark:text-teal-400 font-medium', // Indigo for keywords, bold
+  namespace: 'text-gray-500 dark:text-gray-400', // Gray for namespace
+  normal: 'text-gray-900 dark:text-gray-100', // Normal text
+  number: 'text-orange-500 dark:text-orange-400', // Orange for numbers
+  operator: 'text-pink-500 dark:text-pink-400', // Pink for operators
+  prolog: 'text-gray-500 dark:text-gray-400', // Gray for prolog
+  property: 'text-blue-500 dark:text-blue-400', // Blue for properties
+  punctuation: 'text-gray-700 dark:text-gray-300', // Gray for punctuation
+  regex: 'text-violet-500 dark:text-violet-400', // Violet for regex
+  selector: 'text-green-500 dark:text-green-400', // Green for selectors
+  string: 'text-amber-500 dark:text-amber-400', // Amber for strings
+  symbol: 'text-sky-500 dark:text-sky-400', // Sky for symbols
+  tag: 'text-red-500 dark:text-red-400', // Red for tags
+  url: 'text-blue-500 dark:text-blue-400', // Blue for URLs
+  variable: 'text-fuchsia-500 dark:text-fuchsia-400', // Fuchsia for variables
+};
+
 const theme: EditorThemeClasses = {
   ltr: ' text-left',
   rtl: ' text-right',
@@ -8,38 +42,7 @@ const theme: EditorThemeClasses = {
   quote: 'bg-wash-90 dark:bg-wash-750 pl-4 pr-2 py-2 rounded-3xl border-l-4 border-wash-500 italic',
 
   code: ' code block rounded-xl shadow-xl dark:bg-neutral-900 overflow-x-auto text-sm',
-  codeHighlight: {
-    atrule: 'text-purple-600 dark:text-purple-400', // Purple for @rules
-    attr: 'text-green-700 dark:text-green-400', // Green for attributes
-    boolean: 'text-blue-600 dark:text-blue-400', // Blue for booleans
-    builtin: 'text-blue-600 dark:text-blue-400', // Blue for built-ins
-    cdata: 'text-gray-500 dark:text-gray-400', // Gray for CDATA
-    char: 'text-yellow-700 dark:text-yellow-400', // Yellow for character data
-    class: 'text-yellow-600 dark:text-yellow-400', // Yellow for class
-    'class-name': 'text-blue-700 dark:text-blue-400', // Blue for class names
-    comment: 'text-gray-500 dark:text-gray-400 italic', // Gray for comments, italicized
-    constant: 'text-blue-600 dark:text-blue-400', // Blue for constants
-    deleted: 'text-red-600 dark:text-red-300 line-through', // Red for deleted text, line-through
-    doctype: 'text-gray-500 dark:text-gray-400', // Gray for doctype
-    entity: 'text-purple-600 dark:text-purple-400', // Purple for entities
-    function: 'text-yellow-600 dark:text-yellow-300', // Yellow for functions
-    important: 'text-red-600 dark:text-red-500 font-medium', // Red for important, bold
-    inserted: 'text-green-700 dark:text-green-400', // Green for inserted text
-    keyword: 'text-red-600 dark:text-red-400 font-medium', // Purple for keywords, bold
-    namespace: 'text-gray-500 dark:text-gray-400', // Gray for namespace
-    number: 'text-blue-600 dark:text-blue-400', // Blue for numbers
-    operator: 'text-gray-900 dark:text-gray-100', // Dark gray for operators
-    prolog: 'text-gray-500 dark:text-gray-400', // Gray for prolog
-    property: 'text-blue-600 dark:text-blue-400', // Blue for properties
-    punctuation: 'text-gray-900 dark:text-gray-100', // Dark gray for punctuation
-    regex: 'text-blue-600 dark:text-blue-300', // Blue for regex
-    selector: 'text-purple-600 dark:text-purple-300', // Purple for selectors
-    string: 'text-green-700 dark:text-green-300', // Green for strings
-    symbol: 'text-blue-600 dark:text-blue-300', // Blue for symbols
-    tag: 'text-blue-700 dark:text-blue-300', // Blue for tags
-    url: 'text-blue-600 dark:text-blue-300', // Blue for URLs
-    variable: 'text-orange-600 dark:text-orange-400', // Orange for variables
-  },
+  codeHighlight: CODE_HIGHLIGHT_THEME_CLASSES,
 
   heading: {
     h1: 'text-4xl font-medium mt-6 mb-4 tracking-tight',

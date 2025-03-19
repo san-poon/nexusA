@@ -71,7 +71,7 @@ export default function MCQContainerBlock({ node }: { node: SerializedMCQContain
                                     <div
                                         key={index}
                                         className={cn(
-                                            " overflow-hidden w-96 px-2 py-1 md:p-3 m-2 md:m-4 [&>p]:p-0 [&>p]:m-0 [&>div]:p-0 [&>div]:m-0 border-2 border-neutral-200 dark:border-neutral-800 rounded-xl transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 cursor-pointer",
+                                            " overflow-hidden min-w-64 max-w-96 px-2 py-1 md:p-3 m-2 md:m-4 [&>p]:p-0 [&>p]:m-0 [&>div]:p-0 [&>div]:m-0 border-2 border-neutral-200 dark:border-neutral-800 rounded-xl transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 cursor-pointer",
                                             selectedOptions.has(index) ? 'bg-emerald-200 dark:bg-emerald-800/70' : "",
                                         )}
                                         onClick={() => handleOptionChange(index)}

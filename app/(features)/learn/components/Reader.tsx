@@ -7,7 +7,6 @@ import { SerializedHorizontalRuleNode } from "@lexical/react/LexicalHorizontalRu
 import { SerializedCollapsibleContainerNode } from "@/app/(features)/create/editor/plugins/collapsible/CollapsibleContainerNode";
 import { SerializedCollapsibleTitleNode } from "@/app/(features)/create/editor/plugins/collapsible/CollapsibleTitleNode";
 import { SerializedCollapsibleContentNode } from "@/app/(features)/create/editor/plugins/collapsible/CollapsibleContentNode";
-import Image from "next/image";
 
 import "@/app/(features)/create/editor/plugins/collapsible/Collapsible.css";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -17,6 +16,10 @@ import { SerializedMCQQuestionNode } from "@/app/(features)/create/editor/plugin
 import { SerializedMCQOptionsContainerNode } from "@/app/(features)/create/editor/plugins/mcq/mcqOptionsContainerNode";
 import { SerializedMCQOptionNode } from "@/app/(features)/create/editor/plugins/mcq/mcqOptionNode";
 import { SerializedExplanationNode } from "@/app/(features)/create/editor/plugins/mcq/explanationNode";
+import { SerializedEquationNode } from "@/app/(features)/create/editor/nodes/EquationNode";
+import KatexRenderer from "@/app/(features)/create/editor/ui/KatexRenderer";
+import { CodeHighlightNode, SerializedCodeNode } from "@lexical/code";
+import { CODE_HIGHLIGHT_THEME_CLASSES } from "../../create/editor/editorTheme";
 
 
 interface ReaderProps {
@@ -52,6 +55,10 @@ export function ContentBlock({ node }: { node: SerializedLexicalNode }) {
     switch (node.type) {
         case 'text':
             return <Text node={node as SerializedTextNode} />;
+        case 'code':
+            return (
+                <CodeBlock node={node as SerializedCodeNode} />
+            );
         case 'paragraph':
             return <Paragraph node={node as SerializedParagraphNode} />;
         case 'heading':
@@ -64,6 +71,8 @@ export function ContentBlock({ node }: { node: SerializedLexicalNode }) {
             return <ImageBlock node={node as SerializedImageNode} />;
         case 'horizontalrule':
             return <HorizontalRuleBlock node={node as SerializedHorizontalRuleNode} />;
+        case 'equation':
+            return <EquationBlock node={node as SerializedEquationNode} />;
         case 'collapsible-container':
             return <CollapsibleContainerBlock node={node as SerializedCollapsibleContainerNode} />;
         case 'collapsible-title':
@@ -104,20 +113,24 @@ export function Children({ children }: { children: SerializedLexicalNode[] }) {
     });
 }
 
+
 export function ImageBlock({ node }: { node: SerializedImageNode }) {
     return (
-        <span>
-            <img
-                src={node.src}
-                alt={node.altText}
-                height={node.height}
-                width={node.width}
-                className="max-w-full min-w-1 inline my-1 md:my-2 lg:my-4"
-            />
-        </span>
+        <img
+            src={node.src}
+            alt={node.altText}
+            height={node.height}
+            width={node.width}
+            className="max-w-full min-w-1 inline"
+        />
     );
 }
 
+export function EquationBlock({ node }: {
+    node: SerializedEquationNode;
+}) {
+    return <KatexRenderer equation={node.equation} inline={node.inline} onDoubleClick={() => null} />;
+}
 export function HorizontalRuleBlock({ node }: { node: SerializedHorizontalRuleNode }) {
     return <hr className="my-4 border-1 border-wash-300 dark:border-wash-600" />;
 }
@@ -277,5 +290,58 @@ const formatClassMap: Record<number, string> = {
     [FORMAT_STRIKETHROUGH]: 'line-through',
     [FORMAT_SUPERSCRIPT]: 'align-super',
     [FORMAT_SUBSCRIPT]: 'align-sub',
-    [FORMAT_CODE]: 'font-mono bg-wash-300 dark:bg-wash-600 text-wash-900 dark:text-wash-100 p-1 rounded-sm',
+    [FORMAT_CODE]: 'font-mono bg-wash-300 dark:bg-wash-600 text-wash-900 dark:text-wash-100 px-1 py-0.5 rounded-sm',
 };
+
+export function CodeBlock({ node }: { node: SerializedCodeNode }) {
+    const children = node.children;
+
+    // Process children into an array of lines
+    const lines = [];
+    let currentLine: SerializedLexicalNode[] = [];
+
+    children.forEach((child) => {
+        if (child.type === 'code-highlight') {
+            // Add code-highlight to the current line
+            currentLine.push(child);
+        }
+        else if (child.type === 'linebreak') {
+            // On linebreak, add the current line to the lines array
+            lines.push(currentLine);
+            currentLine = [];
+        }
+    });
+
+    // Add the last line if it contains any tokens
+    if (currentLine.length > 0) {
+        lines.push(currentLine);
+    }
+
+    return (
+        <div className="block rounded-xl shadow-xl dark:bg-neutral-900 overflow-x-auto text-sm text-left font-mono">
+            {lines.map((line, index) => (
+                <div
+                    key={index}
+                    className="flex items-center">
+                    <div className="px-3 py-1 text-gray-500 select-none">
+                        {index + 1}
+                    </div>
+                    <div className="whitespace-pre-wrap">
+                        {line.map((token, idx) => {
+                            const classNames = 'highlightType' in token
+                                ? CODE_HIGHLIGHT_THEME_CLASSES[token.highlightType as keyof typeof CODE_HIGHLIGHT_THEME_CLASSES]
+                                : '';
+                            return (
+                                <span key={idx}
+                                    className={classNames}
+                                >
+                                    {(token as SerializedTextNode).text}
+                                </span>
+                            );
+                        })}
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+}
