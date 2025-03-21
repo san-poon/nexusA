@@ -104,6 +104,10 @@ body {
   overflow-y: scroll;
 }
 
+.font-mono {
+  font-family: "JetBrains Mono", "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
 html.dark .shiki,
 html.dark .shiki span {
   color: var(--shiki-dark) !important;

@@ -35,6 +35,7 @@ import { SerializedEditorState, SerializedLexicalNode } from 'lexical';
 import Reader from '../../learn/components/Reader';
 
 import lexicalStateSample from '../lib/lexical-state-sample.json';
+import ToolbarPlugin from './plugins/Toolbar';
 
 export default function Editor() {
 
@@ -62,6 +63,7 @@ export default function Editor() {
 
     const editorContent = (
         <div>
+            <ToolbarPlugin />
             <ActionsPlugin />
             <AutoLinkPlugin />
             <RichTextPlugin

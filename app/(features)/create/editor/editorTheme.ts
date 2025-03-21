@@ -2,37 +2,37 @@ import { EditorThemeClasses } from "lexical";
 import './editorTheme.css';
 
 export const CODE_HIGHLIGHT_THEME_CLASSES = {
-  atrule: 'text-violet-500 dark:text-violet-400', // Violet for @rules
-  attr: 'text-sky-500 dark:text-sky-400', // Sky for attributes
-  boolean: 'text-cyan-500 dark:text-cyan-400', // Cyan for booleans
-  builtin: 'text-blue-500 dark:text-blue-400', // Blue for built-ins
-  cdata: 'text-gray-500 dark:text-gray-400', // Gray for CDATA
-  char: 'text-pink-500 dark:text-pink-400', // Pink for character data
-  class: 'text-amber-500 dark:text-amber-400', // Amber for classes
-  'class-name': 'text-indigo-500 dark:text-indigo-400', // Indigo for class names
-  comment: 'text-gray-400 dark:text-gray-500 italic', // Gray for comments, italicized
-  constant: 'text-teal-500 dark:text-teal-400', // Teal for constants
-  deleted: 'text-red-500 dark:text-red-300 line-through', // Red for deleted text, line-through
-  doctype: 'text-gray-500 dark:text-gray-400', // Gray for doctype
-  entity: 'text-violet-500 dark:text-violet-400', // Violet for entities
-  function: 'text-emerald-500 dark:text-emerald-400', // Green for functions
-  important: 'text-red-500 dark:text-red-400 font-medium', // Red for important, bold
-  inserted: 'text-green-500 dark:text-green-400', // Green for inserted text
-  keyword: 'text-teal-500 dark:text-teal-400 font-medium', // Indigo for keywords, bold
-  namespace: 'text-gray-500 dark:text-gray-400', // Gray for namespace
-  normal: 'text-gray-900 dark:text-gray-100', // Normal text
-  number: 'text-orange-500 dark:text-orange-400', // Orange for numbers
-  operator: 'text-pink-500 dark:text-pink-400', // Pink for operators
-  prolog: 'text-gray-500 dark:text-gray-400', // Gray for prolog
-  property: 'text-blue-500 dark:text-blue-400', // Blue for properties
-  punctuation: 'text-gray-700 dark:text-gray-300', // Gray for punctuation
-  regex: 'text-violet-500 dark:text-violet-400', // Violet for regex
-  selector: 'text-green-500 dark:text-green-400', // Green for selectors
-  string: 'text-amber-500 dark:text-amber-400', // Amber for strings
-  symbol: 'text-sky-500 dark:text-sky-400', // Sky for symbols
-  tag: 'text-red-500 dark:text-red-400', // Red for tags
-  url: 'text-blue-500 dark:text-blue-400', // Blue for URLs
-  variable: 'text-fuchsia-500 dark:text-fuchsia-400', // Fuchsia for variables
+  atrule: 'text-violet-500 dark:text-violet-400',
+  attr: 'text-sky-500 dark:text-sky-400',
+  boolean: 'text-cyan-500 dark:text-cyan-400',
+  builtin: 'text-blue-500 dark:text-blue-400',
+  cdata: 'text-gray-500 dark:text-gray-400',
+  char: 'text-pink-500 dark:text-pink-400',
+  class: 'text-amber-500 dark:text-amber-400',
+  'class-name': 'text-indigo-500 dark:text-indigo-400',
+  comment: 'text-gray-400 dark:text-gray-500 italic',
+  constant: 'text-teal-500 dark:text-teal-400',
+  deleted: 'text-red-500 dark:text-red-300 line-through',
+  doctype: 'text-gray-500 dark:text-gray-400',
+  entity: 'text-violet-500 dark:text-violet-400',
+  function: 'text-emerald-500 dark:text-emerald-400',
+  important: 'text-red-500 dark:text-red-400 font-medium',
+  inserted: 'text-green-500 dark:text-green-400',
+  keyword: 'text-cyan-500 font-medium',
+  namespace: 'text-gray-500 dark:text-gray-400',
+  normal: 'text-cyan-500',
+  number: 'text-orange-500 dark:text-orange-400',
+  operator: 'text-sky-500',
+  prolog: 'text-gray-500 dark:text-gray-400',
+  property: 'text-blue-500 dark:text-blue-400',
+  punctuation: 'text-gray-700 dark:text-gray-300',
+  regex: 'text-slate-500',
+  selector: 'text-green-500 dark:text-green-400',
+  string: 'text-amber-500 dark:text-amber-400',
+  symbol: 'text-cyan-500',
+  tag: 'text-violet-500',
+  url: 'text-blue-500 dark:text-blue-400',
+  variable: 'text-lime-500',
 };
 
 const theme: EditorThemeClasses = {
@@ -45,12 +45,12 @@ const theme: EditorThemeClasses = {
   codeHighlight: CODE_HIGHLIGHT_THEME_CLASSES,
 
   heading: {
-    h1: 'text-4xl font-medium mt-6 mb-4 tracking-tight',
-    h2: 'text-3xl font-medium mt-5 mb-3 tracking-tight',
-    h3: 'text-2xl font-medium mt-4 mb-2 tracking-tight',
-    h4: 'text-xl font-medium mt-3 mb-2',
-    h5: 'text-lg font-medium mt-2 mb-1',
-    h6: 'text-base font-medium mt-1 mb-0.5'
+    h1: 'text-4xl mt-6 mb-4 tracking-tight opacity-90',
+    h2: 'text-3xl mt-5 mb-3 tracking-tight opacity-90',
+    h3: 'text-2xl mt-4 mb-2 tracking-tight opacity-90',
+    h4: 'text-xl mt-3 mb-2 opacity-90',
+    h5: 'text-lg mt-2 mb-1 opacity-90',
+    h6: 'text-base mt-1 mb-0.5 opacity-90'
   },
   hr: 'hr',
   image: 'editor-image',
@@ -64,8 +64,8 @@ const theme: EditorThemeClasses = {
     nested: {
       listitem: '',
     },
-    ol: 'list-decimal leading-8 list-inside marker:text-neutral-700 dark:marker:text-neutral-300',
-    ul: 'list-disc leading-8 list-inside marker:text-neutral-700 dark:marker:text-neutral-300',
+    ol: 'list-decimal leading-8 list-inside marker:text-neutral-500',
+    ul: 'list-disc leading-8 list-inside marker:text-neutral-500',
   },
   paragraph: 'leading-8 my-4 realtive whitespace-pre-wrap',
 
@@ -90,7 +90,7 @@ const theme: EditorThemeClasses = {
     bold: 'font-bold dark:opacity-90',
     italic: 'italic',
     underline: 'underline underline-offset-4',
-    strikethrough: 'line-through',
+    strikethrough: 'line-through text-wash-500',
     underlineStrikethrough: 'underline line-through',
     code: 'codeText bg-wash-80 dark:bg-wash-720 px-1 rounded-sm text-sm',
     subscript: 'text-[0.8em] align-sub !important',

@@ -213,7 +213,7 @@ export function ListBlock({ node }: { node: SerializedListNode }) {
     const Tag = node.listType === 'bullet' ? 'ul' : 'ol'; // currently supports listype "bullet" and "number" but not checked list.
     const className = node.listType === 'bullet' ? "list-disc" : "list-decimal";
     return (
-        <Tag className={cn("leading-8 list-inside marker:text-neutral-700 dark:marker:text-neutral-300", className)}>
+        <Tag className={cn("leading-8 list-inside marker:text-neutral-500", className)}>
             <Children children={node.children} />
         </Tag>
     );
@@ -242,13 +242,13 @@ export function Heading({ node }: { node: SerializedHeadingNode }) {
     const Tag = node.tag || 'h4'; // Default to h4
     let className = "";
     switch (Tag) {
-        case 'h1': className = "text-4xl font-medium mt-6 mb-4 tracking-tight"; break;
-        case 'h2': className = "text-3xl font-medium mt-5 mb-3 tracking-tight"; break;
-        case 'h3': className = "text-2xl font-medium mt-4 mb-2 tracking-tight"; break;
-        case 'h4': className = "text-xl font-medium mt-3 mb-2"; break;
-        case 'h5': className = "text-lg font-medium mt-2 mb-1"; break;
-        case 'h6': className = "text-base font-medium mt-1 mb-0.5"; break;
-        default: className = "text-xl font-medium mt-3 mb-2"; break;
+        case 'h1': className = "text-4xl mt-6 mb-4 tracking-tight opacity-90"; break;
+        case 'h2': className = "text-3xl mt-5 mb-3 tracking-tight opacity-90"; break;
+        case 'h3': className = "text-2xl mt-4 mb-2 tracking-tight opacity-90"; break;
+        case 'h4': className = "text-xl mt-3 mb-2 opacity-90"; break;
+        case 'h5': className = "text-lg mt-2 mb-1 opacity-90"; break;
+        case 'h6': className = "text-base mt-1 mb-0.5 opacity-90"; break;
+        default: className = "text-xl mt-3 mb-2 opacity-90"; break;
     }
     return (
         <Tag className={className}>
@@ -284,13 +284,13 @@ const FORMAT_SUBSCRIPT = 32;
 const FORMAT_CODE = 16;
 
 const formatClassMap: Record<number, string> = {
-    [FORMAT_BOLD]: 'font-bold',
+    [FORMAT_BOLD]: 'font-bold dark:opacity-90',
     [FORMAT_ITALIC]: 'italic',
-    [FORMAT_UNDERLINE]: 'underline',
-    [FORMAT_STRIKETHROUGH]: 'line-through',
-    [FORMAT_SUPERSCRIPT]: 'align-super',
-    [FORMAT_SUBSCRIPT]: 'align-sub',
-    [FORMAT_CODE]: 'font-mono bg-wash-300 dark:bg-wash-600 text-wash-900 dark:text-wash-100 px-1 py-0.5 rounded-sm',
+    [FORMAT_UNDERLINE]: 'underline underline-offset-4',
+    [FORMAT_STRIKETHROUGH]: 'line-through text-wash-500',
+    [FORMAT_SUPERSCRIPT]: 'text-[0.8em] align-super !important',
+    [FORMAT_SUBSCRIPT]: 'text-[0.8em] align-sub !important',
+    [FORMAT_CODE]: 'font-mono bg-wash-80 dark:bg-wash-720 px-1 rounded-sm text-sm',
 };
 
 export function CodeBlock({ node }: { node: SerializedCodeNode }) {
@@ -318,7 +318,7 @@ export function CodeBlock({ node }: { node: SerializedCodeNode }) {
     }
 
     return (
-        <div className="block rounded-xl shadow-xl dark:bg-neutral-900 overflow-x-auto text-sm text-left font-mono">
+        <div className="block max-h-svh overflow-y-auto rounded-xl shadow-xl dark:bg-neutral-900 overflow-x-auto text-sm text-left font-mono">
             {lines.map((line, index) => (
                 <div
                     key={index}

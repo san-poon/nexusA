@@ -91,7 +91,7 @@ export function DropdownMenuItem({
     <DropdownMenuPrimitive.Item
       data-slot="dropdown-menu-item"
       className={cn(
-        "relative flex cursor-pointer select-none items-center rounded-xl px-2 py-1.5 text-sm outline-hidden transition-colors focus:bg-wash-100 focus:text-neutral-900 data-disabled:pointer-events-none data-disabled:opacity-50 dark:focus:bg-neutral-900 dark:focus:text-neutral-50",
+        "relative flex cursor-pointer select-none items-center rounded-xl px-2 py-1.5 text-sm outline-hidden transition-colors focus:bg-wash-100 focus:text-neutral-900 data-disabled:pointer-events-none data-disabled:opacity-50 dark:focus:bg-emerald-900 dark:focus:text-neutral-50",
         inset && "pl-8",
         className
       )}
