@@ -10,15 +10,13 @@ import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
 import { ListPlugin } from '@lexical/react/LexicalListPlugin';
 import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPlugin';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
-import { $createParagraphNode, $createTextNode, $getRoot, EditorState } from 'lexical';
+import { EditorState } from 'lexical';
 
 
 import ComponentPickerPlugin from './plugins/ComponentPickerPlugin';
 import defaultEditorNodes from './nodes/defaultEditorNodes';
 import theme from './editorTheme';
 import CodeHighlightPlugin from './plugins/CodeHighlightPlugin';
-import { $createHeadingNode } from '@lexical/rich-text';
-import { $createListItemNode, $createListNode } from '@lexical/list';
 import ImagesPlugin from './plugins/image/ImagesPlugin';
 import EquationsPlugin from './plugins/EquationsPlugin';
 import CollapsiblePlugin from './plugins/collapsible/CollapsiblePlugin';
@@ -129,10 +127,10 @@ export default function Editor() {
                 </Tabs>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 w-full max-w-(--breakpoint-xl) mx-auto">
-                    <div className="w-full sm:p-4 lg:p-6 sm:border border-wash-300 dark:border-wash-600 rounded-3xl dark:shadow-none my-4">
+                    <div className="w-full px-4 lg:px-6 pb-16 sm:border border-wash-300 dark:border-wash-600 rounded-3xl dark:shadow-none">
                         {editorContent}
                     </div>
-                    <div className="w-full px-4 lg:px-6 py-16 sm:border border-wash-300 dark:border-wash-600 rounded-3xl dark:shadow-none my-4">
+                    <div className="w-full px-4 lg:px-6 py-16 sm:border border-wash-300 dark:border-wash-600 rounded-3xl dark:shadow-none">
                         {readerContent}
                     </div>
                 </div>

@@ -193,7 +193,7 @@ export default function ToolbarPlugin(): JSX.Element {
     );
 
     return (
-        <div className="flex justify-center flex-wrap items-center gap-1 pt-2 pb-6 bg-white dark:bg-wash-800 sticky top-16 z-10">
+        <div className="flex justify-center flex-wrap items-center gap-1 py-4 bg-white dark:bg-wash-800 sticky top-16 z-10">
             {/* History Controls */}
             <Button
                 variant="ghost"
