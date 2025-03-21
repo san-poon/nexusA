@@ -20,6 +20,7 @@ import { SerializedEquationNode } from "@/app/(features)/create/editor/nodes/Equ
 import KatexRenderer from "@/app/(features)/create/editor/ui/KatexRenderer";
 import { CodeHighlightNode, SerializedCodeNode } from "@lexical/code";
 import { CODE_HIGHLIGHT_THEME_CLASSES } from "../../create/editor/editorTheme";
+import { SerializedLinkNode } from "@lexical/link";
 
 
 interface ReaderProps {
@@ -56,9 +57,10 @@ export function ContentBlock({ node }: { node: SerializedLexicalNode }) {
         case 'text':
             return <Text node={node as SerializedTextNode} />;
         case 'code':
-            return (
-                <CodeBlock node={node as SerializedCodeNode} />
-            );
+            return <CodeBlock node={node as SerializedCodeNode} />
+
+        case 'link':
+            return <LinkBlock node={node as SerializedLinkNode} />;
         case 'paragraph':
             return <Paragraph node={node as SerializedParagraphNode} />;
         case 'heading':
@@ -111,6 +113,20 @@ export function Children({ children }: { children: SerializedLexicalNode[] }) {
         const key = child.type + index;
         return <ContentBlock key={key} node={child} />
     });
+}
+
+export function LinkBlock({ node }: { node: SerializedLinkNode }) {
+    if (!node.url || !node.children) return null;
+    return (
+        <a
+            href={node.url}
+            target="_blank"
+            rel={node.rel || 'noopener noreferrer'}
+            className="no-underline hover:underline underline-offset-4 text-cyan-600 dark:text-cyan-200 transition-colors cursor-pointer"
+        >
+            <Children children={node.children} />
+        </a>
+    )
 }
 
 
