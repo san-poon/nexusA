@@ -211,12 +211,12 @@ function FloatingLinkEditor({
     };
 
     return (
-        <div ref={editorRef} className="absolute top-0 left-0 z-10 h-10 flex shadow-2xl rounded-full  bg-wash-100 dark:bg-black dark:shadow-none will-change-transform">
+        <div ref={editorRef} className="absolute top-0 left-0 z-10 h-10 flex shadow-2xl rounded-lg  bg-cyan-300 dark:bg-cyan-700 dark:shadow-none will-change-transform">
             {!isLink ? null : isLinkEditMode ? (
-                <div className='flex items-center'>
+                <div className='flex items-center justify-center gap-1 md:gap-2 p-2'>
                     <Input
                         ref={inputRef}
-                        className="link-input rounded-full"
+                        className="link-input max-w-96 border-none"
                         value={editedLinkUrl}
                         onChange={(event) => {
                             setEditedLinkUrl(event.target.value);
@@ -225,9 +225,9 @@ function FloatingLinkEditor({
                             monitorInputInteraction(event);
                         }}
                     />
-                    <div className='flex'>
+                    <span className='flex items-center ps-2 gap-2'>
                         <Button
-                            className="link-cancel hover:bg-emerald-300"
+                            className="link-cancel"
                             type="button"
                             tabIndex={0}
                             onMouseDown={(event) => event.preventDefault()}
@@ -235,33 +235,33 @@ function FloatingLinkEditor({
                                 setIsLinkEditMode(false);
                             }}
                         >
-                            <XIcon className='size-5' />
+                            <XIcon className='size-4' />
                         </Button>
 
                         <Button
-                            className="link-confirm hover:bg-emerald-300"
+                            className="link-confirm"
                             type="button"
                             tabIndex={0}
                             onMouseDown={(event) => event.preventDefault()}
                             onClick={handleLinkSubmission}
                         >
-                            <CheckIcon className='size-5' />
+                            <CheckIcon className='size-4' />
                         </Button>
-                    </div>
+                    </span>
                 </div>
             ) : (
-                <div className="absolute top-0 left-0 z-10 h-10 flex items-center shadow-2xl rounded-full  bg-wash-100 dark:bg-black dark:shadow-none will-change-transform">
-                    <div className='mx-2'>
-                        <a
-                            href={sanitizeUrl(linkUrl)}
-                            target="_blank"
-                            rel="noopener noreferrer">
-                            {linkUrl}
-                        </a>
-                    </div>
-                    <span className='flex items-center'>
+                <div className='flex items-center justify-center px-2'>
+                    <a
+                        href={sanitizeUrl(linkUrl)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm"
+                    >
+                        {linkUrl}
+                    </a>
+                    <span className='flex items-center gap-2 ps-2'>
                         <Button
-                            className="link-edit hover:bg-emerald-300"
+                            className="link-edit"
                             type="button"
                             tabIndex={0}
                             onMouseDown={(event) => event.preventDefault()}
@@ -270,10 +270,10 @@ function FloatingLinkEditor({
                                 setIsLinkEditMode(true);
                             }}
                         >
-                            <PencilIcon className='size-5' />
+                            <PencilIcon className='size-4' />
                         </Button>
                         <Button
-                            className="link-trash hover:bg-emerald-300"
+                            className="link-trash"
                             type="button"
                             tabIndex={0}
                             onMouseDown={(event) => event.preventDefault()}
@@ -281,7 +281,7 @@ function FloatingLinkEditor({
                                 editor.dispatchCommand(TOGGLE_LINK_COMMAND, null);
                             }}
                         >
-                            <TrashIcon className='size-5' />
+                            <TrashIcon className='size-4' />
                         </Button>
                     </span>
                 </div>
