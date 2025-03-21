@@ -242,13 +242,13 @@ export function Heading({ node }: { node: SerializedHeadingNode }) {
     const Tag = node.tag || 'h4'; // Default to h4
     let className = "";
     switch (Tag) {
-        case 'h1': className = "text-4xl mt-6 mb-4 tracking-tight opacity-90"; break;
-        case 'h2': className = "text-3xl mt-5 mb-3 tracking-tight opacity-90"; break;
-        case 'h3': className = "text-2xl mt-4 mb-2 tracking-tight opacity-90"; break;
-        case 'h4': className = "text-xl mt-3 mb-2 opacity-90"; break;
-        case 'h5': className = "text-lg mt-2 mb-1 opacity-90"; break;
-        case 'h6': className = "text-base mt-1 mb-0.5 opacity-90"; break;
-        default: className = "text-xl mt-3 mb-2 opacity-90"; break;
+        case 'h1': className = "text-4xl mt-0 mb-4 tracking-tight opacity-90"; break;
+        case 'h2': className = "text-3xl mt-6 mb-3 tracking-tight opacity-90"; break;
+        case 'h3': className = "text-2xl mt-6 mb-2 tracking-tight opacity-90"; break;
+        case 'h4': className = "text-xl mt-5 mb-2 opacity-90"; break;
+        case 'h5': className = "text-lg mt-5 mb-1 opacity-90"; break;
+        case 'h6': className = "text-base mt-4 mb-0.5 opacity-90"; break;
+        default: className = "text-xl mt-4 mb-2 opacity-90"; break;
     }
     return (
         <Tag className={className}>

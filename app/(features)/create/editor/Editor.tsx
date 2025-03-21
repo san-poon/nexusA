@@ -120,10 +120,10 @@ export default function Editor() {
                         <TabsTrigger value="editor">Editor</TabsTrigger>
                         <TabsTrigger value="preview">Preview</TabsTrigger>
                     </TabsList>
-                    <TabsContent value="editor" className="mt-2">
+                    <TabsContent value="editor">
                         {editorContent}
                     </TabsContent>
-                    <TabsContent value="preview" className="mt-2">
+                    <TabsContent value="preview" className="mt-4">
                         {readerContent}
                     </TabsContent>
                 </Tabs>
@@ -132,7 +132,7 @@ export default function Editor() {
                     <div className="w-full sm:p-4 lg:p-6 sm:border border-wash-300 dark:border-wash-600 rounded-3xl dark:shadow-none my-4">
                         {editorContent}
                     </div>
-                    <div className="w-full sm:p-4 lg:p-6 sm:border border-wash-300 dark:border-wash-600 rounded-3xl dark:shadow-none my-4">
+                    <div className="w-full px-4 lg:px-6 py-16 sm:border border-wash-300 dark:border-wash-600 rounded-3xl dark:shadow-none my-4">
                         {readerContent}
                     </div>
                 </div>

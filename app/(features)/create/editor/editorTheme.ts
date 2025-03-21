@@ -45,12 +45,12 @@ const theme: EditorThemeClasses = {
   codeHighlight: CODE_HIGHLIGHT_THEME_CLASSES,
 
   heading: {
-    h1: 'text-4xl mt-6 mb-4 tracking-tight opacity-90',
-    h2: 'text-3xl mt-5 mb-3 tracking-tight opacity-90',
-    h3: 'text-2xl mt-4 mb-2 tracking-tight opacity-90',
-    h4: 'text-xl mt-3 mb-2 opacity-90',
-    h5: 'text-lg mt-2 mb-1 opacity-90',
-    h6: 'text-base mt-1 mb-0.5 opacity-90'
+    h1: 'text-4xl mt-0 mb-4 tracking-tight opacity-90',
+    h2: 'text-3xl mt-6 mb-3 tracking-tight opacity-90',
+    h3: 'text-2xl mt-6 mb-2 tracking-tight opacity-90',
+    h4: 'text-xl mt-5 mb-2 opacity-90',
+    h5: 'text-lg mt-5 mb-1 opacity-90',
+    h6: 'text-base mt-4 mb-0.5 opacity-90'
   },
   hr: 'hr',
   image: 'editor-image',
