@@ -104,6 +104,30 @@ body {
   overflow-y: scroll;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-cyan-900) !important;
+  font-weight: 700 !important;
+}
+
+html.dark p,
+html.dark li {
+  color: var(--color-neutral-300) !important;
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  color: var(--color-wash-100) !important;
+}
+
 .font-mono {
   font-family: "JetBrains Mono", "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }

@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${defaultFont.className}  flex flex-col min-h-screen dark:bg-wash-800 dark:text-neutral-100 text-base`}>
+      <body className={`${defaultFont.className}  flex flex-col min-h-screen dark:bg-wash-800 dark:text-neutral-100 text-base tracking-tighter`}>
         <ThemeProvider
           attribute='class'
           defaultTheme="dark"
@@ -27,7 +27,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="min-h-screen mx-1 md:mx-2 lg:mx-4">
+          <main className={`min-h-screen mx-1 md:mx-2 lg:mx-4 tracking-tight`}>
             {children}
           </main>
           <Footer />

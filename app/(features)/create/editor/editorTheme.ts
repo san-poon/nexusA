@@ -45,12 +45,12 @@ const theme: EditorThemeClasses = {
   codeHighlight: CODE_HIGHLIGHT_THEME_CLASSES,
 
   heading: {
-    h1: 'text-4xl mt-0 mb-4 tracking-tight opacity-90',
-    h2: 'text-3xl mt-6 mb-3 tracking-tight opacity-90',
-    h3: 'text-2xl mt-6 mb-2 tracking-tight opacity-90',
-    h4: 'text-xl mt-5 mb-2 opacity-90',
-    h5: 'text-lg mt-5 mb-1 opacity-90',
-    h6: 'text-base mt-4 mb-0.5 opacity-90'
+    h1: 'text-4xl mt-0 mb-4 tracking-tighter',
+    h2: 'text-2xl mt-6 mb-3 tracking-tighter',
+    h3: 'text-xl mt-6 mb-2 tracking-tighter',
+    h4: 'text-lg mt-5 mb-2',
+    h5: 'text-base mt-5 mb-1',
+    h6: 'text-base mt-4 mb-0.5'
   },
   hr: 'hr',
   image: 'editor-image',
@@ -67,7 +67,7 @@ const theme: EditorThemeClasses = {
     ol: 'list-decimal leading-8 list-inside marker:text-neutral-500',
     ul: 'list-disc leading-8 list-inside marker:text-neutral-500',
   },
-  paragraph: 'leading-8 my-4 realtive whitespace-pre-wrap',
+  paragraph: 'leading-relaxed my-4 whitespace-pre-wrap min-h-8',
 
   table: 'table',
   tableCell: "tableCell",
@@ -92,7 +92,7 @@ const theme: EditorThemeClasses = {
     underline: 'underline underline-offset-4',
     strikethrough: 'line-through text-wash-500',
     underlineStrikethrough: 'underline line-through',
-    code: 'codeText bg-wash-80 dark:bg-wash-720 px-1 rounded-sm text-sm',
+    code: 'codeText bg-wash-80 dark:bg-wash-720 px-2 py-0.5 rounded-sm text-sm',
     subscript: 'text-[0.8em] align-sub !important',
     superscript: 'text-[0.8em] align-super',
   },

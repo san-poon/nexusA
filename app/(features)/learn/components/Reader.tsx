@@ -248,7 +248,7 @@ export function ListItem({ node }: { node: SerializedListItemNode }) {
 // min-h-8 preserves empty paragraph from collapsing.
 export function Paragraph({ node }: { node: SerializedParagraphNode }) {
     return (
-        <p className="leading-8 my-4 whitespace-pre-wrap min-h-8">
+        <p className="leading-relaxed my-4 whitespace-pre-wrap min-h-8">
             <Children children={node.children} />
         </p>
     );
@@ -258,13 +258,13 @@ export function Heading({ node }: { node: SerializedHeadingNode }) {
     const Tag = node.tag || 'h4'; // Default to h4
     let className = "";
     switch (Tag) {
-        case 'h1': className = "text-4xl mt-0 mb-4 tracking-tight opacity-90"; break;
-        case 'h2': className = "text-3xl mt-6 mb-3 tracking-tight opacity-90"; break;
-        case 'h3': className = "text-2xl mt-6 mb-2 tracking-tight opacity-90"; break;
-        case 'h4': className = "text-xl mt-5 mb-2 opacity-90"; break;
-        case 'h5': className = "text-lg mt-5 mb-1 opacity-90"; break;
-        case 'h6': className = "text-base mt-4 mb-0.5 opacity-90"; break;
-        default: className = "text-xl mt-4 mb-2 opacity-90"; break;
+        case 'h1': className = "text-4xl mt-0 mb-4 tracking-tight"; break;
+        case 'h2': className = "text-2xl mt-6 mb-3 tracking-tight"; break;
+        case 'h3': className = "text-xl mt-6 mb-2 tracking-tight"; break;
+        case 'h4': className = "text-lg mt-5 mb-2"; break;
+        case 'h5': className = "text-base mt-5 mb-1"; break;
+        case 'h6': className = "text-base mt-4 mb-0.5"; break;
+        default: className = "text-lg mt-5 mb-2"; break;
     }
     return (
         <Tag className={className}>
@@ -306,7 +306,7 @@ const formatClassMap: Record<number, string> = {
     [FORMAT_STRIKETHROUGH]: 'line-through text-wash-500',
     [FORMAT_SUPERSCRIPT]: 'text-[0.8em] align-super !important',
     [FORMAT_SUBSCRIPT]: 'text-[0.8em] align-sub !important',
-    [FORMAT_CODE]: 'font-mono bg-wash-80 dark:bg-wash-720 px-1 rounded-sm text-sm',
+    [FORMAT_CODE]: 'font-mono bg-wash-80 dark:bg-wash-720 px-2 py-0.5 rounded-sm text-sm',
 };
 
 export function CodeBlock({ node }: { node: SerializedCodeNode }) {
