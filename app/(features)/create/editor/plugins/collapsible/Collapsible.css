@@ -6,6 +6,7 @@
 
 html.dark .Collapsible__container {
     background-color: var(--color-wash-700);
+    color: var(--color-neutral-200);
 }
 
 .Collapsible__title {

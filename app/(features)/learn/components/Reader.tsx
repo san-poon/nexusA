@@ -155,7 +155,7 @@ export function CollapsibleContainerBlock({ node }: { node: SerializedCollapsibl
     const titleNode = node.children.find((child) => child.type === 'collapsible-title');
     const contentNode = node.children.find((child) => child.type === 'collapsible-content');
     return (
-        <Accordion type="single" collapsible className='w-full bg-wash-100 dark:bg-wash-700 rounded-3xl p-2 lg:p-6'>
+        <Accordion type="single" collapsible className='w-full bg-wash-100 dark:bg-wash-700 dark:text-neutral-200 rounded-3xl p-2 lg:p-6'>
             <AccordionItem value="details">
                 <div className="pb-6">
                     <h3 className="text-xl font-medium mt-2">

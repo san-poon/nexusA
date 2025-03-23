@@ -102,6 +102,7 @@
 body {
   scrollbar-gutter: stable;
   overflow-y: scroll;
+  font-feature-settings: "liga" 1, "calt" 1;
 }
 
 h1,
@@ -112,11 +113,6 @@ h5,
 h6 {
   color: var(--color-cyan-900) !important;
   font-weight: 700 !important;
-}
-
-html.dark p,
-html.dark li {
-  color: var(--color-neutral-300) !important;
 }
 
 html.dark h1,

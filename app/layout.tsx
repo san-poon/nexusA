@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${defaultFont.className}  flex flex-col min-h-screen dark:bg-wash-800 dark:text-neutral-100 text-base tracking-tighter`}>
+      <body className={`${defaultFont.className}  flex flex-col min-h-screen dark:bg-wash-800 dark:text-neutral-300 text-base tracking-tighter`}>
         <ThemeProvider
           attribute='class'
           defaultTheme="dark"

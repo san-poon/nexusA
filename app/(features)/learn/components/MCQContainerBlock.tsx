@@ -52,7 +52,7 @@ export default function MCQContainerBlock({ node }: { node: SerializedMCQContain
 
     return (
         <div className="mt-4 flex justify-center">
-            <Card className=" w-full md:w-11/12 bg-teal-50 dark:bg-wash-700 rounded-3xl shadow-2xl dark:shadow-neutral-800">
+            <Card className=" w-full md:w-11/12 bg-teal-50 dark:bg-wash-700 dark:text-neutral-200 rounded-3xl shadow-2xl dark:shadow-neutral-800">
                 <CardHeader className="pb-0">
                     <CardTitle>
                         <div className="flex justify-end">
@@ -61,7 +61,7 @@ export default function MCQContainerBlock({ node }: { node: SerializedMCQContain
                     </CardTitle>
                 </CardHeader>
                 <CardContent className="p-2">
-                    <div className='flex flex-col items-center text-lg'>
+                    <div className='flex flex-col items-center'>
                         <div>
                             {questionNode && <ContentBlock node={questionNode} />}
                         </div>
@@ -72,7 +72,7 @@ export default function MCQContainerBlock({ node }: { node: SerializedMCQContain
                                         key={index}
                                         className={cn(
                                             " overflow-hidden min-w-64 max-w-96 px-2 py-1 md:p-3 m-2 md:m-4 [&>p]:p-0 [&>p]:m-0 [&>div]:p-0 [&>div]:m-0 border-2 border-neutral-200 dark:border-neutral-800 rounded-xl transition duration-200 ease-in-out transform hover:scale-105 active:scale-95 cursor-pointer",
-                                            selectedOptions.has(index) ? 'bg-emerald-200 dark:bg-emerald-800/70' : "",
+                                            selectedOptions.has(index) ? 'bg-emerald-200 dark:bg-emerald-800' : "",
                                         )}
                                         onClick={() => handleOptionChange(index)}
                                     >

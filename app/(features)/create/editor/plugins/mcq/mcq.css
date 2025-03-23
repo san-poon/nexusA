@@ -26,7 +26,6 @@ html.dark .mcq-container {
 
 html.dark .mcq-question {
     background-color: var(--color-wash-750);
-    color: var(--color-wash-50);
 }
 
 @media (min-width: 768px) {
