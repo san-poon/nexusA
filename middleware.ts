@@ -26,31 +26,32 @@ import {
     * The bulk of security checks should be performed in the Data Access Layer (DAL).
 */
 export default async function middleware(request: NextRequest) {
-  const { nextUrl } = request;
-  const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
-  const isPublicCreationRoute = publicCreationRoutes.includes(nextUrl.pathname);
-  if (isPublicRoute || isPublicCreationRoute) {
-    return;
-  }
+  // const { nextUrl } = request;
+  // const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+  // const isPublicCreationRoute = publicCreationRoutes.includes(nextUrl.pathname);
+  // if (isPublicRoute || isPublicCreationRoute) {
+  //   return;
+  // }
 
-  const isAuthRoute = authRoutes.includes(nextUrl.pathname);
-  const session = await auth();
-  const isLoggedIn = session?.user;
+  // const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+  // const session = await auth();
+  // const isLoggedIn = session?.user;
 
-  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
-  if (isApiAuthRoute) {
-    return;
-  }
-  if (isAuthRoute) {
-    if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_SIGNIN_REDIRECT, nextUrl))
-    }
-    return;
-  }
+  // const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+  // if (isApiAuthRoute) {
+  //   return;
+  // }
+  // if (isAuthRoute) {
+  //   if (isLoggedIn) {
+  //     return Response.redirect(new URL(DEFAULT_SIGNIN_REDIRECT, nextUrl))
+  //   }
+  //   return;
+  // }
 
-  if (!isLoggedIn) {
-    return Response.redirect(new URL("/auth/signin", nextUrl));
-  }
+  // if (!isLoggedIn) {
+  //   return Response.redirect(new URL("/auth/signin", nextUrl));
+  // }
+  return;
 }
 
 export const config = {

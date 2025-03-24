@@ -49,6 +49,7 @@
     "cmdk": "^1.0.4",
     "dotenv": "^16.4.7",
     "drizzle-orm": "^0.33.0",
+    "immer": "^10.1.1",
     "katex": "^0.16.21",
     "lexical": "^0.27.1",
     "lucide-react": "^0.479.0",
