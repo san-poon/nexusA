@@ -45,7 +45,7 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Separator } from '@/components/ui/separator';
-import { CodeIcon, Heading1Icon, Heading2Icon, Heading3Icon, HeadingIcon, ListOrdered, ListOrderedIcon, QuoteIcon, Redo, RedoIcon, TextIcon, Undo, UndoIcon } from 'lucide-react';
+import { CodeIcon, Heading1Icon, Heading2Icon, Heading3Icon, ListOrderedIcon, QuoteIcon, RedoIcon, TextIcon, UndoIcon } from 'lucide-react';
 import { BulletListIcon } from '@/components/icons';
 
 
@@ -193,7 +193,7 @@ export default function ToolbarPlugin(): JSX.Element {
     );
 
     return (
-        <div className="flex justify-center flex-wrap items-center gap-1 py-4 bg-white dark:bg-wash-800 sticky top-16 z-10">
+        <div className="flex flex-wrap items-center gap-1 py-2 fixed top-16 z-20 bg-white dark:bg-wash-800">
             {/* History Controls */}
             <Button
                 variant="ghost"

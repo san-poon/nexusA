@@ -15,7 +15,7 @@ function TocContent() {
     )
 }
 
-export default function TOC() {
+export default function TocEditor() {
     return (
         <TocContent />
     )

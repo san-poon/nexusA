@@ -96,8 +96,8 @@ export function TocTreeNode({ nodeId, level }: TocTreeNodeProps) {
                 onTouchEnd={handleTouchEnd}
                 className={cn(
                     "flex items-center py-1.5 px-2 rounded-md transition-colors",
-                    "hover:bg-emerald-100 dark:hover:bg-emerald-800",
-                    isSelected && !isRenaming && "bg-emerald-800/10 dark:bg-emerald-100/10 text-emerald-500 font-medium",
+                    "hover:bg-emerald-100 dark:hover:bg-emerald-900",
+                    isSelected && !isRenaming && "text-emerald-500 font-medium",
                     "cursor-pointer text-sm",
                 )}
                 style={{ paddingLeft: `${level * 0.75 + 0.5}rem` }}
@@ -125,7 +125,7 @@ export function TocTreeNode({ nodeId, level }: TocTreeNodeProps) {
                             if (e.key === "Enter") handleRename(e.currentTarget.value)
                             if (e.key === "Escape") stopRenaming()
                         }}
-                        className="h-6 py-0 px-1 text-sm"
+                        className="h-6 py-0 px-2 text-sm"
                         onClick={(e) => e.stopPropagation()}
                     />
                 ) : (

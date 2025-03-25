@@ -1,20 +1,47 @@
-import TOC from "./components/toc";
-import { TocProvider } from "./components/toc-context";
-import Editor from "./editor/Editor";
+'use client';
 
-export default function EditorPage() {
+import TocEditor from "./toc-editor/toc-editor";
+import { TocProvider } from "./toc-editor/toc-context";
+import ContentEditor from "./content-editor/content-editor";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { MenuIcon } from "@/components/icons";
+
+export default function CreatePage() {
+  const [showToc, setShowToc] = useState(false);
+
+  const toggleTocVisibility = () => {
+    setShowToc(!showToc);
+  }
+
   return (
-    <div className='editor-shell min-h-[92vh]'>
-      <div className="flex">
-        <TocProvider>
-          <div className="w-1/5 h-full sticky top-16 left-0">
-            <TOC />
-          </div>
-          <div className="w-4/5">
-            <Editor />
-          </div>
-        </TocProvider>
+    <TocProvider>
+      <Button
+        onClick={toggleTocVisibility}
+        className={cn(
+          "fixed w-1/5 bottom-2 left-2 z-50 bg-white dark:bg-wash-800 outline-none",
+          showToc ? "bg-emerald-200 dark:bg-emerald-800" : "")}
+      >
+        <MenuIcon />
+      </Button>
+      <div className="flex flex-col lg:flex-row lg:gap-2 min-h-[92vh]">
+        <div className={cn(
+          "lg:sticky lg:top-20 h-[calc(92vh-4rem)] w-full lg:w-1/4 pt-2 overflow-y-auto overscroll-contain",
+          showToc ? 'block' : 'hidden lg:block lg:invisible'
+        )}>
+          <TocEditor />
+        </div>
+        <div className={cn(
+          "w-full lg:w-2/4 editor-shell",
+          showToc ? 'hidden lg:block' : 'lg:block'
+        )}>
+          <ContentEditor />
+        </div>
+        <div className="hidden lg:block lg:w-1/4 py-16" >
+          Content Outline
+        </div>
       </div>
-    </div>
+    </TocProvider>
   );
 }

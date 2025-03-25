@@ -2,24 +2,24 @@ import { cn } from "@/lib/utils";
 import { SerializedListItemNode, SerializedListNode } from "@lexical/list";
 import { SerializedHeadingNode } from "@lexical/rich-text";
 import { SerializedEditorState, SerializedLexicalNode, SerializedParagraphNode, SerializedRootNode, SerializedTextNode } from "lexical";
-import { SerializedImageNode } from "@/app/(features)/create/editor/plugins/image/ImageNode";
+import { SerializedImageNode } from "@/app/(features)/create/content-editor/plugins/image/ImageNode";
 import { SerializedHorizontalRuleNode } from "@lexical/react/LexicalHorizontalRuleNode";
-import { SerializedCollapsibleContainerNode } from "@/app/(features)/create/editor/plugins/collapsible/CollapsibleContainerNode";
-import { SerializedCollapsibleTitleNode } from "@/app/(features)/create/editor/plugins/collapsible/CollapsibleTitleNode";
-import { SerializedCollapsibleContentNode } from "@/app/(features)/create/editor/plugins/collapsible/CollapsibleContentNode";
+import { SerializedCollapsibleContainerNode } from "@/app/(features)/create/content-editor/plugins/collapsible/CollapsibleContainerNode";
+import { SerializedCollapsibleTitleNode } from "@/app/(features)/create/content-editor/plugins/collapsible/CollapsibleTitleNode";
+import { SerializedCollapsibleContentNode } from "@/app/(features)/create/content-editor/plugins/collapsible/CollapsibleContentNode";
 
-import "@/app/(features)/create/editor/plugins/collapsible/Collapsible.css";
+import "@/app/(features)/create/content-editor/plugins/collapsible/Collapsible.css";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import MCQContainerBlock from "./MCQContainerBlock";
-import { SerializedMCQContainerNode } from "@/app/(features)/create/editor/plugins/mcq/mcqContainerNode";
-import { SerializedMCQQuestionNode } from "@/app/(features)/create/editor/plugins/mcq/mcqQuestionNode";
-import { SerializedMCQOptionsContainerNode } from "@/app/(features)/create/editor/plugins/mcq/mcqOptionsContainerNode";
-import { SerializedMCQOptionNode } from "@/app/(features)/create/editor/plugins/mcq/mcqOptionNode";
-import { SerializedExplanationNode } from "@/app/(features)/create/editor/plugins/mcq/explanationNode";
-import { SerializedEquationNode } from "@/app/(features)/create/editor/nodes/EquationNode";
-import KatexRenderer from "@/app/(features)/create/editor/ui/KatexRenderer";
+import { SerializedMCQContainerNode } from "@/app/(features)/create/content-editor/plugins/mcq/mcqContainerNode";
+import { SerializedMCQQuestionNode } from "@/app/(features)/create/content-editor/plugins/mcq/mcqQuestionNode";
+import { SerializedMCQOptionsContainerNode } from "@/app/(features)/create/content-editor/plugins/mcq/mcqOptionsContainerNode";
+import { SerializedMCQOptionNode } from "@/app/(features)/create/content-editor/plugins/mcq/mcqOptionNode";
+import { SerializedExplanationNode } from "@/app/(features)/create/content-editor/plugins/mcq/explanationNode";
+import { SerializedEquationNode } from "@/app/(features)/create/content-editor/nodes/EquationNode";
+import KatexRenderer from "@/app/(features)/create/content-editor/ui/KatexRenderer";
 import { CodeHighlightNode, SerializedCodeNode } from "@lexical/code";
-import { CODE_HIGHLIGHT_THEME_CLASSES } from "../../create/editor/editorTheme";
+import { CODE_HIGHLIGHT_THEME_CLASSES } from "../../create/content-editor/editorTheme";
 import { SerializedLinkNode } from "@lexical/link";
 
 
@@ -27,7 +27,7 @@ interface ReaderProps {
     lexicalEditorState: SerializedEditorState<SerializedLexicalNode> | undefined;
     className?: string;
 }
-export default function Reader({ lexicalEditorState, className = "" }: ReaderProps) {
+export default function ContentReader({ lexicalEditorState, className = "" }: ReaderProps) {
     let parsedState: any = null;
     if (lexicalEditorState) {
         try {
@@ -42,7 +42,7 @@ export default function Reader({ lexicalEditorState, className = "" }: ReaderPro
 
     }
     return (
-        <div className={cn(" leading-relaxed", className)}>
+        <div className={cn("", className)}>
             <ContentBlock node={parsedState.root} />
         </div>
     );

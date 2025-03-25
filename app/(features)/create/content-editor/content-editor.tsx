@@ -20,35 +20,27 @@ import CodeHighlightPlugin from './plugins/CodeHighlightPlugin';
 import ImagesPlugin from './plugins/image/ImagesPlugin';
 import EquationsPlugin from './plugins/EquationsPlugin';
 import CollapsiblePlugin from './plugins/collapsible/CollapsiblePlugin';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import FloatingTextFormatToolbarPlugin from './plugins/floating/FloatingTextFormatToolbarPlugin';
 import FloatingLinkEditorPlugin from './plugins/floating/FloatingLinkEditorPlugin';
 import AutoLinkPlugin from './plugins/AutoLinkPlugin';
 import MCQPlugin from './plugins/mcq/mcqPlugin';
 import ActionsPlugin from './plugins/actions/ActionsPlugin';
-import { useMobile } from '@/components/hooks/use-mobile';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import EditorStateOnChangePlugin from './plugins/EditorStateOnChangePlugin';
 import { SerializedEditorState, SerializedLexicalNode } from 'lexical';
-import Reader from '../../learn/components/Reader';
+import ContentReader from '../../learn/components/content-reader';
 
 import lexicalStateSample from '../lib/lexical-state-sample.json';
 import ToolbarPlugin from './plugins/Toolbar';
+import { Button } from '@/components/ui/button';
+import { BookOpen, PencilIcon } from 'lucide-react';
 
-export default function Editor() {
+export default function ContentEditor() {
 
     const [editorState, setEditorState] = useState<SerializedEditorState<SerializedLexicalNode> | undefined>();
     const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null);
     const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false);
-    const isMobile = useMobile();
-    const [activeTab, setActiveTab] = useState('editor');
-
-    // If we're switching from desktop to mobile, set the active tab to editor
-    useEffect(() => {
-        if (isMobile) {
-            setActiveTab('editor');
-        }
-    }, [isMobile])
+    const [showContentReader, setShowContentReader] = useState<boolean>(false);
 
     const onRef = (_floatingAnchorElem: HTMLDivElement) => {
         if (_floatingAnchorElem !== null) {
@@ -66,7 +58,7 @@ export default function Editor() {
             <AutoLinkPlugin />
             <RichTextPlugin
                 contentEditable={
-                    <div className='relative z-0 overflow-auto resize-x'>
+                    <div className='relative py-16 z-0 overflow-auto resize-x'>
                         <div ref={onRef} className=' -z-1 flex-auto relative resize-x'>
                             <ContentEditable className='min-h-[92vh] w-full resize-none pb-[92vh] outline-0' />
                         </div>
@@ -106,38 +98,24 @@ export default function Editor() {
         </div>
     );
 
-    const readerContent = (
-        <Reader lexicalEditorState={editorState} />
-    )
-
     return (
-        <LexicalComposer initialConfig={initialConfig}>
-            {isMobile ? (
-                <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full ">
-                    <TabsList className="grid w-full grid-cols-2">
-                        <TabsTrigger value="editor">Editor</TabsTrigger>
-                        <TabsTrigger value="preview">Preview</TabsTrigger>
-                    </TabsList>
-                    <TabsContent value="editor">
-                        {editorContent}
-                    </TabsContent>
-                    <TabsContent value="preview" className="mt-4">
-                        {readerContent}
-                    </TabsContent>
-                </Tabs>
-            ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 w-full max-w-(--breakpoint-xl) mx-auto">
-                    <div className="w-full px-4 lg:px-6 pb-16 sm:border border-wash-300 dark:border-wash-600 rounded-3xl dark:shadow-none">
-                        {editorContent}
-                    </div>
-                    <div className="w-full px-4 lg:px-6 py-16 sm:border border-wash-300 dark:border-wash-600 rounded-3xl dark:shadow-none">
-                        {readerContent}
-                    </div>
+        <div className="relative">
+            <Button
+                onClick={() => setShowContentReader(!showContentReader)}
+                className="fixed z-20 bottom-2 left-2/5 w-1/5 bg-white dark:bg-emerald-800"
+            >
+                {showContentReader
+                    ? <BookOpen size={24} aria-label='Read' />
+                    : <PencilIcon size={24} aria-label='Edit' />}
+            </Button>
+            <LexicalComposer initialConfig={initialConfig}>
+                <div className="lg:block">
+                    {showContentReader
+                        ? <ContentReader lexicalEditorState={editorState} className="py-16" />
+                        : editorContent}
                 </div>
-            )
-
-            }
-        </LexicalComposer>
+            </LexicalComposer>
+        </div>
     );
 }
 
