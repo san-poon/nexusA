@@ -7,7 +7,7 @@ import { TocContextMenu } from "./context-menu"
 function TocContent() {
     return (
         <div className="h-full overflow-auto">
-            <div className="p-2">
+            <div>
                 <TocTreeNode nodeId={rootID} level={0} />
                 <TocContextMenu />
             </div>

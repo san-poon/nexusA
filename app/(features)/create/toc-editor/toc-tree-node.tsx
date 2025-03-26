@@ -95,7 +95,7 @@ export function TocTreeNode({ nodeId, level }: TocTreeNodeProps) {
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
                 className={cn(
-                    "flex items-center py-1.5 px-2 rounded-md transition-colors",
+                    "flex items-center py-1.5 rounded-md transition-colors",
                     "hover:bg-emerald-100 dark:hover:bg-emerald-900",
                     isSelected && !isRenaming && "text-emerald-500 font-medium",
                     "cursor-pointer text-sm",

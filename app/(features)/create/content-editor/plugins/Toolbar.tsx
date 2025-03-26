@@ -193,10 +193,9 @@ export default function ToolbarPlugin(): JSX.Element {
     );
 
     return (
-        <div className="flex flex-wrap items-center gap-1 py-2 fixed top-16 z-20 bg-white dark:bg-wash-800">
+        <div className="flex flex-wrap items-center justify-start w-full gap-1 py-2 fixed top-16 z-20 bg-white dark:bg-wash-800">
             {/* History Controls */}
             <Button
-                variant="ghost"
                 size="sm"
                 onClick={() => activeEditor.dispatchCommand(UNDO_COMMAND, undefined)}
                 disabled={!canUndo || !isEditable}
@@ -205,7 +204,6 @@ export default function ToolbarPlugin(): JSX.Element {
                 <UndoIcon className="h-4 w-4" />
             </Button>
             <Button
-                variant="ghost"
                 size="sm"
                 onClick={() => activeEditor.dispatchCommand(REDO_COMMAND, undefined)}
                 disabled={!canRedo || !isEditable}

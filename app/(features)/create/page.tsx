@@ -25,7 +25,7 @@ export default function CreatePage() {
       >
         <MenuIcon />
       </Button>
-      <div className="flex flex-col lg:flex-row lg:gap-2 min-h-[92vh]">
+      <div className="flex flex-col lg:flex-row lg:gap-2 min-h-[92vh] px-2 sm:px-4 lg:px-0 ">
         <div className={cn(
           "lg:sticky lg:top-20 h-[calc(92vh-4rem)] w-full lg:w-1/4 pt-2 overflow-y-auto overscroll-contain",
           showToc ? 'block' : 'hidden lg:block lg:invisible'
