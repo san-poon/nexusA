@@ -114,7 +114,7 @@ export default function ContentEditor() {
         <div className="relative">
             <Button
                 onClick={() => setShowContentReader(!showContentReader)}
-                className="fixed z-20 bottom-2 left-2/5 w-1/5 bg-white dark:bg-emerald-800"
+                className="fixed z-20 bottom-2 left-5/11 w-1/11 bg-white dark:bg-emerald-800"
             >
                 {showContentReader
                     ? <BookOpen size={24} aria-label='Read' />

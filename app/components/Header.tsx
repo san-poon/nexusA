@@ -26,10 +26,10 @@ export default async function Header() {
                 <div className="flex items-center justify-between w-full h-16 gap-0 sm:gap-3">
                     <Link href="/" title="nexusA">
                         <div className="flex items-center justify-center duration-300 p-2 transition-transform hover:scale-105">
-                            <Logo className="w-8 h-8" />
                         </div>
                     </Link>
-                    <div className="flex">
+                    <div className="flex items-center justify-center">
+                        <Logo className="size-7" />
                         <Search />
                     </div>
                     <div className="flex space-x-2">
