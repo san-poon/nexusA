@@ -12,7 +12,6 @@ import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPl
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { EditorState } from 'lexical';
 
-
 import ComponentPickerPlugin from './plugins/ComponentPickerPlugin';
 import defaultEditorNodes from './nodes/defaultEditorNodes';
 import theme from './editorTheme';
@@ -27,28 +26,41 @@ import AutoLinkPlugin from './plugins/AutoLinkPlugin';
 import MCQPlugin from './plugins/mcq/mcqPlugin';
 import ActionsPlugin from './plugins/actions/ActionsPlugin';
 import EditorStateOnChangePlugin from './plugins/EditorStateOnChangePlugin';
-import { SerializedEditorState, SerializedLexicalNode } from 'lexical';
 import ContentReader from '../../learn/components/content-reader';
 
-import lexicalStateSample from '../lib/lexical-state-sample.json';
+import { useToc } from '../toc-editor/toc-context';
+
 import ToolbarPlugin from './plugins/Toolbar';
 import { Button } from '@/components/ui/button';
 import { BookOpen, PencilIcon } from 'lucide-react';
 
 export default function ContentEditor() {
-
-    const [editorState, setEditorState] = useState<SerializedEditorState<SerializedLexicalNode> | undefined>();
+    const { state, updateContent } = useToc();
     const [floatingAnchorElem, setFloatingAnchorElem] = useState<HTMLDivElement | null>(null);
     const [isLinkEditMode, setIsLinkEditMode] = useState<boolean>(false);
     const [showContentReader, setShowContentReader] = useState<boolean>(false);
+
+    const selectedItem = state.tocTree[state.selectedId];
 
     const onRef = (_floatingAnchorElem: HTMLDivElement) => {
         if (_floatingAnchorElem !== null) {
             setFloatingAnchorElem(_floatingAnchorElem);
         }
     };
+
     const onEditorStateChange = (editorState: EditorState) => {
-        setEditorState(editorState.toJSON());
+        const serializedState = JSON.stringify(editorState.toJSON());
+        updateContent(selectedItem.id, serializedState);
+    };
+
+    const initialConfig = {
+        editorState: selectedItem.content,
+        namespace: "LessonEditor",
+        theme,
+        nodes: [...defaultEditorNodes],
+        onError: (error: any) => {
+            console.error(error);
+        },
     };
 
     const editorContent = (
@@ -108,26 +120,16 @@ export default function ContentEditor() {
                     ? <BookOpen size={24} aria-label='Read' />
                     : <PencilIcon size={24} aria-label='Edit' />}
             </Button>
-            <LexicalComposer initialConfig={initialConfig}>
+            <LexicalComposer
+                key={selectedItem.id}
+                initialConfig={initialConfig}
+            >
                 <div className="lg:block">
                     {showContentReader
-                        ? <ContentReader lexicalEditorState={editorState} className="py-16" />
+                        ? <ContentReader lexicalEditorState={JSON.parse(selectedItem.content)} className="py-16" />
                         : editorContent}
                 </div>
             </LexicalComposer>
         </div>
     );
-}
-
-
-
-
-const initialConfig = {
-    editorState: JSON.stringify(lexicalStateSample),
-    namespace: "LessonEditor",
-    theme,
-    nodes: [...defaultEditorNodes],
-    onError: (error: any) => {
-        console.error(error);
-    },
 }

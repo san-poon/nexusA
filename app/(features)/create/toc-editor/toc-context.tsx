@@ -12,6 +12,7 @@ export type TocItem = {
     type: "title" | "chapter" | "lesson"
     childIDs: string[]
     parentID: string
+    content: string // Serialized Lexical editor state
 }
 
 export type TocStructure = {
@@ -42,6 +43,9 @@ type TocAction =
     | { type: "CLOSE_CONTEXT_MENU" }
     | { type: "START_RENAMING"; payload: { nodeId: string } }
     | { type: "STOP_RENAMING" }
+    | { type: "UPDATE_CONTENT"; payload: { itemID: string; content: string } }
+
+const emptyContent = JSON.stringify({ root: { children: [{ children: [{ detail: 0, format: 0, mode: "normal", style: "", text: "", type: "text", version: 1 }], direction: "ltr", format: "", indent: 0, type: "paragraph", version: 1 }], direction: "ltr", format: "", indent: 0, type: "root", version: 1 } })
 
 export const rootID = "ROOT"
 const firstChapterID = uuidv4()
@@ -54,6 +58,7 @@ const initialTocTree: TocStructure = {
         type: "title",
         childIDs: [firstChapterID],
         parentID: "",
+        content: emptyContent
     },
     [firstChapterID]: {
         id: firstChapterID,
@@ -61,6 +66,7 @@ const initialTocTree: TocStructure = {
         type: "chapter",
         childIDs: [firstLessonID],
         parentID: rootID,
+        content: emptyContent
     },
     [firstLessonID]: {
         id: firstLessonID,
@@ -68,6 +74,7 @@ const initialTocTree: TocStructure = {
         type: "lesson",
         childIDs: [],
         parentID: firstChapterID,
+        content: emptyContent
     },
 }
 
@@ -95,6 +102,7 @@ type TocContextType = {
     closeContextMenu: () => void
     startRenaming: (nodeId: string) => void
     stopRenaming: () => void
+    updateContent: (itemID: string, content: string) => void
 }
 
 const TocContext = createContext<TocContextType | undefined>(undefined)
@@ -106,16 +114,17 @@ function tocReducer(draft: TocState, action: TocAction): TocState {
             const parent = draft.tocTree[parentID]
             const itemType = parent.type === "title" ? "chapter" : "lesson"
             const newChildID = uuidv4()
-            const newChild: TocItem = {
+
+            draft.tocTree[newChildID] = {
                 id: newChildID,
-                name: itemType === "chapter" ? "New Chapter" : "New Lesson",
+                name: `${itemType === "chapter" ? "Chapter" : "Lesson"}`,
                 type: itemType,
                 childIDs: [],
                 parentID,
+                content: emptyContent
             }
 
             draft.tocTree[parentID].childIDs.push(newChildID)
-            draft.tocTree[newChildID] = newChild
             draft.renamingId = newChildID
             draft.selectedId = newChildID
             return draft
@@ -125,18 +134,19 @@ function tocReducer(draft: TocState, action: TocAction): TocState {
             const { siblingID } = action.payload
             const sibling = draft.tocTree[siblingID]
             const parentID = sibling.parentID
+
             const newSiblingID = uuidv4()
-            const newSibling: TocItem = {
+            draft.tocTree[newSiblingID] = {
                 id: newSiblingID,
-                name: sibling.type === "chapter" ? "New Chapter" : "New Lesson",
+                name: `${sibling.type === "chapter" ? "Chapter" : "Lesson"}`,
                 type: sibling.type,
                 childIDs: [],
                 parentID,
+                content: emptyContent
             }
 
             const siblingIndex = draft.tocTree[parentID].childIDs.indexOf(siblingID)
             draft.tocTree[parentID].childIDs.splice(siblingIndex, 0, newSiblingID)
-            draft.tocTree[newSiblingID] = newSibling
             draft.renamingId = newSiblingID
             draft.selectedId = newSiblingID
             return draft
@@ -146,18 +156,19 @@ function tocReducer(draft: TocState, action: TocAction): TocState {
             const { siblingID } = action.payload
             const sibling = draft.tocTree[siblingID]
             const parentID = sibling.parentID
+
             const newSiblingID = uuidv4()
-            const newSibling: TocItem = {
+            draft.tocTree[newSiblingID] = {
                 id: newSiblingID,
-                name: sibling.type === "chapter" ? "New Chapter" : "New Lesson",
+                name: `${sibling.type === "chapter" ? "Chapter" : "Lesson"}`,
                 type: sibling.type,
                 childIDs: [],
                 parentID,
+                content: emptyContent
             }
 
             const siblingIndex = draft.tocTree[parentID].childIDs.indexOf(siblingID)
             draft.tocTree[parentID].childIDs.splice(siblingIndex + 1, 0, newSiblingID)
-            draft.tocTree[newSiblingID] = newSibling
             draft.renamingId = newSiblingID
             draft.selectedId = newSiblingID
             return draft
@@ -171,9 +182,9 @@ function tocReducer(draft: TocState, action: TocAction): TocState {
             const parent = draft.tocTree[parentID]
             parent.childIDs = parent.childIDs.filter((id) => id !== itemID)
             delete draft.tocTree[itemID]
-
-            // If the deleted item was selected, select its parent
-            if (draft.selectedId === itemID) {
+            // If the selected item was deleted or is a child of the deleted item,
+            // select the parent instead
+            if (!draft.tocTree[draft.selectedId]) {
                 draft.selectedId = parentID
             }
 
@@ -220,6 +231,13 @@ function tocReducer(draft: TocState, action: TocAction): TocState {
 
         case "STOP_RENAMING": {
             draft.renamingId = null
+            return draft
+        }
+
+        case "UPDATE_CONTENT": {
+            const { itemID, content } = action.payload
+            if (!draft.tocTree[itemID]) return draft // When user deletes the `TocItem`
+            draft.tocTree[itemID].content = content
             return draft
         }
 
@@ -303,6 +321,10 @@ export function TocProvider({ children }: { children: ReactNode }) {
         dispatch({ type: "STOP_RENAMING" })
     }, [dispatch])
 
+    const updateContent = useCallback((itemID: string, content: string) => {
+        dispatch({ type: "UPDATE_CONTENT", payload: { itemID, content } })
+    }, [dispatch])
+
     const value = {
         state,
         dispatch,
@@ -316,6 +338,7 @@ export function TocProvider({ children }: { children: ReactNode }) {
         closeContextMenu,
         startRenaming,
         stopRenaming,
+        updateContent
     }
 
     return <TocContext value={value}>{children}</TocContext>
@@ -328,4 +351,3 @@ export function useToc() {
     }
     return context
 }
-
