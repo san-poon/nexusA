@@ -16,8 +16,8 @@ import { SerializedMCQQuestionNode } from "@/app/(features)/create/content-edito
 import { SerializedMCQOptionsContainerNode } from "@/app/(features)/create/content-editor/plugins/mcq/mcqOptionsContainerNode";
 import { SerializedMCQOptionNode } from "@/app/(features)/create/content-editor/plugins/mcq/mcqOptionNode";
 import { SerializedExplanationNode } from "@/app/(features)/create/content-editor/plugins/mcq/explanationNode";
-import { SerializedEquationNode } from "@/app/(features)/create/content-editor/nodes/EquationNode";
-import KatexRenderer from "@/app/(features)/create/content-editor/ui/KatexRenderer";
+import { SerializedEquationNode } from "@/app/(features)/create/content-editor/plugins/equation/EquationNode";
+import KatexRenderer from "@/app/(features)/create/content-editor/plugins/equation/KatexRenderer";
 import { CodeHighlightNode, SerializedCodeNode } from "@lexical/code";
 import { CODE_HIGHLIGHT_THEME_CLASSES } from "../../create/content-editor/editorTheme";
 import { SerializedLinkNode } from "@lexical/link";

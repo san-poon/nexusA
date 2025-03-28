@@ -15,7 +15,7 @@ import useModal from '@/components/hooks/useModal';
 import { INSERT_TABLE_COMMAND } from '@lexical/table';
 import { ImageBlockIcon, QuizBlockIcon, SigmaPiIcon } from '@/components/icons';
 import { InsertImageDialog } from './image/ImagesPlugin';
-import { InsertEquationDialog } from './EquationsPlugin';
+import { InsertEquationDialog } from './equation/EquationsPlugin';
 import { INSERT_COLLAPSIBLE_COMMAND } from './collapsible/CollapsiblePlugin';
 import { ChevronRightIcon, SplitSquareVerticalIcon } from 'lucide-react';
 import { INSERT_MCQ_COMMAND } from './mcq/mcqPlugin';

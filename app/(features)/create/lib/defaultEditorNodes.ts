@@ -7,16 +7,16 @@ import { ListNode, ListItemNode } from '@lexical/list';
 import { LinkNode, AutoLinkNode } from '@lexical/link';
 import { MarkNode } from '@lexical/mark';
 import { TableNode, TableCellNode, TableRowNode } from '@lexical/table';
-import { ImageNode } from '../plugins/image/ImageNode';
-import { EquationNode } from './EquationNode';
-import { CollapsibleContentNode } from '../plugins/collapsible/CollapsibleContentNode';
-import { CollapsibleContainerNode } from '../plugins/collapsible/CollapsibleContainerNode';
-import { CollapsibleTitleNode } from '../plugins/collapsible/CollapsibleTitleNode';
-import { MCQContainerNode } from '../plugins/mcq/mcqContainerNode';
-import { MCQQuestionNode } from '../plugins/mcq/mcqQuestionNode';
-import { MCQOptionNode } from '../plugins/mcq/mcqOptionNode';
-import { MCQOptionsContainerNode } from '../plugins/mcq/mcqOptionsContainerNode';
-import { ExplanationNode } from '../plugins/mcq/explanationNode';
+import { ImageNode } from '../content-editor/plugins/image/ImageNode';
+import { EquationNode } from '../content-editor/plugins/equation/EquationNode';
+import { CollapsibleContentNode } from '../content-editor/plugins/collapsible/CollapsibleContentNode';
+import { CollapsibleContainerNode } from '../content-editor/plugins/collapsible/CollapsibleContainerNode';
+import { CollapsibleTitleNode } from '../content-editor/plugins/collapsible/CollapsibleTitleNode';
+import { MCQContainerNode } from '../content-editor/plugins/mcq/mcqContainerNode';
+import { MCQQuestionNode } from '../content-editor/plugins/mcq/mcqQuestionNode';
+import { MCQOptionNode } from '../content-editor/plugins/mcq/mcqOptionNode';
+import { MCQOptionsContainerNode } from '../content-editor/plugins/mcq/mcqOptionsContainerNode';
+import { ExplanationNode } from '../content-editor/plugins/mcq/explanationNode';
 
 
 const defaultEditorNodes: Array<Klass<LexicalNode>> = [

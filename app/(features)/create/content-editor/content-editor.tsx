@@ -13,11 +13,11 @@ import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
 import { EditorState } from 'lexical';
 
 import ComponentPickerPlugin from './plugins/ComponentPickerPlugin';
-import defaultEditorNodes from './nodes/defaultEditorNodes';
+import defaultEditorNodes from '../lib/defaultEditorNodes';
 import theme from './editorTheme';
 import CodeHighlightPlugin from './plugins/CodeHighlightPlugin';
 import ImagesPlugin from './plugins/image/ImagesPlugin';
-import EquationsPlugin from './plugins/EquationsPlugin';
+import EquationsPlugin from './plugins/equation/EquationsPlugin';
 import CollapsiblePlugin from './plugins/collapsible/CollapsiblePlugin';
 import { useState } from 'react';
 import FloatingTextFormatToolbarPlugin from './plugins/floating/FloatingTextFormatToolbarPlugin';
@@ -30,7 +30,7 @@ import ContentReader from '../../learn/components/content-reader';
 
 import { useToc } from '../toc-editor/toc-context';
 
-import ToolbarPlugin from './plugins/Toolbar';
+import ToolbarPlugin from './plugins/toolbar-plugin';
 import { Button } from '@/components/ui/button';
 import { BookOpen, PencilIcon } from 'lucide-react';
 
