@@ -19,6 +19,7 @@ import { InsertEquationDialog } from './equation/EquationsPlugin';
 import { INSERT_COLLAPSIBLE_COMMAND } from './collapsible/CollapsiblePlugin';
 import { ChevronRightIcon, SplitSquareVerticalIcon } from 'lucide-react';
 import { INSERT_MCQ_COMMAND } from './mcq/mcqPlugin';
+import { InsertTableDialog } from './table/custom-table-plugin';
 
 
 
@@ -150,6 +151,15 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
             keywords: ['quiz', 'mcq'],
             onSelect: () =>
                 editor.dispatchCommand(INSERT_MCQ_COMMAND, undefined),
+        }),
+
+        new ComponentPickerOption('Table', {
+            icon: <i className="icon table" />,
+            keywords: ['table', 'grid', 'spreadsheet', 'rows', 'columns'],
+            onSelect: () =>
+                showModal('Insert Table', (onClose) => (
+                    <InsertTableDialog activeEditor={editor} onClose={onClose} />
+                )),
         }),
 
     ];

@@ -10,6 +10,7 @@ import { LinkPlugin } from '@lexical/react/LexicalLinkPlugin';
 import { ListPlugin } from '@lexical/react/LexicalListPlugin';
 import { MarkdownShortcutPlugin } from '@lexical/react/LexicalMarkdownShortcutPlugin';
 import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
+import { TablePlugin } from '@lexical/react/LexicalTablePlugin';
 import { EditorState } from 'lexical';
 
 import ComponentPickerPlugin from './plugins/ComponentPickerPlugin';
@@ -33,6 +34,9 @@ import { useToc } from '../toc-editor/toc-context';
 import ToolbarPlugin from './plugins/toolbar-plugin';
 import { Button } from '@/components/ui/button';
 import { BookOpen, PencilIcon } from 'lucide-react';
+import TableCellResizerPlugin from './plugins/table/table-cell-resizer/TableCellResizer';
+import TableActionMenuPlugin from './plugins/table/TableActionMenuPlugin';
+import TableHoverActionsPlugin from './plugins/table/TableHoverActionsPlugin';
 
 export default function ContentEditor() {
     const { state, updateContent } = useToc();
@@ -92,6 +96,10 @@ export default function ContentEditor() {
             <ListPlugin />
             <LinkPlugin />
             <MCQPlugin />
+            <TablePlugin />
+            <TableCellResizerPlugin />
+            <TableActionMenuPlugin />
+            <TableHoverActionsPlugin />
 
 
             {floatingAnchorElem && (
