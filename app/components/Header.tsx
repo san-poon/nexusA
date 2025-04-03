@@ -10,6 +10,7 @@ import {
 import Logo, { MenuIcon } from "@/components/icons";
 import UserMenu from './UserMenu';
 import Search from "./Search";
+import { Settings } from "lucide-react";
 
 export default async function Header() {
     const session = await auth();
@@ -20,49 +21,49 @@ export default async function Header() {
     } else isUserSignedin = false;
 
     return (
-
         <header className="z-50 sticky top-0">
-            <nav className="duration-300 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 items-center w-full flex justify-between bg-white dark:bg-wash-800 dark:bg-opacity-95 px-1.5 lg:pe-2.5 lg:ps-4 z-50 dark:shadow-wash-780 shadow-sm">
-                <div className="flex items-center justify-between w-full h-16 gap-0 sm:gap-3">
-                    <Link href="/" title="nexusA">
-                        <div className="flex items-center justify-center duration-300 p-2 transition-transform hover:scale-105">
-                        </div>
+            <nav className="duration-300 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 bg-white dark:bg-wash-800 dark:bg-opacity-95 z-50 dark:shadow-wash-780 shadow-sm flex items-center justify-between px-3 md:px-6 h-16">
+                {/* Left side - reserved for page-specific menus (4rem width) */}
+                <div className="w-12 md:w-16 flex items-center">
+                    {/* Page-specific menu would go here */}
+                </div>
+
+                {/* Center - Logo and Search */}
+                <div className="flex-1 flex items-center justify-center gap-2 md:gap-4 max-w-3xl mx-auto">
+                    <Link href="/" title="nexusA" className="flex-shrink-0">
+                        <span className="duration-300 p-2 transition-transform hover:scale-105">
+                            <Logo className="size-7" />
+                        </span>
                     </Link>
-                    <div className="flex items-center justify-center">
-                        <Logo className="size-7" />
-                        <Search />
-                    </div>
-                    <div className="flex space-x-2">
-                        <UserMenu isUserSignedin={isUserSignedin} />
-                        <ThemeToggler />
-                    </div>
+                    <Search className="flex-1" />
+                </div>
+
+                {/* Right side - Settings dropdown */}
+                <div className="w-12 md:w-16 flex items-center justify-end">
+                    <SettingsMenu isUserSignedin={isUserSignedin} />
                 </div>
             </nav>
-        </header >
-    )
+        </header>
+    );
 }
 
-function MobileMenu() {
+function SettingsMenu({ isUserSignedin }: { isUserSignedin: boolean }) {
     return (
         <Popover>
             <PopoverTrigger asChild>
-                <Button>
-                    <MenuIcon />
+                <Button variant="ghost" size="icon" className="rounded-full">
+                    <Settings className="size-5" />
+                    <span className="sr-only">Settings</span>
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-fit text-sm leading-loose rounded-xl">
-                <div className="flex flex-col">
-                    <Link href="/create/lesson" className="">
-                        Create a Lesson
-                    </Link>
-                    <Link href="/learn/quiz/mcqs">
-                        Play Js Quiz
-                    </Link>
-                    <Link href="/create/category-hierarchy">
-                        Create Learning Path
-                    </Link>
+            <PopoverContent className="w-fit p-3 rounded-xl" align="end">
+                <div className="flex flex-col space-y-3">
+                    <UserMenu isUserSignedin={isUserSignedin} hideButton={true} />
+                    <div className="flex items-center justify-center">
+                        <ThemeToggler />
+                    </div>
                 </div>
             </PopoverContent>
         </Popover>
-    )
+    );
 }
