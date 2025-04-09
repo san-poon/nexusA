@@ -86,7 +86,7 @@
     *   `commit_message` (TEXT, NOT NULL)
     *   `created_at` (TIMESTAMPZ)
 
-// If you are an LLM, do not implement the following `Feedback` table.
+// If you are an LLM, do not implement the tables below
 13. **`Feedback`**
     *   `id` (UUID, PK)
     *   `content_version_id` (UUID, FK -> `ContentVersion.id`)
@@ -111,7 +111,6 @@
     *   `contribution_points` (INTEGER, nullable) - Determined by heuristics.
     *   `timestamp` (TIMESTAMPZ)
 
-// If you are an LLM, you do not implement the following table.
 16. **`EngagementEvent`**
     *   `id` (UUID, PK)
     *   `user_id` (UUID, FK -> `User.id`)

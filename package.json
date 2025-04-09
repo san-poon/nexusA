@@ -7,12 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "node -r dotenv/config ./scripts/seed.js",
+    "db:seed": "tsx scripts/seed.ts",
     "drizzle-kit:generate": "drizzle-kit generate",
     "drizzle-kit:migrate": "drizzle-kit migrate",
     "drizzle-kit:push": "drizzle-kit push",
     "drizzle-kit:introspect": "drizzle-kit introspect",
-    "drizzle-ki:studio": "drizzle-kit studio",
+    "drizzle-kit:studio": "drizzle-kit studio",
+    "drizzle-kit:pull": "drizzle-kit pull",
     "drizzle-kit:drop": "drizzle-kit drop"
   },
   "dependencies": {
@@ -82,6 +83,7 @@
     "pg": "^8.13.3",
     "postcss": "^8.5.3",
     "tailwindcss": "4.0.12",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.2"
   },
   "pnpm": {

@@ -1,4 +1,4 @@
-import { pgTable, serial, text, varchar, timestamp, uuid, primaryKey, integer, pgEnum, boolean, jsonb, smallint, unique, foreignKey } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, uuid, primaryKey, integer, pgEnum, boolean, jsonb, smallint, unique, foreignKey } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
 // --- Enums ---
@@ -140,33 +140,6 @@ export const contentVersions = pgTable('content_versions', {
     createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
 });
 
-// 14. ContentBlock
-export const contentBlocks = pgTable('content_blocks', {
-    id: uuid('id').primaryKey().defaultRandom(),
-    contentUnitId: uuid('content_unit_id').notNull().references(() => contentUnits.id),
-    blockType: varchar('block_type').notNull(), // e.g., 'paragraph', 'image', 'quiz'
-    stableLexicalKey: varchar('stable_lexical_key'), // Nullable, unique within content_unit_id
-    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
-}, (table) => {
-    return {
-        // Needs uniqueness constraint within `content_unit_id`
-        unq: unique().on(table.contentUnitId, table.stableLexicalKey),
-    };
-});
-
-
-// 15. BlockContribution
-export const blockContributions = pgTable('block_contributions', {
-    id: uuid('id').primaryKey().defaultRandom(),
-    contentBlockId: uuid('content_block_id').notNull().references(() => contentBlocks.id),
-    contentVersionId: uuid('content_version_id').notNull().references(() => contentVersions.id),
-    contributorId: uuid('contributor_id').notNull().references(() => users.id),
-    actionType: actionTypeEnum('action_type').notNull(),
-    contributionPoints: integer('contribution_points'), // Nullable
-    timestamp: timestamp('timestamp', { withTimezone: true }).defaultNow(),
-});
-
-
 // --- Relations ---
 // Define relations between tables using drizzle-orm `relations` helper
 
@@ -175,7 +148,6 @@ export const usersRelations = relations(users, ({ many }) => ({
     branchesAuthored: many(branches),
     contentVersionsContributed: many(contentVersions, { relationName: "contributors" }),
     contentVersionsApproved: many(contentVersions, { relationName: "approvers" }),
-    blockContributions: many(blockContributions),
 }));
 
 // Example: Course relations
@@ -279,7 +251,6 @@ export const contentUnitsRelations = relations(contentUnits, ({ one, many }) => 
     }),
     tocItems: many(tocItems),
     contentVersions: many(contentVersions),
-    contentBlocks: many(contentBlocks),
 }));
 
 // Example: ContentVersion relations
@@ -302,7 +273,6 @@ export const contentVersionsRelations = relations(contentVersions, ({ one, many 
         references: [users.id],
         relationName: "approvers",
     }),
-    blockContributions: many(blockContributions),
 }));
 
 // Example: TocItem relations (Moved to end)
@@ -320,31 +290,5 @@ export const tocItemsRelations = relations(tocItems, ({ one, many }) => ({
     contentUnit: one(contentUnits, {
         fields: [tocItems.contentUnitId],
         references: [contentUnits.id],
-    }),
-}));
-
-// Example: ContentBlock relations
-export const contentBlocksRelations = relations(contentBlocks, ({ one, many }) => ({
-    contentUnit: one(contentUnits, {
-        fields: [contentBlocks.contentUnitId],
-        references: [contentUnits.id],
-    }),
-    blockContributions: many(blockContributions),
-}));
-
-
-// Example: BlockContribution relations
-export const blockContributionsRelations = relations(blockContributions, ({ one }) => ({
-    contentBlock: one(contentBlocks, {
-        fields: [blockContributions.contentBlockId],
-        references: [contentBlocks.id],
-    }),
-    contentVersion: one(contentVersions, {
-        fields: [blockContributions.contentVersionId],
-        references: [contentVersions.id],
-    }),
-    contributor: one(users, {
-        fields: [blockContributions.contributorId],
-        references: [users.id],
     }),
 }));

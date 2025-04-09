@@ -8,9 +8,9 @@ export default async function HomePage() {
     <div className="flex flex-col items-center w-full">
       {/* Hero section */}
       <div className="flex flex-col items-center py-16 px-6 text-center max-w-4xl">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">NexusA: Collaborative Learning Platform</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">nexusA: Collaborative Learning Platform</h1>
         <p className="text-xl mb-10 text-neutral-600 dark:text-neutral-400">
-          A place where everyone can learn and contribute to high-quality educational content
+          Collaboratively build and access trustworthy learning materials. Experts and learners working together to create high-quality, reliable educational content.
         </p>
 
         {/* Search bar */}
@@ -21,12 +21,12 @@ export default async function HomePage() {
       <div className="grid md:grid-cols-2 gap-6 md:gap-10 w-full max-w-6xl px-6 mb-16">
         <FeatureCard
           title="Learn"
-          description="Access high-quality learning materials created by experts and passionate learners. Every topic has a clear, structured path."
+          description="Access high-quality learning materials created collaboratively by experts and passionate learners. Find clear, structured paths vetted for reliability and completeness."
           action={<Link href="/learn" className="px-6 py-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-medium">Start Learning</Link>}
         />
         <FeatureCard
           title="Contribute"
-          description="Share your knowledge by contributing to existing topics or starting new ones. Every contribution helps others learn better."
+          description="Share your knowledge by contributing to existing learning paths or proposing improvements. Help refine content asynchronously and build trustworthy resources for everyone."
           action={<Link href="/create" className="px-6 py-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium">Start Contributing</Link>}
         />
       </div>
@@ -34,15 +34,15 @@ export default async function HomePage() {
       {/* Community section */}
       <div className="w-full bg-neutral-50 dark:bg-neutral-900 py-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Why NexusA is Different</h2>
+          <h2 className="text-3xl font-bold mb-6">Why nexusA is Different</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-            <ValueProp title="Expert Teamwork" description="Experts collaborate asynchronously to create the best content" />
+            <ValueProp title="Collaborative" description="Experts collaborate to create the best content" />
             <ValueProp title="One Clear Path" description="A single, expert-approved learning path per topic" />
             <ValueProp title="Quality Matters" description="Content validated by experts with continuous improvement" />
-            <ValueProp title="Open Access" description="Core learning content is free for everyone" />
+            <ValueProp title="Open Access" description="Core learning content is free forever" />
           </div>
           <p className="text-lg mb-8">
-            NexusA believes that learning should be accessible, clear, and reliable. We're building a community where experts and learners work together to create the best educational content.
+            nexusA tackles fragmented and unreliable online learning. We believe education should be trustworthy and comprehensive. Join our community where experts and learners collaborate to build the definitive, high-quality learning materials.
           </p>
         </div>
       </div>

@@ -1,8 +1,8 @@
 export type CourseCategoryTag =
   // Core categories
-  | 'foundational' // represents the foundational in one of the course categories
-  | 'advanced' // represents the advanced in one of the course categories
-  | 'specialized' // represents the specialized in one of the course categories
+  | 'foundational' // represents the foundational in one of the high-level domains or life.
+  | 'advanced' // represents the advanced in one of high-level domains.
+  | 'specialized' // represents the specialized that probably needs hands-on learning.
 
   // High-level domains
   | 'stem'
@@ -101,7 +101,8 @@ export type CourseCategoryTag =
   | 'programming-language'
   | 'markup-language'
   | 'query-language'
-  | 'scripting-language';
+  | 'scripting-language'
+  | 'spoken-language';
 
 // Define topic structure
 export interface Course {
@@ -1136,6 +1137,17 @@ const specializedCourses: Course[] = [
   }
 ];
 
+// Kuwaiti Arabic Course
+const spokenLanguageCourses: Course[] = [
+  {
+    id: 'kuwaiti-arabic-phonemes',
+    title: 'Kuwaiti Arabic with English Phonemes',
+    description: 'Learn conversational Kuwaiti Arabic using English phonemes for pronunciation. Focuses on practical phrases and everyday communication.',
+    tags: ['spoken-language'],
+    difficulty: 'beginner',
+  }
+];
+
 // Combine all course categories into baseCourses
 const courses: Course[] = [
   ...mathematicsCourses,
@@ -1155,6 +1167,7 @@ const courses: Course[] = [
   ...programmingLanguageCourses,
   ...economicsCourses,
   ...specializedCourses,
+  ...spokenLanguageCourses,
 ];
 
 export default courses;

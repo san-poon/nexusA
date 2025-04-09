@@ -6,7 +6,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from '@/components/ui/popover';
-import Logo, { MenuIcon } from "@/components/icons";
+import Logo from "@/components/icons";
 import UserMenu from './UserMenu';
 import Search from "./Search";
 import { Settings } from "lucide-react";

@@ -1,5 +1,4 @@
 'use client';
-import { signOut } from "next-auth/react";
 import { CircleUserIcon } from "lucide-react";
 import {
     DropdownMenu,
@@ -38,7 +37,6 @@ export default function UserMenu({
                             variant="ghost"
                             size="sm"
                             className="justify-start text-destructive"
-                            onClick={() => signOut()}
                         >
                             Sign Out
                         </Button>
@@ -48,7 +46,6 @@ export default function UserMenu({
                         variant="link"
                         size="sm"
                         className="w-full justify-start"
-                        onClick={() => router.push('/auth/signin')}
                     >
                         Sign In
                     </Button>
@@ -74,11 +71,11 @@ export default function UserMenu({
                     <DropdownMenuItem>Profile</DropdownMenuItem>
                     <DropdownMenuItem>Settings</DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem onClick={() => signOut()}>Sign Out</DropdownMenuItem>
+                    <DropdownMenuItem >Sign Out</DropdownMenuItem>
                 </DropdownMenuContent>
                 :
                 <DropdownMenuContent>
-                    <DropdownMenuItem onClick={() => router.push('/auth/signin')}>Sign In</DropdownMenuItem>
+                    <DropdownMenuItem >Sign In</DropdownMenuItem>
                 </DropdownMenuContent>
             }
         </DropdownMenu>
