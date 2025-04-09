@@ -25,9 +25,9 @@ import { Dispatch, useCallback, useEffect, useRef, useState } from 'react';
 import * as React from 'react';
 import { createPortal } from 'react-dom';
 
-import { getSelectedNode } from '@/app/(features)/create/lib/utils';
-import { setFloatingElemPositionForLinkEditor } from '@/app/(features)/create/lib/utils';
-import { sanitizeUrl } from '@/app/(features)/create/lib/utils/url';
+import { getSelectedNode } from '@/app/(features)/contribute/lib/utils';
+import { setFloatingElemPositionForLinkEditor } from '@/app/(features)/contribute/lib/utils';
+import { sanitizeUrl } from '@/app/(features)/contribute/lib/utils/url';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { CheckIcon, PencilIcon, TrashIcon, XIcon } from 'lucide-react';

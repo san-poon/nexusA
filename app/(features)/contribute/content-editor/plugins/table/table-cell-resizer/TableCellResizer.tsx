@@ -1,3 +1,5 @@
+'use client';
+
 import './index.css';
 
 import type {
@@ -425,15 +427,28 @@ function TableCellResizer({ editor }: { editor: LexicalEditor }): JSX.Element {
     );
 }
 
-export default function TableCellResizerPlugin(): null | ReactPortal {
+function ClientPortal({ children }: { children: React.ReactNode }): ReactPortal | null {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+        return () => setMounted(false);
+    }, []);
+
+    if (!mounted) return null;
+
+    return createPortal(children, document.body);
+}
+
+export default function TableCellResizerPlugin(): JSX.Element | null {
     const [editor] = useLexicalComposerContext();
     const isEditable = useLexicalEditable();
 
-    return useMemo(
-        () =>
-            isEditable
-                ? createPortal(<TableCellResizer editor={editor} />, document.body)
-                : null,
-        [editor, isEditable],
+    if (!isEditable) return null;
+
+    return (
+        <ClientPortal>
+            <TableCellResizer editor={editor} />
+        </ClientPortal>
     );
 }

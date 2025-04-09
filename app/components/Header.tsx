@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { auth } from '@/auth';
 import ThemeToggler from "./theme-toggler";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,13 +12,7 @@ import Search from "./Search";
 import { Settings } from "lucide-react";
 
 export default async function Header() {
-    const session = await auth();
-    const user = session?.user;
-    let isUserSignedin: boolean;
-    if (user) {
-        isUserSignedin = true;
-    } else isUserSignedin = false;
-
+    const isUserSignedin = false; // TODO: remove this
     return (
         <header className="z-50 sticky top-0">
             <nav className="duration-300 backdrop-filter backdrop-blur-lg backdrop-saturate-200 transition-shadow bg-opacity-90 bg-white dark:bg-wash-800 dark:bg-opacity-95 z-50 dark:shadow-wash-780 shadow-sm flex items-center justify-between px-3 md:px-6 h-16">

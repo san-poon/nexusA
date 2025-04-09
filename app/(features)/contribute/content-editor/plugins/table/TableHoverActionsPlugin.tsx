@@ -1,3 +1,5 @@
+'use client';
+
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import {
     $getTableColumnIndexFromTableCellNode,
@@ -235,12 +237,22 @@ function getMouseInfo(event: MouseEvent): {
 }
 
 export default function TableHoverActionsPlugin({
-    anchorElem = document.body,
+    anchorElem,
 }: {
     anchorElem?: HTMLElement;
 }): React.ReactPortal | null {
+    const [mounted, setMounted] = useState(false);
+    const [actualAnchorElem, setActualAnchorElem] = useState<HTMLElement | null>(null);
+
+    useEffect(() => {
+        setMounted(true);
+        setActualAnchorElem(anchorElem || document.body);
+    }, [anchorElem]);
+
+    if (!mounted || !actualAnchorElem) return null;
+
     return createPortal(
-        <TableHoverActionsContainer anchorElem={anchorElem} />,
-        anchorElem,
+        <TableHoverActionsContainer anchorElem={actualAnchorElem} />,
+        actualAnchorElem,
     );
 }

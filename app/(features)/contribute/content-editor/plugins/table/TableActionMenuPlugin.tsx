@@ -1,3 +1,5 @@
+'use client';
+
 import type { ElementNode, LexicalEditor } from 'lexical';
 
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
@@ -517,6 +519,15 @@ function TableActionMenu({
     }
   }
 
+  // Ensure this internal portal is also handled client-side
+  const [menuMounted, setMenuMounted] = useState(false);
+  useEffect(() => {
+    setMenuMounted(true);
+    return () => setMenuMounted(false);
+  }, []);
+
+  if (!menuMounted) return null;
+
   return createPortal(
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div
@@ -772,20 +783,31 @@ function TableCellActionMenuContainer({
 }
 
 export default function TableActionMenuPlugin({
-  anchorElem = document.body,
+  anchorElem,
   cellMerge = false,
 }: {
   anchorElem?: HTMLElement;
   cellMerge?: boolean;
-}): null | ReactPortal {
+}): ReactPortal | null {
   const isEditable = useLexicalEditable();
+  const [mounted, setMounted] = useState(false);
+  const [actualAnchorElem, setActualAnchorElem] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    // This effect runs only client-side
+    setMounted(true);
+    setActualAnchorElem(anchorElem || document.body); // Set the anchor element here
+  }, [anchorElem]); // Rerun if anchorElem prop changes
+
+  // Return null if not editable, not mounted, or anchor not determined yet
+  if (!isEditable || !mounted || !actualAnchorElem) return null;
+
+  // Conditionally create the portal only when mounted client-side with a valid anchor
   return createPortal(
-    isEditable ? (
-      <TableCellActionMenuContainer
-        anchorElem={anchorElem}
-        cellMerge={cellMerge}
-      />
-    ) : null,
-    anchorElem,
+    <TableCellActionMenuContainer
+      anchorElem={actualAnchorElem} // Use the state variable
+      cellMerge={cellMerge}
+    />,
+    actualAnchorElem, // Use the state variable for the portal container
   );
 }

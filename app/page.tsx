@@ -1,13 +1,8 @@
 import { redirect } from 'next/navigation';
-import { auth } from '@/auth';
 import Search from '@/app/components/Search';
 import Link from 'next/link';
 
 export default async function HomePage() {
-  const session = await auth();
-  if (session?.user) {
-    redirect('/dashboard');
-  }
 
   return (
     <div className="flex flex-col items-center w-full">

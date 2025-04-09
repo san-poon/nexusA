@@ -1,118 +1,350 @@
-import {
-    timestamp,
-    text,
-    integer,
-    pgTable,
-    uuid,
-    varchar,
-    primaryKey,
-    PgArray,
-    AnyPgColumn,
-    pgEnum,
-    serial,
-    jsonb,
-    boolean,
-} from "drizzle-orm/pg-core"
+import { pgTable, serial, text, varchar, timestamp, uuid, primaryKey, integer, pgEnum, boolean, jsonb, smallint, unique, foreignKey } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
 
-import { relations } from 'drizzle-orm';
+// --- Enums ---
 
+export const difficultyEnum = pgEnum('difficulty', ['beginner', 'intermediate', 'advanced', 'expert']);
+export const actionTypeEnum = pgEnum('action_type', ['add', 'edit', 'delete']);
 
-// Next-auth's schema STARTs here ---------
-import type { AdapterAccount } from "next-auth/adapters"
+// --- Tables ---
 
-export const users = pgTable("user", {
-    id: text("id").notNull().primaryKey(),
-    name: text("name"),
-    email: text("email").notNull(),
-    emailVerified: timestamp("emailVerified", { mode: "date" }),
-    image: text("image"),
-})
-
-export const accounts = pgTable("account", {
-    userId: text("userId")
-        .notNull()
-        .references(() => users.id, { onDelete: "cascade" }),
-    type: text("type").$type<AdapterAccount["type"]>().notNull(),
-    provider: text("provider").notNull(),
-    providerAccountId: text("providerAccountId").notNull(),
-    refresh_token: text("refresh_token"),
-    access_token: text("access_token"),
-    expires_at: integer("expires_at"),
-    token_type: text("token_type"),
-    scope: text("scope"),
-    id_token: text("id_token"),
-    session_state: text("session_state"),
-},
-    (account) => ({
-        compoundKey: primaryKey({
-            columns: [account.provider, account.providerAccountId],
-        }),
-    })
-);
-
-export const sessions = pgTable("session", {
-    sessionToken: text("sessionToken").notNull().primaryKey(),
-    userId: text("userId")
-        .notNull()
-        .references(() => users.id, { onDelete: "cascade" }),
-    expires: timestamp("expires", { mode: "date" }).notNull(),
+// 1. User
+export const users = pgTable('users', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    username: varchar('username').unique(),
+    email: varchar('email').unique(),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow(),
+    // *(Other profile fields)* - Add other profile fields here as needed
 });
 
-export const verificationTokens = pgTable(
-    "verificationToken",
-    {
-        identifier: text("identifier").notNull(),
-        token: text("token").notNull(),
-        expires: timestamp("expires", { mode: "date" }).notNull(),
-    },
-    (vt) => ({
-        compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
-    })
-);
-//  next-auth's schema ENDs here -------------------
-
-
-export const TopicsTable = pgTable('topics', {
-    id: uuid('id').primaryKey().defaultRandom(),
-    name: text('name').notNull(),
+// 2. Tag
+export const tags = pgTable('tags', {
+    id: varchar('id').primaryKey(), // The tag string itself
     description: text('description'),
-    latestContentDeltaId: uuid('latest_content_delta_id').references(() => ContentDeltasTable.id),
-    createdBy: uuid('created_by').notNull(),
-    createdAt: timestamp('created_at').defaultNow().notNull()
 });
 
-export const ContentDeltasTable = pgTable('content_deltas', {
+// 3. LearningPath
+export const learningPaths = pgTable('learning_paths', {
     id: uuid('id').primaryKey().defaultRandom(),
-    contentDelta: jsonb('content_delta').notNull(),
-    isFullSnapshot: boolean('is_full_snapshot').notNull(),
-    previousContentDeltaId: uuid('previous_content_delta_id').references((): AnyPgColumn => ContentDeltasTable.id),
-    commitId: uuid('commit_id').references(() => CommitsTable.id).notNull(),
-    createdBy: uuid('created_by').notNull(),
-    createdAt: timestamp('created_at').defaultNow().notNull()
+    title: varchar('title').notNull(),
+    description: text('description'),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow(),
 });
 
-export const TopicRelationsTable = pgTable('topic_relations', {
-    id: uuid('id').primaryKey().defaultRandom(),
-    parentTopicId: uuid('parent_topic_id').references(() => TopicsTable.id),
-    siblingTopicIds: uuid('sibling_topic_ids').array().notNull(),
-    createdBy: uuid('created_by').notNull(),
-    createdAt: timestamp('created_at').defaultNow().notNull()
+// 4. LearningPathTag (Junction Table)
+export const learningPathTags = pgTable('learning_path_tags', {
+    learningPathId: uuid('learning_path_id').notNull().references(() => learningPaths.id),
+    tagId: varchar('tag_id').notNull().references(() => tags.id),
+}, (table) => {
+    return {
+        pk: primaryKey({ columns: [table.learningPathId, table.tagId] }),
+    };
 });
 
-export const CommitsTable = pgTable('commits', {
+// 5. Course
+export const courses = pgTable('courses', {
+    id: varchar('id').primaryKey(), // e.g., 'calculus-1'
+    title: varchar('title').notNull(),
+    description: text('description').notNull(),
+    difficulty: difficultyEnum('difficulty').notNull(),
+    estimatedHours: integer('estimated_hours'),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow(),
+});
+
+// 6. CourseTag (Junction Table)
+export const courseTags = pgTable('course_tags', {
+    courseId: varchar('course_id').notNull().references(() => courses.id),
+    tagId: varchar('tag_id').notNull().references(() => tags.id),
+}, (table) => {
+    return {
+        pk: primaryKey({ columns: [table.courseId, table.tagId] }),
+    };
+});
+
+// 7. LearningPathNode
+export const learningPathNodes = pgTable('learning_path_nodes', {
     id: uuid('id').primaryKey().defaultRandom(),
-    topicRelationIds: uuid('topic_relation_ids').array().notNull(),
+    learningPathId: uuid('learning_path_id').notNull().references(() => learningPaths.id),
+    courseId: varchar('course_id').notNull().references(() => courses.id),
+}, (table) => {
+    return {
+        // *(UNIQUE constraint on (`learning_path_id`, `course_id`) recommended)*
+        unq: unique().on(table.learningPathId, table.courseId),
+    };
+});
+
+// 8. LearningPathEdge
+export const learningPathEdges = pgTable('learning_path_edges', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    learningPathId: uuid('learning_path_id').notNull().references(() => learningPaths.id),
+    sourceNodeId: uuid('source_node_id').notNull().references(() => learningPathNodes.id),
+    targetNodeId: uuid('target_node_id').notNull().references(() => learningPathNodes.id),
+});
+
+// 9. Branch
+export const branches = pgTable('branches', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    courseId: varchar('course_id').notNull().references(() => courses.id),
+    name: varchar('name').notNull(), // e.g., 'main', 'draft/user-uuid-123'
+    isDefault: boolean('is_default').default(false).notNull(),
+    createdByUserId: uuid('created_by_user_id').notNull().references(() => users.id),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow(),
+}, (table) => {
+    return {
+        // *(UNIQUE constraint on (`course_id`, `name`))*
+        unq: unique().on(table.courseId, table.name),
+    };
+});
+
+// 10. ContentUnit
+export const contentUnits = pgTable('content_units', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    courseId: varchar('course_id').notNull().references(() => courses.id),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+});
+
+// 11. TocItem (Table of Contents Item)
+export const tocItems = pgTable('toc_items', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    branchId: uuid('branch_id').notNull().references(() => branches.id),
+    parentTocItemId: uuid('parent_toc_item_id'), // Define column first
+    contentUnitId: uuid('content_unit_id').notNull().references(() => contentUnits.id),
+    name: varchar('name').notNull(),
+    type: varchar('type').notNull(), // e.g., 'title', 'chapter', 'lesson'
+    order: smallint('order').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow(),
+}, (table) => {
+    return {
+        // Define self-referencing foreign key separately
+        parentReference: foreignKey({
+            columns: [table.parentTocItemId],
+            foreignColumns: [table.id]
+        }).onDelete('set null'), // Consider cascade or set null behavior
+    };
+});
+
+// 12. ContentVersion
+export const contentVersions = pgTable('content_versions', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    contentUnitId: uuid('content_unit_id').notNull().references(() => contentUnits.id),
+    branchId: uuid('branch_id').notNull().references(() => branches.id),
+    contributorId: uuid('contributor_id').notNull().references(() => users.id),
+    approverId: uuid('approver_id').references(() => users.id), // Nullable
+    lexicalState: jsonb('lexical_state'), // Or text('lexical_state')
     commitMessage: text('commit_message').notNull(),
-    previousCommitId: uuid('previous_commit_id').references((): AnyPgColumn => CommitsTable.id),
-    createdBy: uuid('created_by').notNull(),
-    createdAt: timestamp('created_at').defaultNow().notNull()
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
 });
 
-export const BranchesTable = pgTable('branches', {
+// 14. ContentBlock
+export const contentBlocks = pgTable('content_blocks', {
     id: uuid('id').primaryKey().defaultRandom(),
-    name: text('name').notNull(),
-    topicId: uuid('topic_id').references(() => TopicsTable.id).notNull(),
-    latestCommitId: uuid('latest_commit_id').references(() => CommitsTable.id).notNull(),
-    createdBy: uuid('created_by').notNull(),
-    createdAt: timestamp('created_at').defaultNow().notNull()
+    contentUnitId: uuid('content_unit_id').notNull().references(() => contentUnits.id),
+    blockType: varchar('block_type').notNull(), // e.g., 'paragraph', 'image', 'quiz'
+    stableLexicalKey: varchar('stable_lexical_key'), // Nullable, unique within content_unit_id
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+}, (table) => {
+    return {
+        // Needs uniqueness constraint within `content_unit_id`
+        unq: unique().on(table.contentUnitId, table.stableLexicalKey),
+    };
 });
+
+
+// 15. BlockContribution
+export const blockContributions = pgTable('block_contributions', {
+    id: uuid('id').primaryKey().defaultRandom(),
+    contentBlockId: uuid('content_block_id').notNull().references(() => contentBlocks.id),
+    contentVersionId: uuid('content_version_id').notNull().references(() => contentVersions.id),
+    contributorId: uuid('contributor_id').notNull().references(() => users.id),
+    actionType: actionTypeEnum('action_type').notNull(),
+    contributionPoints: integer('contribution_points'), // Nullable
+    timestamp: timestamp('timestamp', { withTimezone: true }).defaultNow(),
+});
+
+
+// --- Relations ---
+// Define relations between tables using drizzle-orm `relations` helper
+
+// Example: User relations
+export const usersRelations = relations(users, ({ many }) => ({
+    branchesAuthored: many(branches),
+    contentVersionsContributed: many(contentVersions, { relationName: "contributors" }),
+    contentVersionsApproved: many(contentVersions, { relationName: "approvers" }),
+    blockContributions: many(blockContributions),
+}));
+
+// Example: Course relations
+export const coursesRelations = relations(courses, ({ many }) => ({
+    tags: many(courseTags),
+    learningPathNodes: many(learningPathNodes),
+    branches: many(branches),
+    contentUnits: many(contentUnits),
+}));
+
+// Example: Learning Path relations
+export const learningPathsRelations = relations(learningPaths, ({ many }) => ({
+    tags: many(learningPathTags),
+    nodes: many(learningPathNodes),
+    edges: many(learningPathEdges),
+}));
+
+// Example: Tag relations
+export const tagsRelations = relations(tags, ({ many }) => ({
+    learningPaths: many(learningPathTags),
+    courses: many(courseTags),
+}));
+
+
+// Example: LearningPathTag relations
+export const learningPathTagsRelations = relations(learningPathTags, ({ one }) => ({
+    learningPath: one(learningPaths, {
+        fields: [learningPathTags.learningPathId],
+        references: [learningPaths.id],
+    }),
+    tag: one(tags, {
+        fields: [learningPathTags.tagId],
+        references: [tags.id],
+    }),
+}));
+
+// Example: CourseTag relations
+export const courseTagsRelations = relations(courseTags, ({ one }) => ({
+    course: one(courses, {
+        fields: [courseTags.courseId],
+        references: [courses.id],
+    }),
+    tag: one(tags, {
+        fields: [courseTags.tagId],
+        references: [tags.id],
+    }),
+}));
+
+
+// Example: LearningPathNode relations
+export const learningPathNodesRelations = relations(learningPathNodes, ({ one, many }) => ({
+    learningPath: one(learningPaths, {
+        fields: [learningPathNodes.learningPathId],
+        references: [learningPaths.id],
+    }),
+    course: one(courses, {
+        fields: [learningPathNodes.courseId],
+        references: [courses.id],
+    }),
+    sourceEdges: many(learningPathEdges, { relationName: "sourceNodes" }),
+    targetEdges: many(learningPathEdges, { relationName: "targetNodes" }),
+}));
+
+// Example: LearningPathEdge relations
+export const learningPathEdgesRelations = relations(learningPathEdges, ({ one }) => ({
+    learningPath: one(learningPaths, {
+        fields: [learningPathEdges.learningPathId],
+        references: [learningPaths.id],
+    }),
+    sourceNode: one(learningPathNodes, {
+        fields: [learningPathEdges.sourceNodeId],
+        references: [learningPathNodes.id],
+        relationName: "sourceNodes",
+    }),
+    targetNode: one(learningPathNodes, {
+        fields: [learningPathEdges.targetNodeId],
+        references: [learningPathNodes.id],
+        relationName: "targetNodes",
+    }),
+}));
+
+// Example: Branch relations
+export const branchesRelations = relations(branches, ({ one, many }) => ({
+    course: one(courses, {
+        fields: [branches.courseId],
+        references: [courses.id],
+    }),
+    createdByUser: one(users, {
+        fields: [branches.createdByUserId],
+        references: [users.id],
+    }),
+    tocItems: many(tocItems),
+    contentVersions: many(contentVersions),
+}));
+
+// Example: ContentUnit relations
+export const contentUnitsRelations = relations(contentUnits, ({ one, many }) => ({
+    course: one(courses, {
+        fields: [contentUnits.courseId],
+        references: [courses.id],
+    }),
+    tocItems: many(tocItems),
+    contentVersions: many(contentVersions),
+    contentBlocks: many(contentBlocks),
+}));
+
+// Example: ContentVersion relations
+export const contentVersionsRelations = relations(contentVersions, ({ one, many }) => ({
+    contentUnit: one(contentUnits, {
+        fields: [contentVersions.contentUnitId],
+        references: [contentUnits.id],
+    }),
+    branch: one(branches, {
+        fields: [contentVersions.branchId],
+        references: [branches.id],
+    }),
+    contributor: one(users, {
+        fields: [contentVersions.contributorId],
+        references: [users.id],
+        relationName: "contributors",
+    }),
+    approver: one(users, {
+        fields: [contentVersions.approverId],
+        references: [users.id],
+        relationName: "approvers",
+    }),
+    blockContributions: many(blockContributions),
+}));
+
+// Example: TocItem relations (Moved to end)
+export const tocItemsRelations = relations(tocItems, ({ one, many }) => ({
+    branch: one(branches, {
+        fields: [tocItems.branchId],
+        references: [branches.id],
+    }),
+    parentTocItem: one(tocItems, {
+        fields: [tocItems.parentTocItemId],
+        references: [tocItems.id],
+        relationName: "parent",
+    }),
+    childrenTocItems: many(tocItems, { relationName: "parent" }),
+    contentUnit: one(contentUnits, {
+        fields: [tocItems.contentUnitId],
+        references: [contentUnits.id],
+    }),
+}));
+
+// Example: ContentBlock relations
+export const contentBlocksRelations = relations(contentBlocks, ({ one, many }) => ({
+    contentUnit: one(contentUnits, {
+        fields: [contentBlocks.contentUnitId],
+        references: [contentUnits.id],
+    }),
+    blockContributions: many(blockContributions),
+}));
+
+
+// Example: BlockContribution relations
+export const blockContributionsRelations = relations(blockContributions, ({ one }) => ({
+    contentBlock: one(contentBlocks, {
+        fields: [blockContributions.contentBlockId],
+        references: [contentBlocks.id],
+    }),
+    contentVersion: one(contentVersions, {
+        fields: [blockContributions.contentVersionId],
+        references: [contentVersions.id],
+    }),
+    contributor: one(users, {
+        fields: [blockContributions.contributorId],
+        references: [users.id],
+    }),
+}));
