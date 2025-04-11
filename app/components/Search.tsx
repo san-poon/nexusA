@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { CourseWithTags } from '@/lib/courses-server';
+import { CourseWithTags } from '@/data-access/courses';
 
 interface SearchProps {
   className?: string;
