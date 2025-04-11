@@ -1,14 +1,13 @@
-import { getAllCoursesWithTags } from "@/lib/courses-client";
-import ContributeClientLayout from './contribute-client-layout'; // Import the new client component
+import { getAllCoursesWithTagsServer, CourseWithTags } from "@/data-access/courses";
+import ContributeClientLayout from './contribute-client-layout';
 
 export async function generateStaticParams() {
-  const courses = await getAllCoursesWithTags();
-  return courses.map((course) => ({
-    courseId: course.id,
+  const courses = await getAllCoursesWithTagsServer();
+  return courses.map((course: CourseWithTags) => ({
+    'course-id': course.id,
   }));
 }
 
-// This remains a Server Component
 export default async function ContributeCoursePage({ params }: { params: Promise<{ 'course-id': string }> }) {
   const resolvedParams = await params;
   const { 'course-id': courseId } = resolvedParams; // Destructure using the correct key 'course-id'

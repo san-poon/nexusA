@@ -4,40 +4,26 @@ import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { CourseWithTags, getAllCoursesWithTags } from '@/lib/courses-client';
+import { CourseWithTags } from '@/lib/courses-server';
 
-export default function Search({ className }: { className?: string }) {
+interface SearchProps {
+  className?: string;
+  coursesData: CourseWithTags[];
+}
+
+export default function Search({ className, coursesData }: SearchProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<CourseWithTags[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [coursesData, setCoursesData] = useState<CourseWithTags[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Fetch courses data on component mount
-  useEffect(() => {
-    const fetchCourses = async () => {
-      setIsLoading(true);
-      try {
-        const data = await getAllCoursesWithTags();
-        setCoursesData(data);
-      } catch (error) {
-        console.error('Error fetching courses:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchCourses();
-  }, []);
-
-  // Function to handle search
   const handleSearch = (query: string) => {
     setSearchQuery(query);
 
     if (!query.trim()) {
       setSearchResults([]);
+      setIsDropdownOpen(false);
       return;
     }
 
@@ -47,13 +33,12 @@ export default function Search({ className }: { className?: string }) {
         course.tags.some(tag => tag.toLowerCase().includes(query.toLowerCase()))
       )
       .sort((a, b) => a.title.localeCompare(b.title))
-      .slice(0, 7); // Only take the top 7 results
+      .slice(0, 7);
 
     setSearchResults(filteredCourses);
     setIsDropdownOpen(filteredCourses.length > 0);
   };
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -72,7 +57,6 @@ export default function Search({ className }: { className?: string }) {
     };
   }, []);
 
-  // Function to get difficulty color
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'beginner': return 'bg-green-500';
@@ -90,11 +74,10 @@ export default function Search({ className }: { className?: string }) {
         <Input
           ref={inputRef}
           className='border-none focus-visible:outline-0 dark:focus-visible:outline-0'
-          placeholder={isLoading ? 'Loading courses...' : 'What do you want to learn?'}
+          placeholder={'What do you want to learn?'}
           value={searchQuery}
           onChange={(e) => handleSearch(e.target.value)}
           onFocus={() => searchResults.length > 0 && setIsDropdownOpen(true)}
-          disabled={isLoading}
         />
       </div>
 

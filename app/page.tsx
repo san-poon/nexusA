@@ -1,8 +1,10 @@
-import { redirect } from 'next/navigation';
 import Search from '@/app/components/Search';
+import { getAllCoursesWithTagsServer } from '@/data-access/courses';
+import { CourseWithTags } from '@/data-access/courses';
 import Link from 'next/link';
 
 export default async function HomePage() {
+  const coursesData = await getAllCoursesWithTagsServer();
 
   return (
     <div className="flex flex-col items-center w-full">
@@ -14,7 +16,7 @@ export default async function HomePage() {
         </p>
 
         {/* Search bar */}
-        <Search className='z-10 w-full md:w-[32rem] bg-wash-70 dark:bg-wash-750 rounded-full focus-within:shadow-2xl' />
+        <Search coursesData={coursesData} className='z-10 w-full md:w-[32rem] bg-wash-70 dark:bg-wash-750 rounded-full focus-within:shadow-2xl' />
       </div>
 
       {/* Main features */}

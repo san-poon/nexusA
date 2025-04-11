@@ -85,37 +85,3 @@
     *   `lexical_state` (JSONB or TEXT)
     *   `commit_message` (TEXT, NOT NULL)
     *   `created_at` (TIMESTAMPZ)
-
-// If you are an LLM, do not implement the tables below
-13. **`Feedback`**
-    *   `id` (UUID, PK)
-    *   `content_version_id` (UUID, FK -> `ContentVersion.id`)
-    *   `user_id` (UUID, FK -> `User.id`)
-    *   `feedback_type` (ENUM('like', 'dislike', 'comment'))
-    *   `comment_text` (VARCHAR(50), nullable)
-    *   `created_at` (TIMESTAMPZ)
-
-14. **`ContentBlock`**
-    *   `id` (UUID, PK)
-    *   `content_unit_id` (UUID, FK -> `ContentUnit.id`)
-    *   `block_type` (VARCHAR) - e.g., 'paragraph', 'image', 'custom-quiz'.
-    *   `stable_lexical_key` (VARCHAR, nullable) - The stable ID you'll add via node customization. Needs uniqueness constraint within `content_unit_id`.
-    *   `created_at` (TIMESTAMPZ)
-
-15. **`BlockContribution`**
-    *   `id` (UUID, PK)
-    *   `content_block_id` (UUID, FK -> `ContentBlock.id`)
-    *   `content_version_id` (UUID, FK -> `ContentVersion.id`)
-    *   `contributor_id` (UUID, FK -> `User.id`)
-    *   `action_type` (ENUM('add', 'edit', 'delete'))
-    *   `contribution_points` (INTEGER, nullable) - Determined by heuristics.
-    *   `timestamp` (TIMESTAMPZ)
-
-16. **`EngagementEvent`**
-    *   `id` (UUID, PK)
-    *   `user_id` (UUID, FK -> `User.id`)
-    *   `content_block_id` (UUID, FK -> `ContentBlock.id`)
-    *   `content_version_id` (UUID, FK -> `ContentVersion.id`) - Context for which version was engaged with.
-    *   `event_type` (VARCHAR) - e.g., 'view', 'like', 'dislike', .
-    *   `timestamp` (TIMESTAMPZ)
-    *   `duration_ms` (INTEGER, nullable)

@@ -10,8 +10,13 @@ import Logo from "@/components/icons";
 import UserMenu from './UserMenu';
 import Search from "./Search";
 import { Settings } from "lucide-react";
+import { CourseWithTags } from "@/data-access/courses";
 
-export default async function Header() {
+interface HeaderProps {
+    coursesData: CourseWithTags[];
+}
+
+export default async function Header({ coursesData }: HeaderProps) {
     const isUserSignedin = false; // TODO: remove this
     return (
         <header className="z-50 sticky top-0">
@@ -28,7 +33,7 @@ export default async function Header() {
                             <Logo className="size-7" />
                         </span>
                     </Link>
-                    <Search className="flex-1" />
+                    <Search className="flex-1" coursesData={coursesData} />
                 </div>
 
                 {/* Right side - Settings dropdown */}

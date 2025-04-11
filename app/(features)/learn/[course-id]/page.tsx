@@ -1,9 +1,9 @@
-import { getAllCoursesWithTags } from "@/lib/courses-client"; // Import function to get courses
+import { getAllCoursesWithTagsServer, CourseWithTags } from "@/data-access/courses";
 
 // Generate static paths for all courses
 export async function generateStaticParams() {
-    const courses = await getAllCoursesWithTags();
-    return courses.map((course) => ({
+    const courses = await getAllCoursesWithTagsServer();
+    return courses.map((course: CourseWithTags) => ({
         courseId: course.id,
     }));
 }

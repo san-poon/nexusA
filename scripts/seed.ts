@@ -1,7 +1,7 @@
 import { db, client } from '../db/drizzle';
 import { tags, courses as coursesTable, courseTags } from '../db/schema';
-import coursesData from '../lib/courses';
-import type { Course, CourseCategoryTag } from '../lib/courses';
+import coursesData from '../lib/courseTopics';
+import type { Course, CourseCategoryTag } from '../lib/courseTopics';
 
 async function seedDatabase() {
     console.log('🌱 Starting database seeding...');
