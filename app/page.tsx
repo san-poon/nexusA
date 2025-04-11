@@ -10,9 +10,9 @@ export default async function HomePage() {
     <div className="flex flex-col items-center w-full">
       {/* Hero section */}
       <div className="flex flex-col items-center py-16 px-6 text-center max-w-4xl">
-        <h1 className="text-4xl md:text-5xl font-bold mb-6">nexusA: Collaborative Learning Platform</h1>
+        <h1 className="text-4xl md:text-5xl font-bold mb-6">nexusA: Building Trustworthy Knowledge, Together</h1>
         <p className="text-xl mb-10 text-neutral-600 dark:text-neutral-400">
-          Collaboratively build and access trustworthy learning materials. Experts and learners working together to create high-quality, reliable educational content.
+          Tired of fragmented and unreliable online learning? nexusA empowers contributors and learners to collaboratively build definitive, high-quality educational materials. Open access, always.
         </p>
 
         {/* Search bar */}
@@ -23,12 +23,12 @@ export default async function HomePage() {
       <div className="grid md:grid-cols-2 gap-6 md:gap-10 w-full max-w-6xl px-6 mb-16">
         <FeatureCard
           title="Learn"
-          description="Access high-quality learning materials created collaboratively by experts and passionate learners. Find clear, structured paths vetted for reliability and completeness."
+          description="Access high-quality learning materials created and refined through asynchronous collaboration. Find clear, structured courses vetted for reliability and completeness."
           action={<Link href="/learn" className="px-6 py-2 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-medium">Start Learning</Link>}
         />
         <FeatureCard
           title="Contribute"
-          description="Share your knowledge by contributing to existing learning paths or proposing improvements. Help refine content asynchronously and build trustworthy resources for everyone."
+          description="Share your knowledge anytime, anywhere. Contribute to existing courses, propose improvements, and help build relevant resources. Your impact is recognized."
           action={<Link href="/create" className="px-6 py-2 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-medium">Start Contributing</Link>}
         />
       </div>
@@ -36,15 +36,15 @@ export default async function HomePage() {
       {/* Community section */}
       <div className="w-full bg-neutral-50 dark:bg-neutral-900 py-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-6">Why nexusA is Different</h2>
+          <h2 className="text-3xl font-bold mb-6">Our Core Principles</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-            <ValueProp title="Collaborative" description="Experts collaborate to create the best content" />
-            <ValueProp title="One Clear Path" description="A single, expert-approved learning path per topic" />
-            <ValueProp title="Quality Matters" description="Content validated by experts with continuous improvement" />
-            <ValueProp title="Open Access" description="Core learning content is free forever" />
+            <ValueProp title="Asynchronous Collaboration" description="Contributors and learners collaborate asynchronously to create and refine content." />
+            <ValueProp title="Focus on Quality" description="Improve courses through contribution, ensuring reliability, not duplication." />
+            <ValueProp title="Open Access" description="Core text and image content is free, forever." />
+            <ValueProp title="Meaningful Contributions" description="Contributors are recognized and compensated based on their impact." />
           </div>
           <p className="text-lg mb-8">
-            nexusA tackles fragmented and unreliable online learning. We believe education should be trustworthy and comprehensive. Join our community where experts and learners collaborate to build the definitive, high-quality learning materials.
+            nexusA addresses the challenge of fragmented and unreliable online learning. We believe education should be trustworthy, comprehensive, and accessible. Join our community dedicated to collaboratively building definitive, high-quality learning resources.
           </p>
         </div>
       </div>
