@@ -107,9 +107,9 @@ export function ContentBlock({ node }: { node: SerializedLexicalNode }) {
     }
 }
 
-export function Children({ children }: { children: SerializedLexicalNode[] }) {
-    if (!children) return null;
-    return children.map((child, index) => {
+export function Children({ nodes }: { nodes: SerializedLexicalNode[] }) {
+    if (!nodes) return null;
+    return nodes.map((child, index) => {
         const key = child.type + index;
         return <ContentBlock key={key} node={child} />
     });
@@ -124,7 +124,7 @@ export function LinkBlock({ node }: { node: SerializedLinkNode }) {
             rel={node.rel || 'noopener noreferrer'}
             className="no-underline hover:underline underline-offset-4 text-cyan-600 dark:text-cyan-200 transition-colors cursor-pointer"
         >
-            <Children children={node.children} />
+            <Children nodes={node.children} />
         </a>
     )
 }
@@ -177,14 +177,14 @@ export function CollapsibleContainerBlock({ node }: { node: SerializedCollapsibl
 
 export function CollapsibleTitleBlock({ node }: { node: SerializedCollapsibleTitleNode }) {
     return (
-        <Children children={node.children} />
+        <Children nodes={node.children} />
     );
 }
 
 export function CollapsibleContentBlock({ node }: { node: SerializedCollapsibleContentNode }) {
     return (
         <div className="Collapsible__content">
-            <Children children={node.children} />
+            <Children nodes={node.children} />
         </div>
     );
 }
@@ -193,7 +193,7 @@ export function MCQQuestionBlock({
 }: {
     node: SerializedMCQQuestionNode;
 }) {
-    return <div><Children children={node.children} /></div>;
+    return <div><Children nodes={node.children} /></div>;
 }
 
 export function MCQOptionsContainerBlock({
@@ -201,7 +201,7 @@ export function MCQOptionsContainerBlock({
 }: {
     node: SerializedMCQOptionsContainerNode;
 }) {
-    return <Children children={node.children} />;
+    return <Children nodes={node.children} />;
 }
 
 export function MCQOptionBlock({
@@ -209,7 +209,7 @@ export function MCQOptionBlock({
 }: {
     node: SerializedMCQOptionNode;
 }) {
-    return <Children children={node.children} />;
+    return <Children nodes={node.children} />;
 }
 
 export function ExplanationBlock({
@@ -217,12 +217,12 @@ export function ExplanationBlock({
 }: {
     node: SerializedExplanationNode;
 }) {
-    return <Children children={node.children} />;
+    return <Children nodes={node.children} />;
 }
 
 
 export function Root({ node }: { node: SerializedRootNode }) {
-    return <Children children={node.children} />;
+    return <Children nodes={node.children} />;
 }
 
 export function ListBlock({ node }: { node: SerializedListNode }) {
@@ -230,7 +230,7 @@ export function ListBlock({ node }: { node: SerializedListNode }) {
     const className = node.listType === 'bullet' ? "list-disc" : "list-decimal";
     return (
         <Tag className={cn("leading-8 list-inside marker:text-neutral-500", className)}>
-            <Children children={node.children} />
+            <Children nodes={node.children} />
         </Tag>
     );
 }
@@ -238,7 +238,7 @@ export function ListBlock({ node }: { node: SerializedListNode }) {
 export function ListItem({ node }: { node: SerializedListItemNode }) {
     return (
         <li className="my-0 ps-1 lg:ps-6">
-            <Children children={node.children} />
+            <Children nodes={node.children} />
         </li>
     );
 }
@@ -248,8 +248,8 @@ export function ListItem({ node }: { node: SerializedListItemNode }) {
 // min-h-8 preserves empty paragraph from collapsing.
 export function Paragraph({ node }: { node: SerializedParagraphNode }) {
     return (
-        <p className="leading-relaxed my-4 whitespace-pre-wrap min-h-8">
-            <Children children={node.children} />
+        <p className="min-h-8 whitespace-pre-wrap text-justify my-2 lg:my-3">
+            <Children nodes={node.children} />
         </p>
     );
 }
@@ -268,7 +268,7 @@ export function Heading({ node }: { node: SerializedHeadingNode }) {
     }
     return (
         <Tag className={className}>
-            <Children children={node.children} />
+            <Children nodes={node.children} />
         </Tag>
     );
 }
