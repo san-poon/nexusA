@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import { getAllCoursesWithTagsServer } from '@/data-access/courses';
+import { getAllCoursesWithTagsServer } from '@/core/data/access/courses';
 
 export async function GET() {
     try {

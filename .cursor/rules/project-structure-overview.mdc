@@ -1,0 +1,85 @@
+---
+description: project structure overview
+globs: 
+alwaysApply: false
+---
+This Next.js project follows a specific structure:
+- `app/`: Contains all routes, pages, layouts, and UI logic using the App Router. Use Route Groups `(folderName)` for organization within `app/` to keep directory listings manageable.
+- `components/`: For reusable React components. See `component-organization` rule.
+- `lib/`: For shared utilities, hooks, constants, and types. See `library-organization` rule.
+- `core/`: For core application logic, data access, and services. See `core-logic-organization` rule.
+- `public/`: For static assets, served from the root.
+- `docs/`: For project documentation.
+- Config files (`next.config.mjs`, `tsconfig.json`, `package.json`, `drizzle.config.ts`, etc.) and `middleware.ts` MUST remain in the project root."
+
+---
+
+**Rule Name:** `component-organization`
+Organize components within the `components/` directory as follows:
+- `components/ui/`: Primitive/design system components (Button, Input, Card, Icon).
+- `components/forms/`: Reusable form-specific components.
+- `components/layout/`: Components specifically used in layouts (Navbar, Sidebar, Footer).
+- `components/features/[featureName]/`: Components scoped to a specific application feature (e.g., `auth/`, `checkout/`, `settings/`,`contribute/`, `learn/` ).
+- Avoid excessive colocation; favor placing reusable components here rather than directly within `app/` unless the component is strictly tied to a single route.
+
+---
+
+**Rule Name:** `library-organization`
+
+Organize shared code within the `lib/` directory as follows:
+- `lib/utils/`: General utility functions (formatting, validation).
+- `lib/hooks/`: Custom React hooks (client or server-side).
+- `lib/constants/`: Application-wide constants, enums, or static data.
+- `lib/types/`: Shared TypeScript types and interfaces used across multiple domains.
+
+---
+
+**Rule Name:** `core-logic-organization`
+Place core application logic, primarily server-side, within the `core/` directory:
+- `core/data/schema/`: Database schema definitions (e.g., Drizzle `schema.ts`, `drizzle.ts`).
+- `core/data/access/`: Data access functions/repositories for interacting with the database.
+- `core/data/migrations/`: Database migration files (e.g., Drizzle Kit output).
+- `core/data/seed.ts`: Database seeding script.
+- `core/services/`: directory for higher-level business logic services that orchestrate data access or external API calls.
+- `core/actions/`: Optional directory for globally reusable Server Actions.
+
+---
+
+**Rule Name:** `api-route-handlers`
+Create dedicated API endpoints using Next.js App Router Route Handlers:
+- Place handler files named `route.ts`  within the `app/` directory.
+- Organize them under `app/api/` for clarity (e.g., `app/api/users/route.ts` maps to `/api/users`).
+- Route Handlers should typically import and use functions from `core/data/access/` or `core/services/` to perform their logic.
+
+---
+
+**Rule Name:** `server-action-placement`
+
+Define Server Actions (`'use server'`) in the following locations based on scope:
+1.  **Colocated:** Directly within a Server Component file (`.tsx`) if the action is *only* used by that component.
+2.  **Feature-Specific:** In dedicated `_actions/*.ts` files within feature-specific `app/` subdirectories (e.g., `app/(dashboard)/settings/_actions/update-profile.ts`). Use an underscore prefix for the folder (`_actions`) to prevent it from becoming a route segment. Import locally (e.g., `import { action } from './_actions/file';`).
+3.  **Core/Reusable:** In `core/services/*.ts` or a dedicated `core/actions/*.ts` directory for actions representing reusable core logic. Import using the alias (e.g., `import { coreAction } from '@/core/actions/file';`).
+
+---
+
+**Rule Name:** `import-alias`
+
+Use the `tsconfig.json` path alias `@/*` for imports pointing to the project root (e.g., `import { Button } from '@/components/ui/button';`, `import { getUser } from '@/core/data/access/users';`). Avoid relative paths (`../`) for imports outside the 
+
+
+// ... existing code ...
+
+**Rule Name:** `import-alias`
+
+Use the `tsconfig.json` path alias `@/*` for imports pointing to the project root (e.g., `import { Button } from '@/components/ui/button';`, `import { getUser } from '@/core/data/access/users';`). Avoid relative paths (`../`) for imports outside the current feature or directory level.
+
+---
+
+**Rule Name:** `route-colocation-and-organization`
+
+Adhere to the following principles for file placement within `app/` route segments:
+
+1.  **Colocation:** Files (like utility functions or type definitions) used *exclusively* by a single route segment can be placed directly within that segment's directory (e.g., `app/(dashboard)/settings/utils.ts`). Avoid colocating components unless they are trivial and absolutely single-use; prefer `components/features/[featureName]/` or other `components/` subdirectories for potentially reusable UI elements.
+2.  **Server Actions:** Place route-specific Server Actions in an `_actions/` subdirectory within the route segment (e.g., `app/(dashboard)/settings/_actions/update-profile.ts`), as per the `server-action-placement` rule.
+3.  **Avoid Clutter:** If a route segment directory accumulates many files (e.g., >5-7 files beyond standard Next.js files like `page.tsx`, `layout.tsx`, `route.ts`, etc., and the `_actions` folder), refactor reusable logic (components, hooks, utils, types, core logic) into the appropriate top-level directories (`components/`, `lib/`, `core/`) following the established project structure rules.
+4.  **No Arbitrary Folders:** Do not create arbitrary subdirectories within route segments. Use established patterns like `_actions/` or Route Groups `(...)` for organization.current feature or directory level.

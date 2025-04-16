@@ -1,4 +1,4 @@
-import { getAllCoursesWithTagsServer, CourseWithTags } from "@/data-access/courses";
+import { getAllCoursesWithTagsServer, CourseWithTags } from "@/core/data/access/courses";
 import ContributeClientLayout from './contribute-client-layout';
 
 export async function generateStaticParams() {

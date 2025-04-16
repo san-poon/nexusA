@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Textarea, TextareaProps } from "./textarea";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/utils";
 
 export function DynamicTextarea({ className, ...props }: TextareaProps) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);

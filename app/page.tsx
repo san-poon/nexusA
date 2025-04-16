@@ -1,6 +1,5 @@
-import Search from '@/app/components/Search';
-import { getAllCoursesWithTagsServer } from '@/data-access/courses';
-import { CourseWithTags } from '@/data-access/courses';
+import Search from '@/components/layout/Search';
+import { getAllCoursesWithTagsServer } from '@/core/data/access/courses';
 import Link from 'next/link';
 
 export default async function HomePage() {

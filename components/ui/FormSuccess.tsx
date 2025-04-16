@@ -1,4 +1,4 @@
-import { CircleCheck } from '@/components/icons';
+import { CircleCheck } from '@/components/ui/icons';
 
 interface FormSuccessProps {
     message?: string;

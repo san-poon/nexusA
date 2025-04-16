@@ -1,12 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils/utils"
 import { Button } from "@/components/ui/button"
-import { MenuIcon } from "@/components/icons"
-import TocEditor from "../toc-editor/toc-editor"
-import { TocProvider } from "../toc-editor/toc-context"
-import ContentEditor from "../content-editor/content-editor"
+import { MenuIcon } from "@/components/ui/icons"
+import TocEditor from "../../../../components/features/toc-editor/toc-editor"
+import { TocProvider } from "../../../../components/features/toc-editor/toc-context"
+import ContentEditor from "./content-editor"
 
 export default function ContributeClientLayout() {
     const [showToc, setShowToc] = useState(true)
@@ -29,7 +29,7 @@ export default function ContributeClientLayout() {
             >
                 <MenuIcon className="size-6" />
             </Button>
-            <div className="flex flex-col lg:flex-row lg:gap-2 min-h-[92vh] px-2 sm:px-4 lg:px-0">
+            <div className="flex flex-row lg:gap-2 min-h-[92vh] px-2 sm:px-4 lg:px-0">
                 <div
                     className={cn(
                         "lg:sticky lg:top-20 h-[calc(92vh-4rem)] pt-2 overflow-y-auto overscroll-contain",

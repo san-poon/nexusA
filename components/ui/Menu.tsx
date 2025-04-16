@@ -1,4 +1,4 @@
-import { HamburgerIcon, XMarkIcon } from '@/components/icons';
+import { HamburgerIcon, XMarkIcon } from '@/components/ui/icons';
 import { Button } from '@/components/ui/button';
 
 export default function Menu({ isOpen, onClick, className }: { isOpen: boolean, onClick: () => void, className?: string }) {

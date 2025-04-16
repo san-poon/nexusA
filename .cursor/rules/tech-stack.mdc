@@ -1,11 +1,13 @@
 ---
-description: 
+description: tech stack, dev tools, project structure
 globs: 
-alwaysApply: true
+alwaysApply: false
 ---
-Tech stack: Uses Lexical.js (rich text editing framework), Next.js App Router v15, React v19, TailwindCSS v4, Shadcn UI, Supabase storage, Supabase Auth, Drizzle.
+Tech stack: Uses Lexical.js (rich text editing framework), Next.js App Router v15, React v19, TailwindCSS v4, Shadcn UI, Supabase for storage and Auth, Drizzle.
 
 Next.js App Router: Prefer server components for data fetching and server-side logic.
 Utilize server actions for form submissions and data mutations.
 
 TailwindCSS : Prefer [globals.css](mdc:app/globals.css) `--wash-*` for background color.
+
+Tools: pnpm

@@ -1,4 +1,4 @@
-import { TriangleAlertIcon } from '@/components/icons';
+import { TriangleAlertIcon } from '@/components/ui/icons';
 
 interface FormErrorProps {
     message?: string;

@@ -3,10 +3,10 @@ import { defaultFont } from '@/app/fonts';
 import { Toaster } from 'sonner';
 
 import './globals.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import { ThemeProvider } from './components/theme-provider';
-import { getAllCoursesWithTagsServer, CourseWithTags } from '@/data-access/courses';
+import Header from '@/components/layout/Header';
+import Footer from '@/components/layout/Footer';
+import { ThemeProvider } from '@/components/layout/theme-provider';
+import { getAllCoursesWithTagsServer, CourseWithTags } from '@/core/data/access/courses';
 
 export const metadata: Metadata = {
   title: 'nexusA: contribute & learn',
@@ -21,8 +21,8 @@ export default async function RootLayout({
   const coursesData = await getAllCoursesWithTagsServer();
 
   return (
-    <html lang="en">
-      <body className={`${defaultFont.className}  flex flex-col min-h-screen dark:bg-wash-800 dark:text-neutral-300 text-base tracking-tighter`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${defaultFont.className} flex flex-col min-h-screen dark:bg-wash-800 dark:text-neutral-300 text-base tracking-tighter`}>
         <ThemeProvider
           attribute='class'
           defaultTheme="dark"

@@ -1,0 +1,23 @@
+---
+description: coding: preferred coding styles
+globs: 
+alwaysApply: false
+---
+* **Functions**: Prefer named declarations for functions. Use arrow functions for component event handlers.
+
+* **Semicolons**: Always use them at the end of statement.
+
+## Next.js Server Logic
+
+**Default to Route Handlers** for API endpoints and external service requests.
+
+**Use Server Actions when**:
+1. Handling data mutations from direct user interaction
+2. Executing server logic as direct response to component events
+3. Using React transitions for optimistic UI updates
+
+**Use Route Handlers for**:
+* API endpoints for broader consumption
+* Third-party webhooks
+* Requiring control over Request/Response objects
+* Server logic not tied to component events 
